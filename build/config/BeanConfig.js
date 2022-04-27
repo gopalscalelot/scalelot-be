@@ -16,11 +16,13 @@ const CareerController_1 = __importDefault(require("../routes/v1/career/CareerCo
 const tsyringe_1 = require("tsyringe");
 const LoginController_1 = __importDefault(require("../routes/v1/login/LoginController"));
 const ContactUsController_1 = __importDefault(require("../routes/v1/contactus/ContactUsController"));
+const MetaKeywordsController_1 = __importDefault(require("../routes/v1/metakeywords/MetaKeywordsController"));
 let BeanConfig = class BeanConfig {
     constructor() {
         this._careerController = tsyringe_1.container.resolve(CareerController_1.default);
         this._loginController = tsyringe_1.container.resolve(LoginController_1.default);
         this._contactUsController = tsyringe_1.container.resolve(ContactUsController_1.default);
+        this._metaKeywordsController = tsyringe_1.container.resolve(MetaKeywordsController_1.default);
     }
     get careerController() {
         return this._careerController;
@@ -30,6 +32,9 @@ let BeanConfig = class BeanConfig {
     }
     get contactUsController() {
         return this._contactUsController;
+    }
+    get metaKeywordsController() {
+        return this._metaKeywordsController;
     }
 };
 BeanConfig = __decorate([

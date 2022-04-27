@@ -1,0 +1,1 @@
+{"version":3,"file":"SessionPayload.js","sourceRoot":"","sources":["../../../src/utils/other/SessionPayload.ts"],"names":[],"mappings":";;AAAA,MAAqB,cAAc;IAG/B,YAAY,MAAc;QACtB,IAAI,CAAC,OAAO,GAAG,MAAM,CAAC;IAC1B,CAAC;IAED,IAAI,MAAM;QACN,OAAO,IAAI,CAAC,OAAO,CAAC;IACxB,CAAC;IAED,IAAI,MAAM,CAAC,KAAa;QACpB,IAAI,CAAC,OAAO,GAAG,KAAK,CAAC;IACzB,CAAC;CACJ;AAdD,iCAcC"}

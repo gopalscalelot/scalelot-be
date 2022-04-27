@@ -18,6 +18,7 @@ export default class RouterConfig {
         this.router.use('/career', this.beanConfig.careerController.routes());
         this.router.use('/login', this.beanConfig.loginController.routes());
         this.router.use('/contact-us', this.beanConfig.contactUsController.routes());
+        this.router.use('/meta-keywords', this.beanConfig.metaKeywordsController.routes());
     }
 
 

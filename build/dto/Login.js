@@ -10,10 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_transformer_1 = require("class-transformer");
+const mongodb_1 = require("mongodb");
 class Login {
-    constructor(userName, password) {
+    constructor(id, userName, password) {
+        this._id = id;
         this._userName = userName;
         this._password = password;
+    }
+    get id() {
+        return this._id;
     }
     get userName() {
         return this._userName;
@@ -28,6 +33,11 @@ class Login {
         this._password = value;
     }
 }
+__decorate([
+    (0, class_transformer_1.Expose)(),
+    (0, class_transformer_1.Transform)(param => param.value ? param.value.toString() : null),
+    __metadata("design:type", mongodb_1.ObjectId)
+], Login.prototype, "_id", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: "userName" }),
     __metadata("design:type", String)

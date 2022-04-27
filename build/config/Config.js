@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logDirectory = exports.corsUrl = exports.GMAIL_CONFIG = exports.DEFAULT_USER_CREDS = exports.db = exports.port = exports.environment = void 0;
+exports.logDirectory = exports.corsUrl = exports.GMAIL_CONFIG = exports.PROTECTED_ENDPOINTS = exports.DEFAULT_USER_CREDS = exports.db = exports.port = exports.environment = void 0;
 // Mapper for environment variables
 exports.environment = process.env.NODE_ENV;
 exports.port = process.env.PORT;
@@ -13,6 +13,7 @@ exports.DEFAULT_USER_CREDS = {
     userName: process.env.DEFAULT_USERNAME || '',
     password: process.env.DEFAULT_PASSWORD || ''
 };
+exports.PROTECTED_ENDPOINTS = process.env.PROTECTED_ENDPOINTS.split(",");
 exports.GMAIL_CONFIG = {
     service: process.env.GMAIL_SERVICE || '',
     user: process.env.GMAIL_AUTH_USERNAME || '',

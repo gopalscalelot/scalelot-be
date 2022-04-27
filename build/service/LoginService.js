@@ -17,6 +17,8 @@ const LoginRepository_1 = __importDefault(require("../repository/LoginRepository
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const JWTUtil_1 = __importDefault(require("../utils/JWTUtil"));
 const ApiError_1 = require("../error/ApiError");
+const SessionPayload_1 = __importDefault(require("../utils/other/SessionPayload"));
+const Logger_1 = __importDefault(require("../utils/Logger"));
 let LoginService = class LoginService {
     constructor(loginRepository) {
         this._loginRepository = loginRepository;
@@ -25,7 +27,9 @@ let LoginService = class LoginService {
         let loginFromDB = await this._loginRepository.getLogin(login);
         let bcryptComparisonSuccess = await bcrypt_1.default.compare(login.password, loginFromDB.password);
         if (bcryptComparisonSuccess) {
-            return JWTUtil_1.default.generateJWTSessionToken({ userName: login.userName });
+            Logger_1.default.debug("Sending token");
+            Logger_1.default.debug(new SessionPayload_1.default(loginFromDB.id.toString()));
+            return JWTUtil_1.default.generateJWTSessionToken(new SessionPayload_1.default(loginFromDB.id.toString()));
         }
         throw new ApiError_1.BadRequestError();
     }

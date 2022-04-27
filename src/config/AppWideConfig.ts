@@ -8,19 +8,22 @@ import ErrorHandlerMiddlewares from '../middleware/ErrorHandlerMiddlewares';
 import {autoInjectable, container} from "tsyringe";
 import multer from 'multer';
 import MongoDBConnectionConfig from './MongoDBConnectionConfig';
+import AuthMiddleware from "../auth/AuthMiddleware";
 @autoInjectable()
 export default class AppWideConfig {
 
     private app: Express;
     private isConfigured: boolean;
+    private authMiddleware: AuthMiddleware;
     private routerConfig: RouterConfig;
     private mongoDBConnectionConfig: MongoDBConnectionConfig;
 
-    constructor( routerConfig: RouterConfig, mongoDBConnectionConfig: MongoDBConnectionConfig) {
+    constructor( routerConfig: RouterConfig, mongoDBConnectionConfig: MongoDBConnectionConfig, authMiddleware: AuthMiddleware) {
         this.app = express();
         this.isConfigured = false;
         this.routerConfig = routerConfig;
         this.mongoDBConnectionConfig = mongoDBConnectionConfig;
+        this.authMiddleware = authMiddleware;
     }
 
     public getConfiguredApp(): express.Express {
@@ -37,6 +40,7 @@ export default class AppWideConfig {
         this.configureMongoDBConnection();
         this.configureBodyParser();
         this.configureCORS();
+        this.attachPreRouterMiddlewares();
         this.configureV1Router();
         this.attachErrorMiddleware();
 
@@ -52,22 +56,16 @@ export default class AppWideConfig {
         Logger.debug("Configuring Body Parser");
         this.app.use(bodyParser.json({limit: '1mb'}));
         this.app.use(bodyParser.urlencoded({limit: '1mb', extended: true, parameterLimit: 50000}));
-        this.app.use(
-            // multer({
-            //     limits: {
-            //         fileSize: 5242880,
-            //         files: 1
-            //     },
-            //     // storage: multer.memoryStorage()
-            // }).single('resume')
-            multer().single("resume")
-            );
-
     }
 
     private configureCORS() {
         Logger.debug("Configuring CORS");
         this.app.use(cors({origin: corsUrl, optionsSuccessStatus: 200}));
+    }
+
+    private attachPreRouterMiddlewares() {
+        Logger.debug("Configuring Pre Router Middlewares");
+        this.app.use(this.authMiddleware.authMiddleware);
     }
 
     private configureV1Router() {

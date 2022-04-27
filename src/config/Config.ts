@@ -13,6 +13,8 @@ export const DEFAULT_USER_CREDS = {
     password: process.env.DEFAULT_PASSWORD || ''
 }
 
+export const PROTECTED_ENDPOINTS: string[] = process.env.PROTECTED_ENDPOINTS!.split(",");
+
 export const GMAIL_CONFIG = {
     service: process.env.GMAIL_SERVICE || '',
     user: process.env.GMAIL_AUTH_USERNAME || '',

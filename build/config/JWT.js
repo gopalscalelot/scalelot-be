@@ -10,6 +10,7 @@ const jsonwebtoken_1 = require("jsonwebtoken");
 const class_transformer_1 = require("class-transformer");
 const ApiError_1 = require("../error/ApiError");
 const Logger_1 = __importDefault(require("../utils/Logger"));
+const SessionPayload_1 = __importDefault(require("../utils/other/SessionPayload"));
 class JWT {
     static readPublicKey() {
         return (0, util_1.promisify)(fs_1.readFile)(path_1.default.join(__dirname, '../../keys/scalelot.public.pem'), 'utf8');
@@ -34,7 +35,8 @@ class JWT {
             return (await (0, util_1.promisify)(jsonwebtoken_1.verify)(token, cert));
         }
         catch (e) {
-            Logger_1.default.debug(e);
+            Logger_1.default.debug("--------------------------------------------------------------------");
+            Logger_1.default.debug(e.stack);
             if (e && e.name === 'TokenExpiredError')
                 throw new ApiError_1.TokenExpiredError();
             // throws error if the token has not been encrypted by the private key
@@ -65,7 +67,7 @@ class JWT {
         const cert = await this.readPublicKey();
         try {
             // @ts-ignore
-            return (0, class_transformer_1.plainToInstance)(SessionPayload, (await (0, util_1.promisify)(jsonwebtoken_1.verify)(token, cert, { ignoreExpiration: true })));
+            return (0, class_transformer_1.plainToInstance)(SessionPayload_1.default, (await (0, util_1.promisify)(jsonwebtoken_1.verify)(token, cert, { ignoreExpiration: true })));
         }
         catch (e) {
             Logger_1.default.debug(e);

@@ -20,14 +20,15 @@ const Config_1 = require("./Config");
 const RouterConfig_1 = __importDefault(require("../routes/v1/RouterConfig"));
 const ErrorHandlerMiddlewares_1 = __importDefault(require("../middleware/ErrorHandlerMiddlewares"));
 const tsyringe_1 = require("tsyringe");
-const multer_1 = __importDefault(require("multer"));
 const MongoDBConnectionConfig_1 = __importDefault(require("./MongoDBConnectionConfig"));
+const AuthMiddleware_1 = __importDefault(require("../auth/AuthMiddleware"));
 let AppWideConfig = class AppWideConfig {
-    constructor(routerConfig, mongoDBConnectionConfig) {
+    constructor(routerConfig, mongoDBConnectionConfig, authMiddleware) {
         this.app = (0, express_1.default)();
         this.isConfigured = false;
         this.routerConfig = routerConfig;
         this.mongoDBConnectionConfig = mongoDBConnectionConfig;
+        this.authMiddleware = authMiddleware;
     }
     getConfiguredApp() {
         Logger_1.default.debug("Returning Configured app");
@@ -40,6 +41,7 @@ let AppWideConfig = class AppWideConfig {
         this.configureMongoDBConnection();
         this.configureBodyParser();
         this.configureCORS();
+        this.attachPreRouterMiddlewares();
         this.configureV1Router();
         this.attachErrorMiddleware();
         this.isConfigured = true;
@@ -52,19 +54,14 @@ let AppWideConfig = class AppWideConfig {
         Logger_1.default.debug("Configuring Body Parser");
         this.app.use(body_parser_1.default.json({ limit: '1mb' }));
         this.app.use(body_parser_1.default.urlencoded({ limit: '1mb', extended: true, parameterLimit: 50000 }));
-        this.app.use(
-        // multer({
-        //     limits: {
-        //         fileSize: 5242880,
-        //         files: 1
-        //     },
-        //     // storage: multer.memoryStorage()
-        // }).single('resume')
-        (0, multer_1.default)().single("resume"));
     }
     configureCORS() {
         Logger_1.default.debug("Configuring CORS");
         this.app.use((0, cors_1.default)({ origin: Config_1.corsUrl, optionsSuccessStatus: 200 }));
+    }
+    attachPreRouterMiddlewares() {
+        Logger_1.default.debug("Configuring Pre Router Middlewares");
+        this.app.use(this.authMiddleware.authMiddleware);
     }
     configureV1Router() {
         Logger_1.default.debug("Configuring Router");
@@ -81,7 +78,7 @@ let AppWideConfig = class AppWideConfig {
 };
 AppWideConfig = __decorate([
     (0, tsyringe_1.autoInjectable)(),
-    __metadata("design:paramtypes", [RouterConfig_1.default, MongoDBConnectionConfig_1.default])
+    __metadata("design:paramtypes", [RouterConfig_1.default, MongoDBConnectionConfig_1.default, AuthMiddleware_1.default])
 ], AppWideConfig);
 exports.default = AppWideConfig;
 //# sourceMappingURL=AppWideConfig.js.map

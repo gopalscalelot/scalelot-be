@@ -5,6 +5,7 @@ import {sign, verify} from 'jsonwebtoken';
 import {plainToInstance} from "class-transformer";
 import {BadTokenError, InternalError, TokenExpiredError} from "../error/ApiError";
 import Logger from "../utils/Logger";
+import SessionPayload from "../utils/other/SessionPayload";
 
 export default class JWT {
   private static readPublicKey(): Promise<string> {
@@ -31,7 +32,8 @@ export default class JWT {
       // @ts-ignore
       return (await promisify(verify)(token, cert)) as SessionPayload;
     } catch (e: any) {
-      Logger.debug(e);
+      Logger.debug("--------------------------------------------------------------------")
+      Logger.debug(e.stack);
       if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();
       // throws error if the token has not been encrypted by the private key
       throw new BadTokenError();

@@ -4,6 +4,8 @@ import LoginRepository from "../repository/LoginRepository";
 import bcrypt from "bcrypt";
 import JWTUtil from "../utils/JWTUtil";
 import {BadRequestError} from "../error/ApiError";
+import SessionPayload from "../utils/other/SessionPayload";
+import Logger from "../utils/Logger";
 
 @autoInjectable()
 export default class LoginService {
@@ -18,7 +20,9 @@ export default class LoginService {
         let loginFromDB: Login = await this._loginRepository.getLogin(login);
         let bcryptComparisonSuccess: boolean = await bcrypt.compare(login.password, loginFromDB.password);
         if(bcryptComparisonSuccess) {
-            return JWTUtil.generateJWTSessionToken({userName: login.userName});
+            Logger.debug("Sending token");
+            Logger.debug(new SessionPayload(loginFromDB.id.toString()));
+            return JWTUtil.generateJWTSessionToken(new SessionPayload(loginFromDB.id.toString()));
         }
         throw new BadRequestError();
     }
