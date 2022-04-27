@@ -12,36 +12,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const tsyringe_1 = require("tsyringe");
 const express_1 = __importDefault(require("express"));
+const Logger_1 = __importDefault(require("../../../utils/Logger"));
+const AsyncHandler_1 = __importDefault(require("../../../utils/AsyncHandler"));
 const ApiResponse_1 = require("../../../utils/ApiResponse");
 const ResponseMessages_1 = __importDefault(require("../../../utils/statics/ResponseMessages"));
-const Logger_1 = __importDefault(require("../../../utils/Logger"));
-const tsyringe_1 = require("tsyringe");
-const AsyncHandler_1 = __importDefault(require("../../../utils/AsyncHandler"));
+const ContactUsService_1 = __importDefault(require("../../../service/ContactUsService"));
+const ContactUs_1 = __importDefault(require("../../../dto/ContactUs"));
 const class_transformer_1 = require("class-transformer");
-const Login_1 = __importDefault(require("../../../dto/Login"));
-const LoginService_1 = __importDefault(require("../../../service/LoginService"));
-let LoginController = class LoginController {
-    constructor(loginService) {
-        Logger_1.default.debug("Initialising Register User Controller");
+let ContactUsController = class ContactUsController {
+    constructor(contactUsService) {
         this._router = express_1.default.Router();
-        this._loginService = loginService;
+        this._contactUsService = contactUsService;
     }
     routes() {
-        Logger_1.default.debug("Configuring routes for User Registration");
-        this._router.post('/', (0, AsyncHandler_1.default)(async (req, res) => this.createCareerController(req, res)));
+        Logger_1.default.debug("Configuring routes for Contact Us");
+        this._router.post('/', (0, AsyncHandler_1.default)(async (req, res) => this.addContactUsQuery(req, res)));
         return this._router;
     }
-    async createCareerController(req, res) {
-        Logger_1.default.debug("New Career Create Requested." + JSON.stringify(req.body));
-        let login = (0, class_transformer_1.plainToInstance)(Login_1.default, req.body, { excludeExtraneousValues: true });
-        let token = await this._loginService.loginUser(login);
-        return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.LOGIN_SUCCESS, { token: token }).send(res);
+    async addContactUsQuery(req, res) {
+        Logger_1.default.debug("New Contact US requested");
+        let contactUs = (0, class_transformer_1.plainToInstance)(ContactUs_1.default, req.body, { excludeExtraneousValues: true });
+        contactUs = await this._contactUsService.addContactUsQuery(contactUs);
+        return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, contactUs).send(res);
     }
 };
-LoginController = __decorate([
+ContactUsController = __decorate([
     (0, tsyringe_1.autoInjectable)(),
-    __metadata("design:paramtypes", [LoginService_1.default])
-], LoginController);
-exports.default = LoginController;
-//# sourceMappingURL=LoginController.js.map
+    __metadata("design:paramtypes", [ContactUsService_1.default])
+], ContactUsController);
+exports.default = ContactUsController;
+//# sourceMappingURL=ContactUsController.js.map

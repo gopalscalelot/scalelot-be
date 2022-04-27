@@ -29,6 +29,8 @@ export abstract class ApiResponse {
     }
 
     protected prepare<T extends ApiResponse>(res: Response, response: T): Response {
+        Logger.debug("Preparing response:")
+        Logger.debug(response);
         return res.status(this.status).json(ApiResponse.sanitize(AppUtils.nullPropsRemover(response)));
     }
 

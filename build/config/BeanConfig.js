@@ -15,16 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const CareerController_1 = __importDefault(require("../routes/v1/career/CareerController"));
 const tsyringe_1 = require("tsyringe");
 const LoginController_1 = __importDefault(require("../routes/v1/login/LoginController"));
+const ContactUsController_1 = __importDefault(require("../routes/v1/contactus/ContactUsController"));
 let BeanConfig = class BeanConfig {
     constructor() {
         this._careerController = tsyringe_1.container.resolve(CareerController_1.default);
         this._loginController = tsyringe_1.container.resolve(LoginController_1.default);
+        this._contactUsController = tsyringe_1.container.resolve(ContactUsController_1.default);
     }
     get careerController() {
         return this._careerController;
     }
     get loginController() {
         return this._loginController;
+    }
+    get contactUsController() {
+        return this._contactUsController;
     }
 };
 BeanConfig = __decorate([

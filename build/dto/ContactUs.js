@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_transformer_1 = require("class-transformer");
+const mongodb_1 = require("mongodb");
 class ContactUs {
     constructor(id, name, companyName, email, phoneNumber, description) {
         this._id = id;
@@ -18,9 +19,6 @@ class ContactUs {
         this._email = email;
         this._phoneNumber = phoneNumber;
         this._description = description;
-    }
-    get id() {
-        return this._id;
     }
     get name() {
         return this._name;
@@ -52,10 +50,14 @@ class ContactUs {
     set description(value) {
         this._description = value;
     }
+    get id() {
+        return this._id;
+    }
 }
 __decorate([
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", String)
+    (0, class_transformer_1.Transform)(param => param.value ? param.value.toString() : null),
+    __metadata("design:type", mongodb_1.ObjectId)
 ], ContactUs.prototype, "_id", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'name' }),

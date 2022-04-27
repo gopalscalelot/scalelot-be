@@ -31,6 +31,8 @@ class ApiResponse {
         this.message = message;
     }
     prepare(res, response) {
+        Logger_1.default.debug("Preparing response:");
+        Logger_1.default.debug(response);
         return res.status(this.status).json(ApiResponse.sanitize(AppUtils_1.default.nullPropsRemover(response)));
     }
     send(res) {

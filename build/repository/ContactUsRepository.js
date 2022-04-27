@@ -16,7 +16,7 @@ const AppUtils_1 = __importDefault(require("../utils/AppUtils"));
 const class_transformer_1 = require("class-transformer");
 let ContactUsRepository = class ContactUsRepository {
     async saveContactUs(contactUs) {
-        const contactUsEntity = new ContactUsEntity_1.default(AppUtils_1.default.nullPropsRemover(((0, class_transformer_1.instanceToPlain)(contactUs))));
+        const contactUsEntity = new ContactUsEntity_1.default(AppUtils_1.default.nullPropsRemover((0, class_transformer_1.instanceToPlain)(contactUs)));
         await contactUsEntity.save();
         return (0, class_transformer_1.plainToInstance)(ContactUs_1.default, contactUsEntity, { excludeExtraneousValues: true });
     }

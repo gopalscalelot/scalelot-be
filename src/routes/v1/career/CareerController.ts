@@ -22,7 +22,7 @@ export default class CareerController {
 
 
     routes() {
-        Logger.debug("Configuring routes for User Registration");
+        Logger.debug("Configuring routes for Career");
         this._router.post('/', AsyncHandler(async (req:any, res:any) => this.createCareerController(req, res)));
         this._router.get('/:user_id', AsyncHandler(async (req: any, res: any) => this.downloadResume(req, res)))
         return this._router;

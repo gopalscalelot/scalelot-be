@@ -12,32 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
 const tsyringe_1 = require("tsyringe");
-const BeanConfig_1 = __importDefault(require("../../config/BeanConfig"));
-let RouterConfig = class RouterConfig {
-    constructor(beanConfig) {
-        this.router = express_1.default.Router();
-        this.beanConfig = beanConfig;
-        this.isConfigured = false;
+const ContactUsRepository_1 = __importDefault(require("../repository/ContactUsRepository"));
+let ContactUsService = class ContactUsService {
+    constructor(contactUsRepository) {
+        this._contactUsRepository = contactUsRepository;
     }
-    configureCareerRoutes() {
-        this.router.use('/career', this.beanConfig.careerController.routes());
-        this.router.use('/login', this.beanConfig.loginController.routes());
-        this.router.use('/contact-us', this.beanConfig.contactUsController.routes());
-    }
-    getRouter() {
-        if (this.isConfigured) {
-            return this.router;
-        }
-        this.configureCareerRoutes();
-        this.isConfigured = true;
-        return this.router;
+    async addContactUsQuery(contactUs) {
+        return await this._contactUsRepository.saveContactUs(contactUs);
     }
 };
-RouterConfig = __decorate([
+ContactUsService = __decorate([
     (0, tsyringe_1.autoInjectable)(),
-    __metadata("design:paramtypes", [BeanConfig_1.default])
-], RouterConfig);
-exports.default = RouterConfig;
-//# sourceMappingURL=RouterConfig.js.map
+    __metadata("design:paramtypes", [ContactUsRepository_1.default])
+], ContactUsService);
+exports.default = ContactUsService;
+//# sourceMappingURL=ContactUsService.js.map

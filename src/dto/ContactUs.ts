@@ -1,75 +1,77 @@
-import { Expose } from "class-transformer";
+import {Expose, Transform} from "class-transformer";
+import {ObjectId} from "mongodb";
 
-export default class ContactUs{
+export default class ContactUs {
 
-  @Expose()
-  private readonly _id: string;
+    @Expose()
+    @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
+    private readonly _id?: ObjectId;
 
-  @Expose({name: 'name'})
-  private _name: string;
+    constructor(id: ObjectId, name: string, companyName: string, email: string, phoneNumber: string, description: string) {
+        this._id = id;
+        this._name = name;
+        this._companyName = companyName;
+        this._email = email;
+        this._phoneNumber = phoneNumber;
+        this._description = description;
+    }
 
-  @Expose({name: 'companyName'})
-  private _companyName: string;
+    @Expose({name: 'name'})
+    private _name: string;
 
-  @Expose({name: 'email'})
-  private _email: string;
+    get name(): string {
+        return this._name;
+    }
 
-  @Expose({name: 'phoneNumber'})
-  private _phoneNumber: string;
+    set name(value: string) {
+        this._name = value;
+    }
 
-  @Expose({name: 'description'})
-  private _description: string;
+    @Expose({name: 'companyName'})
+    private _companyName: string;
 
-	constructor(id: string, name: string, companyName: string, email: string, phoneNumber: string, description: string) {
-		this._id = id;
-		this._name = name;
-		this._companyName = companyName;
-		this._email = email;
-		this._phoneNumber = phoneNumber;
-		this._description = description;
-	}
+    get companyName(): string {
+        return this._companyName;
+    }
 
-	get id(): string {
-		return this._id;
-	}
+    set companyName(value: string) {
+        this._companyName = value;
+    }
 
-	get name(): string {
-		return this._name;
-	}
+    @Expose({name: 'email'})
+    private _email: string;
 
-	set name(value: string) {
-		this._name = value;
-	}
+    get email(): string {
+        return this._email;
+    }
 
-	get companyName(): string {
-		return this._companyName;
-	}
+    set email(value: string) {
+        this._email = value;
+    }
 
-	set companyName(value: string) {
-		this._companyName = value;
-	}
+    @Expose({name: 'phoneNumber'})
+    private _phoneNumber: string;
 
-	get email(): string {
-		return this._email;
-	}
+    get phoneNumber(): string {
+        return this._phoneNumber;
+    }
 
-	set email(value: string) {
-		this._email = value;
-	}
+    set phoneNumber(value: string) {
+        this._phoneNumber = value;
+    }
 
-	get phoneNumber(): string {
-		return this._phoneNumber;
-	}
+    @Expose({name: 'description'})
+    private _description: string;
 
-	set phoneNumber(value: string) {
-		this._phoneNumber = value;
-	}
+    get description(): string {
+        return this._description;
+    }
 
-	get description(): string {
-		return this._description;
-	}
+    set description(value: string) {
+        this._description = value;
+    }
 
-	set description(value: string) {
-		this._description = value;
-	}
+    get id(): ObjectId {
+        return <ObjectId>this._id;
+    }
 }

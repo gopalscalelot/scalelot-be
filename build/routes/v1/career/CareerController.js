@@ -29,7 +29,7 @@ let CareerController = class CareerController {
         this._careerService = careerService;
     }
     routes() {
-        Logger_1.default.debug("Configuring routes for User Registration");
+        Logger_1.default.debug("Configuring routes for Career");
         this._router.post('/', (0, AsyncHandler_1.default)(async (req, res) => this.createCareerController(req, res)));
         this._router.get('/:user_id', (0, AsyncHandler_1.default)(async (req, res) => this.downloadResume(req, res)));
         return this._router;
