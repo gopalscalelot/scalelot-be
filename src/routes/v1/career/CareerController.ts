@@ -8,6 +8,7 @@ import AsyncHandler from '../../../utils/AsyncHandler';
 import { instanceToPlain, plainToInstance } from "class-transformer";
 import Career from '../../../dto/Career';
 import AppUtils from "../../../utils/AppUtils";
+import {ProtectedRequest} from "../../../utils/app-request";
 
 @autoInjectable()
 export default class CareerController {
@@ -24,7 +25,7 @@ export default class CareerController {
     routes() {
         Logger.debug("Configuring routes for Career");
         this._router.post('/', AsyncHandler(async (req:any, res:any) => this.createCareerController(req, res)));
-        this._router.get('/:user_id', AsyncHandler(async (req: any, res: any) => this.downloadResume(req, res)))
+        this._router.get('/all', AsyncHandler(async (req: ProtectedRequest, res: any) => this.getAllCareer(req, res)))
         return this._router;
     }
 
@@ -39,10 +40,12 @@ export default class CareerController {
         return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, AppUtils.nullPropsRemover(instanceToPlain(career))).send(res);
     }
 
-    private async downloadResume(req: any, res: any) {
-        Logger.debug("Downalod file for user: " + req.params.user_id);
+    private async getAllCareer(req: any, res: any) {
+        Logger.debug("Download file for user: " + req.params.user_id);
 
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, "Hello").send(res);
+        let careerList: Career[] = await this._careerService.fetchAllCareer();
+
+        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, careerList).send(res);
         
     }
 

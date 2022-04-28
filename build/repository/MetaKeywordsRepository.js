@@ -10,25 +10,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const tsyringe_1 = require("tsyringe");
-const ContactUs_1 = __importDefault(require("../dto/ContactUs"));
-const ContactUsEntity_1 = __importDefault(require("./entity/ContactUsEntity"));
 const AppUtils_1 = __importDefault(require("../utils/AppUtils"));
 const class_transformer_1 = require("class-transformer");
-const Logger_1 = __importDefault(require("../utils/Logger"));
-let ContactUsRepository = class ContactUsRepository {
-    async saveContactUs(contactUs) {
-        const contactUsEntity = new ContactUsEntity_1.default(AppUtils_1.default.nullPropsRemover((0, class_transformer_1.instanceToPlain)(contactUs)));
+const MetaKeywords_1 = __importDefault(require("../dto/MetaKeywords"));
+const MetaKeywordsEntity_1 = __importDefault(require("./entity/MetaKeywordsEntity"));
+let MetaKeywordsRepository = class MetaKeywordsRepository {
+    async saveMetaKeywords(metaKeywords) {
+        const contactUsEntity = new MetaKeywordsEntity_1.default(AppUtils_1.default.nullPropsRemover((0, class_transformer_1.instanceToPlain)(metaKeywords)));
         await contactUsEntity.save();
-        return (0, class_transformer_1.plainToInstance)(ContactUs_1.default, contactUsEntity, { excludeExtraneousValues: true });
-    }
-    async getAllContactUsQuery() {
-        const contactUsList = await ContactUsEntity_1.default.find({});
-        Logger_1.default.debug(contactUsList);
-        return (0, class_transformer_1.plainToInstance)(ContactUs_1.default, contactUsList, { excludeExtraneousValues: true });
+        return (0, class_transformer_1.plainToInstance)(MetaKeywords_1.default, contactUsEntity, { excludeExtraneousValues: true });
     }
 };
-ContactUsRepository = __decorate([
+MetaKeywordsRepository = __decorate([
     (0, tsyringe_1.autoInjectable)()
-], ContactUsRepository);
-exports.default = ContactUsRepository;
-//# sourceMappingURL=ContactUsRepository.js.map
+], MetaKeywordsRepository);
+exports.default = MetaKeywordsRepository;
+//# sourceMappingURL=MetaKeywordsRepository.js.map

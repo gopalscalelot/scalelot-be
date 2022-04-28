@@ -29,6 +29,7 @@ let ContactUsController = class ContactUsController {
     routes() {
         Logger_1.default.debug("Configuring routes for Contact Us");
         this._router.post('/', (0, AsyncHandler_1.default)(async (req, res) => this.addContactUsQuery(req, res)));
+        this._router.get('/all', (0, AsyncHandler_1.default)(async (req, res) => this.getAllContactUsQuery(req, res)));
         return this._router;
     }
     async addContactUsQuery(req, res) {
@@ -36,6 +37,11 @@ let ContactUsController = class ContactUsController {
         let contactUs = (0, class_transformer_1.plainToInstance)(ContactUs_1.default, req.body, { excludeExtraneousValues: true });
         contactUs = await this._contactUsService.addContactUsQuery(contactUs);
         return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, contactUs).send(res);
+    }
+    async getAllContactUsQuery(req, res) {
+        Logger_1.default.debug("Fetching all contact us query");
+        let contactUsList = await this._contactUsService.getAllContactUsQuery();
+        return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.FETCH_ALL_CONTACT_US_SUCCESS, contactUsList).send(res);
     }
 };
 ContactUsController = __decorate([

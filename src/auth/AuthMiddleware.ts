@@ -17,7 +17,6 @@ export default class AuthMiddleware {
         async (req: ProtectedRequest, res: Response, next: NextFunction) => {
             Logger.debug("Validating for auth token: " + req.url);
             if (PROTECTED_ENDPOINTS.includes(req.url)) {
-                Logger.debug(req.header('auth-token'));
                 if (req.header('auth-token')) {
                     next();
                 }
@@ -54,7 +53,6 @@ export default class AuthMiddleware {
             Logger.debug("Validating Session token");
             try {
                 if (URLUtils.isProtectedURL(req)) {
-                    Logger.debug(req.header("auth-token"));
                     await JWT.validateSessionToken(req.header("auth-token") as string);
                     let sessionPayload: SessionPayload = await JWT.decodeSessionToken(req.header("auth-token")!);
                     req.accessToken = req.header("auth-token")!;

@@ -12,23 +12,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
 const tsyringe_1 = require("tsyringe");
-const CareerRepository_1 = __importDefault(require("../repository/CareerRepository"));
-let CareerService = class CareerService {
-    constructor(_careerRepository) {
-        this._careerRepository = _careerRepository;
+const Logger_1 = __importDefault(require("../utils/Logger"));
+const EmailConfig_1 = __importDefault(require("../config/EmailConfig"));
+const Config_1 = require("../config/Config");
+let EmailService = class EmailService {
+    constructor(emailConfig) {
+        Logger_1.default.debug("Creating EmailService Instance");
+        this.emailConfig = emailConfig;
     }
-    async createCareer(career) {
-        return this._careerRepository.saveCareer(career);
-    }
-    async fetchAllCareer() {
-        return this._careerRepository.getAllCareer();
+    async sendEmail(to, subject, text, html, headers) {
+        let response = await this.emailConfig.transporter.sendMail({
+            from: Config_1.GMAIL_CONFIG.user,
+            to: to,
+            subject: subject,
+            text: text,
+            html: html,
+            headers: headers
+        });
+        Logger_1.default.debug("Mail sent");
+        Logger_1.default.debug(response);
+        return true;
     }
 };
-CareerService = __decorate([
+EmailService = __decorate([
     (0, tsyringe_1.autoInjectable)(),
-    __metadata("design:paramtypes", [CareerRepository_1.default])
-], CareerService);
-exports.default = CareerService;
-//# sourceMappingURL=CareerService.js.map
+    __metadata("design:paramtypes", [EmailConfig_1.default])
+], EmailService);
+exports.default = EmailService;
+//# sourceMappingURL=EmailService.js.map

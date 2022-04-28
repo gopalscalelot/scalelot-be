@@ -6,7 +6,6 @@ import AppWideConfig from './config/AppWideConfig';
 
 const appWideConfig: AppWideConfig = container.resolve(AppWideConfig);
 
-
 appWideConfig.getConfiguredApp().listen(port, () => {
     Logger.info(`server running on port : ${port}`);
     Logger.error("App Running for profile: " + environment);

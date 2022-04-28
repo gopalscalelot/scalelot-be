@@ -3,6 +3,9 @@ import Career from "../dto/Career";
 import AppUtils from "../utils/AppUtils";
 import { autoInjectable } from "tsyringe";
 import CareerEntity from "./entity/CareerEntity";
+import ContactUsEntity from "./entity/ContactUsEntity";
+import Logger from "../utils/Logger";
+import ContactUs from "../dto/ContactUs";
 
 @autoInjectable()
 export default class CareerRepository{
@@ -15,4 +18,9 @@ export default class CareerRepository{
 
   }
 
+    public async getAllCareer(): Promise<Career[]> {
+      const contactUsList = await CareerEntity.find({});
+      Logger.debug(contactUsList)
+      return plainToInstance(Career, contactUsList, {excludeExtraneousValues: true});
+    }
 }

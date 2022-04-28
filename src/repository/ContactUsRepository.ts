@@ -3,6 +3,7 @@ import ContactUs from "../dto/ContactUs";
 import ContactUsEntity from "./entity/ContactUsEntity";
 import AppUtils from "../utils/AppUtils";
 import {instanceToPlain, plainToInstance} from "class-transformer";
+import Logger from "../utils/Logger";
 
 @autoInjectable()
 export default class ContactUsRepository {
@@ -10,5 +11,11 @@ export default class ContactUsRepository {
         const contactUsEntity = new ContactUsEntity(AppUtils.nullPropsRemover(instanceToPlain(contactUs)));
         await contactUsEntity.save();
         return plainToInstance(ContactUs, contactUsEntity, {excludeExtraneousValues: true});
+    }
+
+    public async getAllContactUsQuery(): Promise<ContactUs[]> {
+        const contactUsList = await ContactUsEntity.find({});
+        Logger.debug(contactUsList)
+        return plainToInstance(ContactUs, contactUsList, {excludeExtraneousValues: true});
     }
 }

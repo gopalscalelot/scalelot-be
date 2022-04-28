@@ -14,11 +14,17 @@ const Career_1 = __importDefault(require("../dto/Career"));
 const AppUtils_1 = __importDefault(require("../utils/AppUtils"));
 const tsyringe_1 = require("tsyringe");
 const CareerEntity_1 = __importDefault(require("./entity/CareerEntity"));
+const Logger_1 = __importDefault(require("../utils/Logger"));
 let CareerRepository = class CareerRepository {
     async saveCareer(career) {
         const careerEntity = new CareerEntity_1.default(AppUtils_1.default.nullPropsRemover((0, class_transformer_1.instanceToPlain)(career)));
         await careerEntity.save();
         return (0, class_transformer_1.plainToInstance)(Career_1.default, careerEntity, { excludeExtraneousValues: true });
+    }
+    async getAllCareer() {
+        const contactUsList = await CareerEntity_1.default.find({});
+        Logger_1.default.debug(contactUsList);
+        return (0, class_transformer_1.plainToInstance)(Career_1.default, contactUsList, { excludeExtraneousValues: true });
     }
 };
 CareerRepository = __decorate([

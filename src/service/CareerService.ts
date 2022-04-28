@@ -17,8 +17,11 @@ export default class CareerService{
 
     public async createCareer(career: Career): Promise<Career> {
       
-      return await this._careerRepository.saveCareer(career);
+      return this._careerRepository.saveCareer(career);
       
     }
-  
+
+    public async fetchAllCareer(): Promise<Career[]> {
+        return this._careerRepository.getAllCareer();
+    }
 }

@@ -31,7 +31,7 @@ let CareerController = class CareerController {
     routes() {
         Logger_1.default.debug("Configuring routes for Career");
         this._router.post('/', (0, AsyncHandler_1.default)(async (req, res) => this.createCareerController(req, res)));
-        this._router.get('/:user_id', (0, AsyncHandler_1.default)(async (req, res) => this.downloadResume(req, res)));
+        this._router.get('/all', (0, AsyncHandler_1.default)(async (req, res) => this.getAllCareer(req, res)));
         return this._router;
     }
     async createCareerController(req, res) {
@@ -41,9 +41,10 @@ let CareerController = class CareerController {
         career = await this._careerService.createCareer(career);
         return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, AppUtils_1.default.nullPropsRemover((0, class_transformer_1.instanceToPlain)(career))).send(res);
     }
-    async downloadResume(req, res) {
-        Logger_1.default.debug("Downalod file for user: " + req.params.user_id);
-        return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, "Hello").send(res);
+    async getAllCareer(req, res) {
+        Logger_1.default.debug("Download file for user: " + req.params.user_id);
+        let careerList = await this._careerService.fetchAllCareer();
+        return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, careerList).send(res);
     }
 };
 CareerController = __decorate([

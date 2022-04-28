@@ -20,8 +20,6 @@ export default class LoginService {
         let loginFromDB: Login = await this._loginRepository.getLogin(login);
         let bcryptComparisonSuccess: boolean = await bcrypt.compare(login.password, loginFromDB.password);
         if(bcryptComparisonSuccess) {
-            Logger.debug("Sending token");
-            Logger.debug(new SessionPayload(loginFromDB.id.toString()));
             return JWTUtil.generateJWTSessionToken(new SessionPayload(loginFromDB.id.toString()));
         }
         throw new BadRequestError();

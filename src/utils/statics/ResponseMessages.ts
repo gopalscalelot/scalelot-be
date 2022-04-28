@@ -1,6 +1,7 @@
 export default class ResponseMessages {
     public static get CREATE_CAREER_SUCCESS(): string{return "Career created successfully"}
     public static get LOGIN_SUCCESS(): string{return "Logged in suuccessfully"}
+    public static get FETCH_ALL_CONTACT_US_SUCCESS(): string{return "Fetch all Contact US Query Success"}
 
     // public static get SMS_CREATE_SUCCESS(): string{return "SMS created successfully"}
     // public static get SMS_SEND_SUCCESS(): string{return "SMS sent successfully"}

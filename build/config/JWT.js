@@ -35,8 +35,7 @@ class JWT {
             return (await (0, util_1.promisify)(jsonwebtoken_1.verify)(token, cert));
         }
         catch (e) {
-            Logger_1.default.debug("--------------------------------------------------------------------");
-            Logger_1.default.debug(e.stack);
+            Logger_1.default.debug(e);
             if (e && e.name === 'TokenExpiredError')
                 throw new ApiError_1.TokenExpiredError();
             // throws error if the token has not been encrypted by the private key

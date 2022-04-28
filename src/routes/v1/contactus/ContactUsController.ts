@@ -7,6 +7,7 @@ import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import ContactUsService from "../../../service/ContactUsService";
 import ContactUs from "../../../dto/ContactUs";
 import {plainToInstance} from "class-transformer";
+import {ProtectedRequest} from "../../../utils/app-request";
 
 @autoInjectable()
 export default class ContactUsController {
@@ -21,6 +22,7 @@ export default class ContactUsController {
     routes() {
         Logger.debug("Configuring routes for Contact Us");
         this._router.post('/', AsyncHandler(async (req: any, res: any) => this.addContactUsQuery(req, res)));
+        this._router.get('/all', AsyncHandler(async (req: ProtectedRequest, res: any) => this.getAllContactUsQuery(req, res)));
         return this._router;
     }
 
@@ -32,5 +34,13 @@ export default class ContactUsController {
         contactUs = await this._contactUsService.addContactUsQuery(contactUs);
 
         return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, contactUs).send(res);
+    }
+
+    private async getAllContactUsQuery(req: ProtectedRequest, res: any) {
+        Logger.debug("Fetching all contact us query");
+
+        let contactUsList: ContactUs[] = await this._contactUsService.getAllContactUsQuery();
+
+        return new SuccessResponse(ResponseMessages.FETCH_ALL_CONTACT_US_SUCCESS, contactUsList).send(res);
     }
 }

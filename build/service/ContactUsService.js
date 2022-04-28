@@ -14,17 +14,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const tsyringe_1 = require("tsyringe");
 const ContactUsRepository_1 = __importDefault(require("../repository/ContactUsRepository"));
+const EmailService_1 = __importDefault(require("./EmailService"));
 let ContactUsService = class ContactUsService {
-    constructor(contactUsRepository) {
+    constructor(contactUsRepository, emailService) {
         this._contactUsRepository = contactUsRepository;
+        this._emailService = emailService;
     }
     async addContactUsQuery(contactUs) {
-        return await this._contactUsRepository.saveContactUs(contactUs);
+        let contactUsFromDB = await this._contactUsRepository.saveContactUs(contactUs);
+        await this._emailService.sendEmail("hr@scalelot.com", "Someone tried to contact us", JSON.stringify(contactUsFromDB));
+        return contactUsFromDB;
+    }
+    async getAllContactUsQuery() {
+        return this._contactUsRepository.getAllContactUsQuery();
     }
 };
 ContactUsService = __decorate([
     (0, tsyringe_1.autoInjectable)(),
-    __metadata("design:paramtypes", [ContactUsRepository_1.default])
+    __metadata("design:paramtypes", [ContactUsRepository_1.default, EmailService_1.default])
 ], ContactUsService);
 exports.default = ContactUsService;
 //# sourceMappingURL=ContactUsService.js.map

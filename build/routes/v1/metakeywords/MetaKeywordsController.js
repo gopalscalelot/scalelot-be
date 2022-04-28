@@ -19,6 +19,8 @@ const AsyncHandler_1 = __importDefault(require("../../../utils/AsyncHandler"));
 const ApiResponse_1 = require("../../../utils/ApiResponse");
 const ResponseMessages_1 = __importDefault(require("../../../utils/statics/ResponseMessages"));
 const MetaKeywordsService_1 = __importDefault(require("../../../service/MetaKeywordsService"));
+const class_transformer_1 = require("class-transformer");
+const MetaKeywords_1 = __importDefault(require("../../../dto/MetaKeywords"));
 let MetaKeywordsController = class MetaKeywordsController {
     constructor(metaKeywordsService) {
         this._router = express_1.default.Router();
@@ -31,7 +33,9 @@ let MetaKeywordsController = class MetaKeywordsController {
     }
     async addMetaKeywords(req, res) {
         Logger_1.default.debug("Add Meta Keywords requested");
-        return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, {}).send(res);
+        let metaKeywords = (0, class_transformer_1.plainToInstance)(MetaKeywords_1.default, req.body, { excludeExtraneousValues: true });
+        metaKeywords = await this._metaKeywordsService.addMetaKeywords(metaKeywords);
+        return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, metaKeywords).send(res);
     }
 };
 MetaKeywordsController = __decorate([

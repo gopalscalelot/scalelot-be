@@ -6,6 +6,9 @@ import {SuccessResponse} from "../../../utils/ApiResponse";
 import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import MetaKeywordsService from "../../../service/MetaKeywordsService";
 import {ProtectedRequest} from "../../../utils/app-request";
+import ContactUs from "../../../dto/ContactUs";
+import {plainToInstance} from "class-transformer";
+import MetaKeywords from "../../../dto/MetaKeywords";
 
 @autoInjectable()
 export default class MetaKeywordsController {
@@ -27,6 +30,10 @@ export default class MetaKeywordsController {
     private async addMetaKeywords(req: ProtectedRequest, res: any) {
         Logger.debug("Add Meta Keywords requested");
 
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, {}).send(res);
+        let metaKeywords: MetaKeywords = plainToInstance(MetaKeywords, req.body, {excludeExtraneousValues: true});
+
+        metaKeywords = await this._metaKeywordsService.addMetaKeywords(metaKeywords);
+
+        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, metaKeywords).send(res);
     }
 }
