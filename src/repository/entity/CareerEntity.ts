@@ -11,7 +11,7 @@ interface CareerEntity extends Document {
   experience: string, 
   currentCTC: string, 
   expectedCTC: string,
-  resumeBase64: string,
+  files: string[],
 }
 
 const careerSchema = new Schema<CareerEntity>({
@@ -60,10 +60,10 @@ const careerSchema = new Schema<CareerEntity>({
     minlength: 2,
     required: true
   },
-  resumeBase64: {
+  files: [{
     type: String,
     required: true
-  },
+  }],
 });
 
 

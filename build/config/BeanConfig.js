@@ -17,12 +17,16 @@ const tsyringe_1 = require("tsyringe");
 const LoginController_1 = __importDefault(require("../routes/v1/login/LoginController"));
 const ContactUsController_1 = __importDefault(require("../routes/v1/contactus/ContactUsController"));
 const MetaKeywordsController_1 = __importDefault(require("../routes/v1/metakeywords/MetaKeywordsController"));
+const PortfolioProjectConrtroller_1 = __importDefault(require("../routes/v1/portfolioproject/PortfolioProjectConrtroller"));
+const TestimonialController_1 = __importDefault(require("../routes/v1/testimonial/TestimonialController"));
 let BeanConfig = class BeanConfig {
     constructor() {
         this._careerController = tsyringe_1.container.resolve(CareerController_1.default);
         this._loginController = tsyringe_1.container.resolve(LoginController_1.default);
         this._contactUsController = tsyringe_1.container.resolve(ContactUsController_1.default);
         this._metaKeywordsController = tsyringe_1.container.resolve(MetaKeywordsController_1.default);
+        this._portfolioProjectController = tsyringe_1.container.resolve(PortfolioProjectConrtroller_1.default);
+        this._testimonialController = tsyringe_1.container.resolve(TestimonialController_1.default);
     }
     get careerController() {
         return this._careerController;
@@ -35,6 +39,12 @@ let BeanConfig = class BeanConfig {
     }
     get metaKeywordsController() {
         return this._metaKeywordsController;
+    }
+    get portfolioProjectController() {
+        return this._portfolioProjectController;
+    }
+    get testimonialController() {
+        return this._testimonialController;
     }
 };
 BeanConfig = __decorate([

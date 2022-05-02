@@ -13,6 +13,7 @@ interface PortfolioProjectsEntity extends Document {
     uiFrameworks: string,
     designingLanguage: string,
     designingTools: string,
+    files: string,
 }
 
 const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
@@ -33,7 +34,7 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
     },
     rating:{
         type: String,
-        minlength: 2,
+        minlength: 1,
         required: true
     },
     description:{
@@ -76,7 +77,11 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
         minlength: 2,
         required: true
     },
+    files: [{
+        type: String,
+        required: true
+    }],
 });
 
 
-export default model<PortfolioProjectsEntity>("meta_keywords", portfolioProjectsSchema);
+export default model<PortfolioProjectsEntity>("portfolio-project", portfolioProjectsSchema);

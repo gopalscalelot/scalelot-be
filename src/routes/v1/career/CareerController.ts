@@ -9,6 +9,7 @@ import { instanceToPlain, plainToInstance } from "class-transformer";
 import Career from '../../../dto/Career';
 import AppUtils from "../../../utils/AppUtils";
 import {ProtectedRequest} from "../../../utils/app-request";
+import FileDTO from "../../../dto/FileDTO";
 
 @autoInjectable()
 export default class CareerController {
@@ -34,9 +35,14 @@ export default class CareerController {
 
         let career: Career = plainToInstance(Career, req.body, { excludeExtraneousValues: true });
 
-        career.resumeBase64 = req.file.buffer.toString("base64");
+        let files: FileDTO[] = req.files.map((file: any) => {
+            Logger.debug(file);
+            let fileDTO: FileDTO = plainToInstance(FileDTO, file, { excludeExtraneousValues: true });
+            fileDTO.buffer = file.buffer.toString("base64");
+            return fileDTO;
+        });
 
-        career = await this._careerService.createCareer(career);
+        career = await this._careerService.createCareer(career, files);
         return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, AppUtils.nullPropsRemover(instanceToPlain(career))).send(res);
     }
 

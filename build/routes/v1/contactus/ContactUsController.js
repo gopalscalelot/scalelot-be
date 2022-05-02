@@ -21,6 +21,7 @@ const ResponseMessages_1 = __importDefault(require("../../../utils/statics/Respo
 const ContactUsService_1 = __importDefault(require("../../../service/ContactUsService"));
 const ContactUs_1 = __importDefault(require("../../../dto/ContactUs"));
 const class_transformer_1 = require("class-transformer");
+const FileDTO_1 = __importDefault(require("../../../dto/FileDTO"));
 let ContactUsController = class ContactUsController {
     constructor(contactUsService) {
         this._router = express_1.default.Router();
@@ -35,7 +36,13 @@ let ContactUsController = class ContactUsController {
     async addContactUsQuery(req, res) {
         Logger_1.default.debug("New Contact US requested");
         let contactUs = (0, class_transformer_1.plainToInstance)(ContactUs_1.default, req.body, { excludeExtraneousValues: true });
-        contactUs = await this._contactUsService.addContactUsQuery(contactUs);
+        let files = req.files.map((file) => {
+            Logger_1.default.debug(file);
+            let fileDTO = (0, class_transformer_1.plainToInstance)(FileDTO_1.default, file, { excludeExtraneousValues: true });
+            fileDTO.buffer = file.buffer.toString("base64");
+            return fileDTO;
+        });
+        contactUs = await this._contactUsService.addContactUsQuery(contactUs, files);
         return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, contactUs).send(res);
     }
     async getAllContactUsQuery(req, res) {

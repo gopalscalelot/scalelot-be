@@ -19,6 +19,8 @@ export default class RouterConfig {
         this.router.use('/login', this.beanConfig.loginController.routes());
         this.router.use('/contact-us', this.beanConfig.contactUsController.routes());
         this.router.use('/meta-keywords', this.beanConfig.metaKeywordsController.routes());
+        this.router.use('/portfolio-project', this.beanConfig.portfolioProjectController.routes());
+        this.router.use('/testimonial', this.beanConfig.testimonialController.routes());
     }
 
 

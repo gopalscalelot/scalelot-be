@@ -15,11 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const tsyringe_1 = require("tsyringe");
 const CareerRepository_1 = __importDefault(require("../repository/CareerRepository"));
+const FileService_1 = __importDefault(require("./FileService"));
+const Logger_1 = __importDefault(require("../utils/Logger"));
 let CareerService = class CareerService {
-    constructor(_careerRepository) {
-        this._careerRepository = _careerRepository;
+    constructor(careerRepository, fileService) {
+        this._careerRepository = careerRepository;
+        this._fileService = fileService;
     }
-    async createCareer(career) {
+    async createCareer(career, files) {
+        const savedFiles = await this._fileService.saveFiles(files);
+        Logger_1.default.debug(savedFiles.map(savedFile => savedFile.id));
+        career.files = savedFiles.map(savedFile => savedFile.id);
         return this._careerRepository.saveCareer(career);
     }
     async fetchAllCareer() {
@@ -28,7 +34,7 @@ let CareerService = class CareerService {
 };
 CareerService = __decorate([
     (0, tsyringe_1.autoInjectable)(),
-    __metadata("design:paramtypes", [CareerRepository_1.default])
+    __metadata("design:paramtypes", [CareerRepository_1.default, FileService_1.default])
 ], CareerService);
 exports.default = CareerService;
 //# sourceMappingURL=CareerService.js.map

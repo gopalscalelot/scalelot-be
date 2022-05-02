@@ -10,26 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_transformer_1 = require("class-transformer");
+const mongodb_1 = require("mongodb");
 class Career {
-    constructor(_id, _firstName, _lastName, _email, _phoneNumber, _address, _applyFor, _experience, _currentCTC, _expectedCTC, _resumeBase64) {
-        this._id = _id;
-        this._firstName = _firstName;
-        this._lastName = _lastName;
-        this._email = _email;
-        this._phoneNumber = _phoneNumber;
-        this._address = _address;
-        this._applyFor = _applyFor;
-        this._experience = _experience;
-        this._currentCTC = _currentCTC;
-        this._expectedCTC = _expectedCTC;
-        this._resumeBase64 = _resumeBase64;
-    }
-    /**
-     * Getter id
-     * @return {string}
-     */
-    get id() {
-        return this._id;
+    constructor(id, firstName, lastName, email, phoneNumber, address, applyFor, experience, currentCTC, expectedCTC, files) {
+        this._id = id;
+        this._firstName = firstName;
+        this._lastName = lastName;
+        this._email = email;
+        this._phoneNumber = phoneNumber;
+        this._address = address;
+        this._applyFor = applyFor;
+        this._experience = experience;
+        this._currentCTC = currentCTC;
+        this._expectedCTC = expectedCTC;
+        this._files = files;
     }
     /**
      * Getter firstName
@@ -157,24 +151,20 @@ class Career {
     set expectedCTC(value) {
         this._expectedCTC = value;
     }
-    /**
-     * Getter resumeBase64
-     * @return {string}
-     */
-    get resumeBase64() {
-        return this._resumeBase64;
+    get files() {
+        return this._files;
     }
-    /**
-     * Setter resumeBase64
-     * @param {string} value
-     */
-    set resumeBase64(value) {
-        this._resumeBase64 = value;
+    set files(value) {
+        this._files = value;
+    }
+    get id() {
+        return this._id;
     }
 }
 __decorate([
     (0, class_transformer_1.Expose)(),
-    __metadata("design:type", String)
+    (0, class_transformer_1.Transform)(param => param.value ? param.value.toString() : null),
+    __metadata("design:type", mongodb_1.ObjectId)
 ], Career.prototype, "_id", void 0);
 __decorate([
     (0, class_transformer_1.Expose)({ name: 'firstName' }),
@@ -213,8 +203,8 @@ __decorate([
     __metadata("design:type", String)
 ], Career.prototype, "_expectedCTC", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)({ name: 'resumeBase64' }),
-    __metadata("design:type", String)
-], Career.prototype, "_resumeBase64", void 0);
+    (0, class_transformer_1.Expose)({ name: "files" }),
+    __metadata("design:type", Array)
+], Career.prototype, "_files", void 0);
 exports.default = Career;
 //# sourceMappingURL=Career.js.map

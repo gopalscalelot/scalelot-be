@@ -8,6 +8,7 @@ import ContactUsService from "../../../service/ContactUsService";
 import ContactUs from "../../../dto/ContactUs";
 import {plainToInstance} from "class-transformer";
 import {ProtectedRequest} from "../../../utils/app-request";
+import FileDTO from "../../../dto/FileDTO";
 
 @autoInjectable()
 export default class ContactUsController {
@@ -31,7 +32,14 @@ export default class ContactUsController {
 
         let contactUs: ContactUs = plainToInstance(ContactUs, req.body, {excludeExtraneousValues: true});
 
-        contactUs = await this._contactUsService.addContactUsQuery(contactUs);
+        let files: FileDTO[] = req.files.map((file: any) => {
+            Logger.debug(file);
+            let fileDTO: FileDTO = plainToInstance(FileDTO, file, { excludeExtraneousValues: true });
+            fileDTO.buffer = file.buffer.toString("base64");
+            return fileDTO;
+        });
+
+        contactUs = await this._contactUsService.addContactUsQuery(contactUs, files);
 
         return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, contactUs).send(res);
     }

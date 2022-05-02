@@ -19,7 +19,7 @@ const portfolioProjectsSchema = new mongoose_1.Schema({
     },
     rating: {
         type: String,
-        minlength: 2,
+        minlength: 1,
         required: true
     },
     description: {
@@ -62,6 +62,10 @@ const portfolioProjectsSchema = new mongoose_1.Schema({
         minlength: 2,
         required: true
     },
+    files: [{
+            type: String,
+            required: true
+        }],
 });
-exports.default = (0, mongoose_1.model)("meta_keywords", portfolioProjectsSchema);
+exports.default = (0, mongoose_1.model)("portfolio-project", portfolioProjectsSchema);
 //# sourceMappingURL=PortfolioProjectsEntity.js.map

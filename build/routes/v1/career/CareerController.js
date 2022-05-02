@@ -22,6 +22,7 @@ const AsyncHandler_1 = __importDefault(require("../../../utils/AsyncHandler"));
 const class_transformer_1 = require("class-transformer");
 const Career_1 = __importDefault(require("../../../dto/Career"));
 const AppUtils_1 = __importDefault(require("../../../utils/AppUtils"));
+const FileDTO_1 = __importDefault(require("../../../dto/FileDTO"));
 let CareerController = class CareerController {
     constructor(careerService) {
         Logger_1.default.debug("Initialising Register User Controller");
@@ -37,8 +38,13 @@ let CareerController = class CareerController {
     async createCareerController(req, res) {
         Logger_1.default.debug("New Career Create Requested." + JSON.stringify(req.body));
         let career = (0, class_transformer_1.plainToInstance)(Career_1.default, req.body, { excludeExtraneousValues: true });
-        career.resumeBase64 = req.file.buffer.toString("base64");
-        career = await this._careerService.createCareer(career);
+        let files = req.files.map((file) => {
+            Logger_1.default.debug(file);
+            let fileDTO = (0, class_transformer_1.plainToInstance)(FileDTO_1.default, file, { excludeExtraneousValues: true });
+            fileDTO.buffer = file.buffer.toString("base64");
+            return fileDTO;
+        });
+        career = await this._careerService.createCareer(career, files);
         return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_CAREER_SUCCESS, AppUtils_1.default.nullPropsRemover((0, class_transformer_1.instanceToPlain)(career))).send(res);
     }
     async getAllCareer(req, res) {

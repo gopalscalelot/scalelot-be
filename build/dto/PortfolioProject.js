@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const class_transformer_1 = require("class-transformer");
 const mongodb_1 = require("mongodb");
 class PortfolioProject {
-    constructor(id, title, category, pageLink, rating, description, webFramework, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools) {
+    constructor(id, title, category, pageLink, rating, description, webFramework, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools, files) {
         this._id = id;
         this._title = title;
         this._category = category;
@@ -26,6 +26,7 @@ class PortfolioProject {
         this._uiFrameworks = uiFrameworks;
         this._designingLanguage = designingLanguage;
         this._designingTools = designingTools;
+        this._files = files;
     }
     get title() {
         return this._title;
@@ -99,6 +100,12 @@ class PortfolioProject {
     set designingTools(value) {
         this._designingTools = value;
     }
+    get files() {
+        return this._files;
+    }
+    set files(value) {
+        this._files = value;
+    }
 }
 __decorate([
     (0, class_transformer_1.Expose)(),
@@ -153,5 +160,9 @@ __decorate([
     (0, class_transformer_1.Expose)({ name: "designingTools" }),
     __metadata("design:type", String)
 ], PortfolioProject.prototype, "_designingTools", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)({ name: "files" }),
+    __metadata("design:type", Array)
+], PortfolioProject.prototype, "_files", void 0);
 exports.default = PortfolioProject;
 //# sourceMappingURL=PortfolioProject.js.map

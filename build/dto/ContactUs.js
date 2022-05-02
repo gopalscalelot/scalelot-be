@@ -12,13 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const class_transformer_1 = require("class-transformer");
 const mongodb_1 = require("mongodb");
 class ContactUs {
-    constructor(id, name, companyName, email, phoneNumber, description) {
+    constructor(id, name, companyName, email, phoneNumber, description, files) {
         this._id = id;
         this._name = name;
         this._companyName = companyName;
         this._email = email;
         this._phoneNumber = phoneNumber;
         this._description = description;
+        this._files = files;
+    }
+    get id() {
+        return this._id;
     }
     get name() {
         return this._name;
@@ -50,8 +54,11 @@ class ContactUs {
     set description(value) {
         this._description = value;
     }
-    get id() {
-        return this._id;
+    get files() {
+        return this._files;
+    }
+    set files(value) {
+        this._files = value;
     }
 }
 __decorate([
@@ -79,5 +86,9 @@ __decorate([
     (0, class_transformer_1.Expose)({ name: 'description' }),
     __metadata("design:type", String)
 ], ContactUs.prototype, "_description", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)({ name: "files" }),
+    __metadata("design:type", Array)
+], ContactUs.prototype, "_files", void 0);
 exports.default = ContactUs;
 //# sourceMappingURL=ContactUs.js.map

@@ -20,6 +20,7 @@ const Config_1 = require("./Config");
 const RouterConfig_1 = __importDefault(require("../routes/v1/RouterConfig"));
 const ErrorHandlerMiddlewares_1 = __importDefault(require("../middleware/ErrorHandlerMiddlewares"));
 const tsyringe_1 = require("tsyringe");
+const multer_1 = __importDefault(require("multer"));
 const MongoDBConnectionConfig_1 = __importDefault(require("./MongoDBConnectionConfig"));
 const AuthMiddleware_1 = __importDefault(require("../auth/AuthMiddleware"));
 let AppWideConfig = class AppWideConfig {
@@ -40,6 +41,7 @@ let AppWideConfig = class AppWideConfig {
         }
         this.configureMongoDBConnection();
         this.configureBodyParser();
+        this.configureMulter();
         this.configureCORS();
         this.attachPreRouterMiddlewares();
         this.configureV1Router();
@@ -54,6 +56,15 @@ let AppWideConfig = class AppWideConfig {
         Logger_1.default.debug("Configuring Body Parser");
         this.app.use(body_parser_1.default.json({ limit: '1mb' }));
         this.app.use(body_parser_1.default.urlencoded({ limit: '1mb', extended: true, parameterLimit: 50000 }));
+    }
+    configureMulter() {
+        const multer = (0, multer_1.default)({
+            storage: multer_1.default.memoryStorage(),
+            limits: {
+                fileSize: 5 * 1024 * 1024, // no larger than 5mb, you can change as needed.
+            },
+        });
+        this.app.use(multer.any());
     }
     configureCORS() {
         Logger_1.default.debug("Configuring CORS");

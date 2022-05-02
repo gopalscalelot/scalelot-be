@@ -15,14 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tsyringe_1 = require("tsyringe");
 const ContactUsRepository_1 = __importDefault(require("../repository/ContactUsRepository"));
 const EmailService_1 = __importDefault(require("./EmailService"));
+const Logger_1 = __importDefault(require("../utils/Logger"));
+const FileService_1 = __importDefault(require("./FileService"));
 let ContactUsService = class ContactUsService {
-    constructor(contactUsRepository, emailService) {
+    constructor(contactUsRepository, emailService, fileService) {
         this._contactUsRepository = contactUsRepository;
         this._emailService = emailService;
+        this._fileService = fileService;
     }
-    async addContactUsQuery(contactUs) {
+    async addContactUsQuery(contactUs, files) {
+        const savedFiles = await this._fileService.saveFiles(files);
+        Logger_1.default.debug(savedFiles.map(savedFile => savedFile.id));
+        contactUs.files = savedFiles.map(savedFile => savedFile.id);
         let contactUsFromDB = await this._contactUsRepository.saveContactUs(contactUs);
         await this._emailService.sendEmail("hr@scalelot.com", "Someone tried to contact us", JSON.stringify(contactUsFromDB));
+        await this._emailService.sendEmail(contactUs.email, "Thank you for contacting us.", JSON.stringify(contactUsFromDB));
         return contactUsFromDB;
     }
     async getAllContactUsQuery() {
@@ -31,7 +38,7 @@ let ContactUsService = class ContactUsService {
 };
 ContactUsService = __decorate([
     (0, tsyringe_1.autoInjectable)(),
-    __metadata("design:paramtypes", [ContactUsRepository_1.default, EmailService_1.default])
+    __metadata("design:paramtypes", [ContactUsRepository_1.default, EmailService_1.default, FileService_1.default])
 ], ContactUsService);
 exports.default = ContactUsService;
 //# sourceMappingURL=ContactUsService.js.map

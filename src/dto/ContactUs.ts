@@ -7,17 +7,37 @@ export default class ContactUs {
     @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
     private readonly _id?: ObjectId;
 
-    constructor(id: ObjectId, name: string, companyName: string, email: string, phoneNumber: string, description: string) {
+    @Expose({name: 'name'})
+    private _name: string;
+
+    @Expose({name: 'companyName'})
+    private _companyName: string;
+
+    @Expose({name: 'email'})
+    private _email: string;
+
+    @Expose({name: 'phoneNumber'})
+    private _phoneNumber: string;
+
+    @Expose({name: 'description'})
+    private _description: string;
+
+    @Expose({name: "files"})
+    private _files: ObjectId[];
+
+    constructor(id: ObjectId, name: string, companyName: string, email: string, phoneNumber: string, description: string, files: ObjectId[]) {
         this._id = id;
         this._name = name;
         this._companyName = companyName;
         this._email = email;
         this._phoneNumber = phoneNumber;
         this._description = description;
+        this._files = files;
     }
 
-    @Expose({name: 'name'})
-    private _name: string;
+    get id(): ObjectId {
+        return <ObjectId>this._id;
+    }
 
     get name(): string {
         return this._name;
@@ -27,9 +47,6 @@ export default class ContactUs {
         this._name = value;
     }
 
-    @Expose({name: 'companyName'})
-    private _companyName: string;
-
     get companyName(): string {
         return this._companyName;
     }
@@ -37,9 +54,6 @@ export default class ContactUs {
     set companyName(value: string) {
         this._companyName = value;
     }
-
-    @Expose({name: 'email'})
-    private _email: string;
 
     get email(): string {
         return this._email;
@@ -49,9 +63,6 @@ export default class ContactUs {
         this._email = value;
     }
 
-    @Expose({name: 'phoneNumber'})
-    private _phoneNumber: string;
-
     get phoneNumber(): string {
         return this._phoneNumber;
     }
@@ -59,9 +70,6 @@ export default class ContactUs {
     set phoneNumber(value: string) {
         this._phoneNumber = value;
     }
-
-    @Expose({name: 'description'})
-    private _description: string;
 
     get description(): string {
         return this._description;
@@ -71,7 +79,11 @@ export default class ContactUs {
         this._description = value;
     }
 
-    get id(): ObjectId {
-        return <ObjectId>this._id;
+    get files(): ObjectId[] {
+        return this._files;
+    }
+
+    set files(value: ObjectId[]) {
+        this._files = value;
     }
 }

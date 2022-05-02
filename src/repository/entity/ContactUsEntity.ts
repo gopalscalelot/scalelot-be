@@ -6,6 +6,7 @@ interface ContactUsEntity extends Document {
     email: string,
     phoneNumber: string,
     description: string,
+    files: string[]
 }
 
 const contactUsSchema = new Schema<ContactUsEntity>({
@@ -34,6 +35,10 @@ const contactUsSchema = new Schema<ContactUsEntity>({
         minlength: 2,
         required: true
     },
+    files: [{
+        type: String,
+        required: true
+    }],
 })
 
 export default model<ContactUsEntity>("contactUs", contactUsSchema)

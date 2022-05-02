@@ -6,9 +6,10 @@ import {corsUrl} from "./Config";
 import RouterConfig from '../routes/v1/RouterConfig';
 import ErrorHandlerMiddlewares from '../middleware/ErrorHandlerMiddlewares';
 import {autoInjectable, container} from "tsyringe";
-import multer from 'multer';
+import Multer from 'multer';
 import MongoDBConnectionConfig from './MongoDBConnectionConfig';
 import AuthMiddleware from "../auth/AuthMiddleware";
+
 @autoInjectable()
 export default class AppWideConfig {
 
@@ -39,6 +40,7 @@ export default class AppWideConfig {
 
         this.configureMongoDBConnection();
         this.configureBodyParser();
+        this.configureMulter();
         this.configureCORS();
         this.attachPreRouterMiddlewares();
         this.configureV1Router();
@@ -56,6 +58,18 @@ export default class AppWideConfig {
         Logger.debug("Configuring Body Parser");
         this.app.use(bodyParser.json({limit: '1mb'}));
         this.app.use(bodyParser.urlencoded({limit: '1mb', extended: true, parameterLimit: 50000}));
+    }
+
+    private configureMulter() {
+
+        const multer = Multer({
+            storage: Multer.memoryStorage(),
+            limits: {
+                fileSize: 5 * 1024 * 1024, // no larger than 5mb, you can change as needed.
+            },
+        });
+
+        this.app.use(multer.any());
     }
 
     private configureCORS() {

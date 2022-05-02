@@ -2,6 +2,7 @@ import {Expose, Transform} from "class-transformer";
 import {ObjectId} from "mongodb";
 
 export default class PortfolioProject {
+
     @Expose()
     @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
     private readonly _id?: ObjectId;
@@ -42,7 +43,10 @@ export default class PortfolioProject {
     @Expose({name: "designingTools"})
     private _designingTools: string;
 
-    constructor(id: ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string) {
+    @Expose({name: "files"})
+    private _files: ObjectId[];
+
+    constructor(id: ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, files: ObjectId[]) {
         this._id = id;
         this._title = title;
         this._category = category;
@@ -56,6 +60,7 @@ export default class PortfolioProject {
         this._uiFrameworks = uiFrameworks;
         this._designingLanguage = designingLanguage;
         this._designingTools = designingTools;
+        this._files = files;
     }
 
     get title(): string {
@@ -152,5 +157,13 @@ export default class PortfolioProject {
 
     set designingTools(value: string) {
         this._designingTools = value;
+    }
+
+    get files(): ObjectId[] {
+        return this._files;
+    }
+
+    set files(value: ObjectId[]) {
+        this._files = value;
     }
 }

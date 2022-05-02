@@ -47,10 +47,10 @@ const careerSchema = new mongoose_1.Schema({
         minlength: 2,
         required: true
     },
-    resumeBase64: {
-        type: String,
-        required: true
-    },
+    files: [{
+            type: String,
+            required: true
+        }],
 });
 exports.default = (0, mongoose_1.model)("career", careerSchema);
 //# sourceMappingURL=CareerEntity.js.map

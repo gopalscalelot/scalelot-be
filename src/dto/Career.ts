@@ -1,236 +1,209 @@
-import { Expose } from "class-transformer";
+import {Expose, Transform} from "class-transformer";
+import {ObjectId} from "mongodb";
 
 export default class Career {
-    
-  @Expose()
-  private readonly _id: string;
 
-  @Expose({name: 'firstName'})
-  private _firstName: string;
+    @Expose()
+    @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
+    private readonly _id?: ObjectId;
 
-  @Expose({name: 'lastName'})
-  private _lastName: string;
+    constructor(id: ObjectId, firstName: string, lastName: string, email: string, phoneNumber: string, address: string, applyFor: string, experience: string, currentCTC: string, expectedCTC: string, files: ObjectId[]) {
+        this._id = id;
+        this._firstName = firstName;
+        this._lastName = lastName;
+        this._email = email;
+        this._phoneNumber = phoneNumber;
+        this._address = address;
+        this._applyFor = applyFor;
+        this._experience = experience;
+        this._currentCTC = currentCTC;
+        this._expectedCTC = expectedCTC;
+        this._files = files;
+    }
 
-  @Expose({name: 'email'})
-  private _email: string;
-
-  @Expose({name: 'phoneNumber'})
-  private _phoneNumber: string;
-
-  @Expose({name: 'address'})
-  private _address: string;
-
-  @Expose({name: 'applyFor'})
-  private _applyFor: string;
-
-  @Expose({name: 'experience'})
-  private _experience: string;
-
-  @Expose({name: 'currentCTC'})
-  private _currentCTC: string;
-
-  @Expose({name: 'expectedCTC'})
-  private _expectedCTC: string;
-
-  @Expose({name: 'resumeBase64'})
-  private _resumeBase64: string;
-
-
-
-
-  constructor(
-    _id: string, 
-    _firstName: string, 
-    _lastName: string, 
-    _email: string, 
-    _phoneNumber: string, 
-    _address: string, 
-    _applyFor: string, 
-    _experience: string, 
-    _currentCTC: string, 
-    _expectedCTC: string, 
-    _resumeBase64: string
-) {
-    this._id = _id
-    this._firstName = _firstName
-    this._lastName = _lastName
-    this._email = _email
-    this._phoneNumber = _phoneNumber
-    this._address = _address
-    this._applyFor = _applyFor
-    this._experience = _experience
-    this._currentCTC = _currentCTC
-    this._expectedCTC = _expectedCTC
-    this._resumeBase64 = _resumeBase64
-  }
- 
-    /**
-     * Getter id
-     * @return {string}
-     */
-     public get id(): string {
-		return this._id;
-	}
+    @Expose({name: 'firstName'})
+    private _firstName: string;
 
     /**
      * Getter firstName
      * @return {string}
      */
-	public get firstName(): string {
-		return this._firstName;
-	}
+    public get firstName(): string {
+        return this._firstName;
+    }
 
     /**
      * Setter firstName
      * @param {string} value
      */
-	public set firstName(value: string) {
-		this._firstName = value;
-	}
+    public set firstName(value: string) {
+        this._firstName = value;
+    }
+
+    @Expose({name: 'lastName'})
+    private _lastName: string;
 
     /**
      * Getter lastName
      * @return {string}
      */
-	public get lastName(): string {
-		return this._lastName;
-	}
+    public get lastName(): string {
+        return this._lastName;
+    }
 
     /**
      * Setter lastName
      * @param {string} value
      */
-	public set lastName(value: string) {
-		this._lastName = value;
-	}
+    public set lastName(value: string) {
+        this._lastName = value;
+    }
+
+    @Expose({name: 'email'})
+    private _email: string;
 
     /**
      * Getter email
      * @return {string}
      */
-	public get email(): string {
-		return this._email;
-	}
+    public get email(): string {
+        return this._email;
+    }
 
     /**
      * Setter email
      * @param {string} value
      */
-	public set email(value: string) {
-		this._email = value;
-	}
+    public set email(value: string) {
+        this._email = value;
+    }
+
+    @Expose({name: 'phoneNumber'})
+    private _phoneNumber: string;
 
     /**
      * Getter phoneNumber
      * @return {string}
      */
-	public get phoneNumber(): string {
-		return this._phoneNumber;
-	}
+    public get phoneNumber(): string {
+        return this._phoneNumber;
+    }
 
     /**
      * Setter phoneNumber
      * @param {string} value
      */
-	public set phoneNumber(value: string) {
-		this._phoneNumber = value;
-	}
+    public set phoneNumber(value: string) {
+        this._phoneNumber = value;
+    }
+
+    @Expose({name: 'address'})
+    private _address: string;
 
     /**
      * Getter address
      * @return {string}
      */
-	public get address(): string {
-		return this._address;
-	}
+    public get address(): string {
+        return this._address;
+    }
 
     /**
      * Setter address
      * @param {string} value
      */
-	public set address(value: string) {
-		this._address = value;
-	}
+    public set address(value: string) {
+        this._address = value;
+    }
+
+    @Expose({name: 'applyFor'})
+    private _applyFor: string;
 
     /**
      * Getter applyFor
      * @return {string}
      */
-	public get applyFor(): string {
-		return this._applyFor;
-	}
+    public get applyFor(): string {
+        return this._applyFor;
+    }
 
     /**
      * Setter applyFor
      * @param {string} value
      */
-	public set applyFor(value: string) {
-		this._applyFor = value;
-	}
+    public set applyFor(value: string) {
+        this._applyFor = value;
+    }
+
+    @Expose({name: 'experience'})
+    private _experience: string;
 
     /**
      * Getter experience
      * @return {string}
      */
-	public get experience(): string {
-		return this._experience;
-	}
+    public get experience(): string {
+        return this._experience;
+    }
 
     /**
      * Setter experience
      * @param {string} value
      */
-	public set experience(value: string) {
-		this._experience = value;
-	}
+    public set experience(value: string) {
+        this._experience = value;
+    }
+
+    @Expose({name: 'currentCTC'})
+    private _currentCTC: string;
 
     /**
      * Getter currentCTC
      * @return {string}
      */
-	public get currentCTC(): string {
-		return this._currentCTC;
-	}
+    public get currentCTC(): string {
+        return this._currentCTC;
+    }
 
     /**
      * Setter currentCTC
      * @param {string} value
      */
-	public set currentCTC(value: string) {
-		this._currentCTC = value;
-	}
+    public set currentCTC(value: string) {
+        this._currentCTC = value;
+    }
+
+    @Expose({name: 'expectedCTC'})
+    private _expectedCTC: string;
 
     /**
      * Getter expectedCTC
      * @return {string}
      */
-	public get expectedCTC(): string {
-		return this._expectedCTC;
-	}
+    public get expectedCTC(): string {
+        return this._expectedCTC;
+    }
 
     /**
      * Setter expectedCTC
      * @param {string} value
      */
-	public set expectedCTC(value: string) {
-		this._expectedCTC = value;
-	}
+    public set expectedCTC(value: string) {
+        this._expectedCTC = value;
+    }
 
-    /**
-     * Getter resumeBase64
-     * @return {string}
-     */
-	public get resumeBase64(): string {
-		return this._resumeBase64;
-	}
+    @Expose({name: "files"})
+    private _files: ObjectId[];
 
-    /**
-     * Setter resumeBase64
-     * @param {string} value
-     */
-	public set resumeBase64(value: string) {
-		this._resumeBase64 = value;
-	}
+    get files(): ObjectId[] {
+        return this._files;
+    }
 
+    set files(value: ObjectId[]) {
+        this._files = value;
+    }
 
+    get id(): ObjectId {
+        return <ObjectId>this._id;
+    }
 }
