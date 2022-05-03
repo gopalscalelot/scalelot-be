@@ -3,7 +3,7 @@ export const environment = process.env.NODE_ENV;
 export const port = process.env.PORT;
 
 export const db = {
-    connectionString: environment == "mongodb+srv://gopal_scalelot:root%40Scalelot@cluster0.xjusu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    connectionString: "mongodb+srv://gopal_scalelot:root%40Scalelot@cluster0.xjusu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     user: environment == 'production' ? process.env.PROD_DB_USER : process.env.DB_USER || '',
     password: environment == 'production' ? process.env.PROD_DB_PASSWORD : process.env.DB_PASSWORD || '',
 };

@@ -5,7 +5,7 @@ exports.logDirectory = exports.corsUrl = exports.GMAIL_CONFIG = exports.PROTECTE
 exports.environment = process.env.NODE_ENV;
 exports.port = process.env.PORT;
 exports.db = {
-    connectionString: exports.environment == "mongodb+srv://gopal_scalelot:root%40Scalelot@cluster0.xjusu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    connectionString: "mongodb+srv://gopal_scalelot:root%40Scalelot@cluster0.xjusu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     user: exports.environment == 'production' ? process.env.PROD_DB_USER : process.env.DB_USER || '',
     password: exports.environment == 'production' ? process.env.PROD_DB_PASSWORD : process.env.DB_PASSWORD || '',
 };
