@@ -75,6 +75,9 @@ let AppWideConfig = class AppWideConfig {
         this.app.use(this.authMiddleware.authMiddleware);
     }
     configureV1Router() {
+        this.app.get('/', function (req, res) {
+            return res.send("Test server running fine");
+        });
         Logger_1.default.debug("Configuring Router");
         this.app.use('/v1', this.routerConfig.getRouter());
     }

@@ -83,6 +83,9 @@ export default class AppWideConfig {
     }
 
     private configureV1Router() {
+        this.app.get('/', function (req, res) {
+            return res.send( "Test server running fine" );
+        })
         Logger.debug("Configuring Router");
         this.app.use('/v1', this.routerConfig.getRouter());
     }
