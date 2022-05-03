@@ -4,7 +4,7 @@
   "description": "Scalelot backend",
   "main": "index.js",
   "scripts": {
-    "start": "npm run clean && npm run build-ts && npm run serve",
+    "start": "npm run serve",
     "serve": "node -r dotenv/config build/server.js",
     "build": "npm run clean && npm run build-ts",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" \"npm run watch-ts\" \"npm run watch-node --password=abcd\"",
