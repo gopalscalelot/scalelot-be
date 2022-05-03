@@ -62,7 +62,7 @@ class FileDTO {
 }
 __decorate([
     (0, class_transformer_1.Expose)(),
-    (0, class_transformer_1.Transform)(param => param.value ? param.value.toString() : null),
+    (0, class_transformer_1.Transform)(param => param.value ? param.value.toHexString() : null, { toPlainOnly: true }),
     __metadata("design:type", mongodb_1.ObjectId)
 ], FileDTO.prototype, "_id", void 0);
 __decorate([

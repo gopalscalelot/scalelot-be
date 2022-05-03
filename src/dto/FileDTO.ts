@@ -3,7 +3,7 @@ import {ObjectId} from "mongodb";
 
 export default class FileDTO {
     @Expose()
-    @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
+    @Transform(param => param.value ? (param.value as ObjectId).toHexString() : null, {toPlainOnly:true})
     private readonly _id?: ObjectId;
 
     @Expose({name: 'fieldname'})

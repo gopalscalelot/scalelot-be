@@ -25,9 +25,13 @@ let PortfolioProjectService = class PortfolioProjectService {
         Logger_1.default.debug("Saving files");
         const savedFiles = await this._fileService.saveFiles(files);
         Logger_1.default.debug(savedFiles.map(savedFile => savedFile.id));
+        Logger_1.default.debug("Saved files");
+        Logger_1.default.debug(savedFiles.map(savedFile => savedFile.id));
         portfolioProject.files = savedFiles.map(savedFile => savedFile.id);
-        Logger_1.default.debug("Files saved");
         return this._portfolioProjectRepository.addPortfolioProject(portfolioProject);
+    }
+    async getAllPortfolio() {
+        return this._portfolioProjectRepository.getAllPortfolioProjects();
     }
 };
 PortfolioProjectService = __decorate([

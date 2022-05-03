@@ -1,4 +1,5 @@
 import {Schema, model} from 'mongoose';
+import {ObjectId} from "mongodb";
 
 interface PortfolioProjectsEntity extends Document {
     title: string,
@@ -13,7 +14,8 @@ interface PortfolioProjectsEntity extends Document {
     uiFrameworks: string,
     designingLanguage: string,
     designingTools: string,
-    files: string,
+    tags: string[],
+    files: ObjectId[],
 }
 
 const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
@@ -77,8 +79,12 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
         minlength: 2,
         required: true
     },
-    files: [{
+    tags: [{
         type: String,
+        required: true
+    }],
+    files: [{
+        type: ObjectId,
         required: true
     }],
 });

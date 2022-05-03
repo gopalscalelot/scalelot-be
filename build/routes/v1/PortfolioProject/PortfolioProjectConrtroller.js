@@ -30,21 +30,26 @@ let PortfolioProjectController = class PortfolioProjectController {
     routes() {
         Logger_1.default.debug("Configuring Meta Keywords Router");
         this._router.post('/', (0, AsyncHandler_1.default)(async (req, res) => this.addPortfolioProject(req, res)));
+        this._router.get("/all", (0, AsyncHandler_1.default)(async (req, res) => this.getAllPortfolio(req, res)));
         return this._router;
     }
     async addPortfolioProject(req, res) {
         Logger_1.default.debug("Adding portfolio project");
         let portfolioProject = (0, class_transformer_1.plainToInstance)(PortfolioProject_1.default, req.body, { excludeExtraneousValues: true });
+        Logger_1.default.debug("Got Portfolio Project");
+        Logger_1.default.debug(portfolioProject);
         let files = req.files.map((file) => {
             Logger_1.default.debug(file);
             let fileDTO = (0, class_transformer_1.plainToInstance)(FileDTO_1.default, file, { excludeExtraneousValues: true });
             fileDTO.buffer = file.buffer.toString("base64");
             return fileDTO;
         });
-        Logger_1.default.debug("Files mapped");
         portfolioProject = await this._portfolioProjectService.addPortfolioProject(portfolioProject, files);
-        Logger_1.default.debug("File and portfolio saved");
         return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProject).send(res);
+    }
+    async getAllPortfolio(req, res) {
+        let portfolioProjectList = await this._portfolioProjectService.getAllPortfolio();
+        return new ApiResponse_1.SuccessResponse(ResponseMessages_1.default.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProjectList).send(res);
     }
 };
 PortfolioProjectController = __decorate([

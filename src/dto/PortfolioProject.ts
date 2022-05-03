@@ -1,10 +1,11 @@
 import {Expose, Transform} from "class-transformer";
 import {ObjectId} from "mongodb";
+import FileDTO from "./FileDTO";
 
 export default class PortfolioProject {
 
     @Expose()
-    @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
+    @Transform(param => param.value ? (param.value as ObjectId).toHexString() : null, {toPlainOnly: true})
     private readonly _id?: ObjectId;
 
     @Expose({name: "title"})
@@ -43,10 +44,16 @@ export default class PortfolioProject {
     @Expose({name: "designingTools"})
     private _designingTools: string;
 
+    @Expose({name: "tags"})
+    private _tags: string[];
+
     @Expose({name: "files"})
     private _files: ObjectId[];
 
-    constructor(id: ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, files: ObjectId[]) {
+    @Expose({name: "images"})
+    private _images?: FileDTO[];
+
+    constructor(id: ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, tags: string[], files: ObjectId[], images: FileDTO[]) {
         this._id = id;
         this._title = title;
         this._category = category;
@@ -60,7 +67,13 @@ export default class PortfolioProject {
         this._uiFrameworks = uiFrameworks;
         this._designingLanguage = designingLanguage;
         this._designingTools = designingTools;
+        this._tags = tags;
         this._files = files;
+        this._images = images;
+    }
+
+    get id(): ObjectId {
+        return <ObjectId>this._id;
     }
 
     get title(): string {
@@ -165,5 +178,21 @@ export default class PortfolioProject {
 
     set files(value: ObjectId[]) {
         this._files = value;
+    }
+
+    get images(): FileDTO[] {
+        return <FileDTO[]>this._images;
+    }
+
+    set images(value: FileDTO[]) {
+        this._images = value;
+    }
+
+    get tags(): string[] {
+        return this._tags;
+    }
+
+    set tags(value: string[]) {
+        this._tags = value;
     }
 }

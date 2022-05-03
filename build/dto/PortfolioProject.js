@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const class_transformer_1 = require("class-transformer");
 const mongodb_1 = require("mongodb");
 class PortfolioProject {
-    constructor(id, title, category, pageLink, rating, description, webFramework, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools, files) {
+    constructor(id, title, category, pageLink, rating, description, webFramework, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools, tags, files, images) {
         this._id = id;
         this._title = title;
         this._category = category;
@@ -26,7 +26,12 @@ class PortfolioProject {
         this._uiFrameworks = uiFrameworks;
         this._designingLanguage = designingLanguage;
         this._designingTools = designingTools;
+        this._tags = tags;
         this._files = files;
+        this._images = images;
+    }
+    get id() {
+        return this._id;
     }
     get title() {
         return this._title;
@@ -106,10 +111,22 @@ class PortfolioProject {
     set files(value) {
         this._files = value;
     }
+    get images() {
+        return this._images;
+    }
+    set images(value) {
+        this._images = value;
+    }
+    get tags() {
+        return this._tags;
+    }
+    set tags(value) {
+        this._tags = value;
+    }
 }
 __decorate([
     (0, class_transformer_1.Expose)(),
-    (0, class_transformer_1.Transform)(param => param.value ? param.value.toString() : null),
+    (0, class_transformer_1.Transform)(param => param.value ? param.value.toHexString() : null, { toPlainOnly: true }),
     __metadata("design:type", mongodb_1.ObjectId)
 ], PortfolioProject.prototype, "_id", void 0);
 __decorate([
@@ -161,8 +178,16 @@ __decorate([
     __metadata("design:type", String)
 ], PortfolioProject.prototype, "_designingTools", void 0);
 __decorate([
+    (0, class_transformer_1.Expose)({ name: "tags" }),
+    __metadata("design:type", Array)
+], PortfolioProject.prototype, "_tags", void 0);
+__decorate([
     (0, class_transformer_1.Expose)({ name: "files" }),
     __metadata("design:type", Array)
 ], PortfolioProject.prototype, "_files", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)({ name: "images" }),
+    __metadata("design:type", Array)
+], PortfolioProject.prototype, "_images", void 0);
 exports.default = PortfolioProject;
 //# sourceMappingURL=PortfolioProject.js.map

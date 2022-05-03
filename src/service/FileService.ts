@@ -11,7 +11,7 @@ export default class FileService {
         this._filesRepository = filesRepository;
     }
 
-    public async saveFiles(files: FileDTO[]): Promise< FileDTO[]> {
+    public async saveFiles(files: FileDTO[]): Promise<FileDTO[]> {
         Logger.debug("Saving file Service");
         return this._filesRepository.saveFiles(files)
     }

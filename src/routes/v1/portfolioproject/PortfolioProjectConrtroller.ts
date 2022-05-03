@@ -23,6 +23,7 @@ export default class PortfolioProjectController {
     routes() {
         Logger.debug("Configuring Meta Keywords Router");
         this._router.post('/', AsyncHandler(async (req: any, res: any) => this.addPortfolioProject(req, res)));
+        this._router.get("/all", AsyncHandler(async (req: any, res: any) => this.getAllPortfolio(req, res)));
         return this._router;
     }
 
@@ -31,6 +32,9 @@ export default class PortfolioProjectController {
 
         let portfolioProject: PortfolioProject = plainToInstance(PortfolioProject, req.body, {excludeExtraneousValues: true});
 
+        Logger.debug("Got Portfolio Project");
+        Logger.debug(portfolioProject);
+
         let files: FileDTO[] = req.files.map((file: any) => {
             Logger.debug(file);
             let fileDTO: FileDTO = plainToInstance(FileDTO, file, { excludeExtraneousValues: true });
@@ -38,10 +42,13 @@ export default class PortfolioProjectController {
             return fileDTO;
         });
 
-        Logger.debug("Files mapped");
         portfolioProject = await this._portfolioProjectService.addPortfolioProject(portfolioProject, files);
-        Logger.debug("File and portfolio saved");
 
         return new SuccessResponse(ResponseMessages.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProject).send(res);
+    }
+
+    private async getAllPortfolio(req: any, res: any) {
+        let portfolioProjectList: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        return new SuccessResponse(ResponseMessages.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProjectList).send(res);
     }
 }

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
+const mongodb_1 = require("mongodb");
 const portfolioProjectsSchema = new mongoose_1.Schema({
     title: {
         type: String,
@@ -62,8 +63,12 @@ const portfolioProjectsSchema = new mongoose_1.Schema({
         minlength: 2,
         required: true
     },
-    files: [{
+    tags: [{
             type: String,
+            required: true
+        }],
+    files: [{
+            type: mongodb_1.ObjectId,
             required: true
         }],
 });

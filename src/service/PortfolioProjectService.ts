@@ -16,15 +16,22 @@ export default class PortfolioProjectService {
         this._fileService = fileService;
     }
 
-    async addPortfolioProject(portfolioProject: PortfolioProject, files: FileDTO[]): Promise<PortfolioProject> {
+    public async addPortfolioProject(portfolioProject: PortfolioProject, files: FileDTO[]): Promise<PortfolioProject> {
 
         Logger.debug("Saving files");
         const savedFiles: FileDTO[] = await this._fileService.saveFiles(files);
         Logger.debug(savedFiles.map(savedFile => savedFile.id));
+
+        Logger.debug("Saved files");
+        Logger.debug(savedFiles.map(savedFile => savedFile.id));
+
         portfolioProject.files = savedFiles.map(savedFile => savedFile.id);
 
-        Logger.debug("Files saved");
 
         return this._portfolioProjectRepository.addPortfolioProject(portfolioProject);
+    }
+
+    public async getAllPortfolio(): Promise<PortfolioProject[]> {
+        return this._portfolioProjectRepository.getAllPortfolioProjects();
     }
 }
