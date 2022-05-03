@@ -4,6 +4,7 @@
   "description": "Scalelot backend",
   "main": "index.js",
   "scripts": {
+
     "start": "npm run serve",
     "serve": "node -r dotenv/config build/server.js",
     "build": "npm run clean && npm run build-ts",
