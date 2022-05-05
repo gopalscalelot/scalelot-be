@@ -1,0 +1,196 @@
+<!-- Let's-talk -->
+<section class="pb-12 pt-16 lg:py-16 xl:py-24 2xl:py-28">
+  <div class="max-w-screen-2xl mx-auto flex flex-wrap px-5 lg:px-9">
+    <div class="w-full xl:w-3/5 lg:w-1/2 mb-10 lg:mb-0">
+      <div class="w-full xl:mb-8 mb-6">
+        <h1 class="mb-2">Let’s talk!</h1>
+        <p class="leading-relaxed text-base w-full xl:w-1/2 md:w-4/5">Tell us all about your project right here, or send
+          us an email at <a href="mailto:info@scalelot.com"
+            class="font-bold text-scalelot-secondary text-lg">info@scalelot.com</a></p>
+      </div>
+      <div class="pr-0 xl:pr-28 lg:pr-14">
+        <!-- <form action="192.168.29.105:3100/v1/contact-us" method="POST" class="flex flex-wrap -mx-3" enctype="multipart/form-data" onsubmit="return validateForm()"> -->
+
+        <form method="POST" action="/contact-us" class="flex flex-wrap -mx-3" enctype="multipart/form-data">
+          <div class="w-full lg:w-3/12 p-3">
+            <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Upload File
+              <input type="file" name="uploadFile" id="uploadFile"/>
+            </label>
+          </div>
+          <button type="submit" value="Submit" class="btn-border group anim rounded-full border ml-auto">
+            <span class="bleft anim group-hover:left-0"></span>
+            Call API
+            <span class="bright anim group-hover:-right-full"></span>
+          </button>
+        </form>
+
+        <form method="POST" action="/contact-us" class="flex flex-wrap -mx-3" enctype="multipart/form-data">
+          <div class="w-full md:w-1/2 p-3">
+            <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Name <span
+                class="text-scalelot-secondary">*</span>
+              <input type="text" name="name" placeholder="Full name"
+                class="form-control dInput small rounded-lg mt-0 md:mt-2.5" value="" />
+            </label>
+          </div>
+          <div class="w-full md:w-1/2 p-3">
+            <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Company Name
+              <span class="text-scalelot-secondary">*</span>
+              <input type="text" name="companyName" placeholder="Company Name"
+                class="form-control dInput small rounded-lg mt-0 md:mt-2.5" value="" />
+            </label>
+          </div>
+          <div class="w-full md:w-1/2 p-3">
+            <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Email Address
+              <span class="text-scalelot-secondary">*</span>
+              <input type="email" name="email" placeholder="yourname@domain.com"
+                class="form-control dInput small rounded-lg mt-0 md:mt-2.5" value="" />
+            </label>
+          </div>
+          <div class="w-full md:w-1/2 p-3">
+            <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Phone Number
+              <span class="text-scalelot-secondary">*</span>
+              <input type="text" name="phoneNumber" placeholder="12345 67895"
+                class="form-control dInput small rounded-lg mt-0 md:mt-2.5" value="" />
+            </label>
+          </div>
+          <div class="w-full lg:w-9/12 p-3">
+            <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Description
+              <span class="text-scalelot-secondary">*</span>
+              <textarea name="description" rows="5" placeholder="Your Message" rows="3"
+                class="form-control dInput small rounded-lg mt-0 md:mt-2.5" value=""></textarea>
+            </label>
+          </div>
+          <div class="w-full lg:w-3/12 p-3">
+            <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Upload File
+              <input type="file" name="uploadFile" class="hidden" />
+              <div class="border border-dashed w-full form-control dInput small rounded-lg mt-0 md:mt-2.5">
+                <p class="text-xs w-full text-center cursor-pointer">Click to Upload</p>
+              </div>
+            </label>
+          </div>
+          <div class="w-full p-3">
+            <button type="submit" value="Submit" class="btn-border group anim rounded-full border ml-auto">
+              <span class="bleft anim group-hover:left-0"></span>
+              Submit
+              <span class="bright anim group-hover:-right-full"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="w-full xl:w-2/5 lg:w-1/2">
+      <h2 class="pb-5">If Need Any Info Please Contact Us!</h2>
+      <div class="flex flex-wrap md:items-center lg:block pb-6 mb-6 border-b border-blue-70 dark:border-opacity-20">
+        <div class="flex items-end justify-start pr-5 lg:pr-0 py-5">
+          <div
+            class="bg-white dark:bg-[rgba(255,255,255,0.1)] w-14 h-14 md:w-16 md:h-16 mr-3.5 shadow-lg rounded-full flex items-center justify-center">
+            <span class="icon-call text-[#5a9aeb] text-22 md:text-26"></span>
+          </div>
+          <div>
+            <h5>Business</h5>
+            <p class="text-gray mt-1 opacity-70">+91 88665 65303</p>
+          </div>
+        </div>
+        <div class="flex items-end justify-start pr-5 lg:pr-0 py-5">
+          <div
+            class="bg-white dark:bg-[rgba(255,255,255,0.1)] w-14 h-14 md:w-16 md:h-16 mr-3.5 shadow-lg rounded-full flex items-center justify-center">
+            <span class="icon-call text-[#f25c91] text-22 md:text-26"></span>
+          </div>
+          <div>
+            <h5>Career</h5>
+            <p class="text-gray mt-1 opacity-70">+91 88665 65303</p>
+          </div>
+        </div>
+        <div class="flex items-end justify-start pr-5 lg:pr-0 py-5">
+          <div
+            class="bg-white dark:bg-[rgba(255,255,255,0.1)] w-14 h-14 md:w-16 md:h-16 mr-3.5 shadow-lg rounded-full flex items-center justify-center">
+            <span class="icon-email text-[#71ca92] text-xl md:text-22"></span>
+          </div>
+          <div>
+            <h5>Email</h5>
+            <p class="text-gray mt-1 opacity-70">info@scalelot.com</p>
+          </div>
+        </div>
+      </div>
+      <h2 class="pb-5">Social Media</h2>
+      <div class="flex items-center space-x-4 md:space-x-6">
+        <a href="https://www.facebook.com/scalelottech" class="block">
+          <div
+            class="bg-white dark:bg-[rgba(255,255,255,0.1)] w-14 h-14 md:w-16 md:h-16 shadow-xl rounded-full flex items-center justify-center">
+            <span class="icon-facebook text-[#1174e6] text-xl md:text-26"></span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/scalelot-technologies-a61027221/" class="block">
+          <div
+            class="bg-white dark:bg-[rgba(255,255,255,0.1)] w-14 h-14 md:w-16 md:h-16 shadow-xl rounded-full flex items-center justify-center">
+            <span class="icon-linkedin text-[#2665b3] text-xl md:text-26"></span>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/scalelot_technologies/" class="block">
+          <div
+            class="bg-white dark:bg-[rgba(255,255,255,0.1)] w-14 h-14 md:w-16 md:h-16 shadow-xl rounded-full flex items-center justify-center">
+            <span class="icon-instagram text-[#f25c91] text-xl md:text-26"></span>
+          </div>
+        </a>
+        <a href="https://twitter.com/ScalelotT" class="block">
+          <div
+            class="bg-white dark:bg-[rgba(255,255,255,0.1)] w-14 h-14 md:w-16 md:h-16 shadow-xl rounded-full flex items-center justify-center">
+            <span class="icon-twitter text-[#35abda] text-xl md:text-26"></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--<script>-->
+<!--  function callApi() {-->
+<!--    console.log('vvv');-->
+
+
+
+
+<!--    try {-->
+<!--      const stringData = new FormData()-->
+
+
+<!--      stringData.append('name', 'Demo name ');-->
+<!--      stringData.append('companyName', 'Demo companyName ');-->
+<!--      stringData.append('email', 'wgwg@sdg.sdg');-->
+<!--      stringData.append('phoneNumber', 'Demo phoneNumber ');-->
+<!--      stringData.append('description', 'Demo description ');-->
+
+
+
+
+<!--      fetch(`192.168.29.105:3100/v1/contact-us`, {-->
+<!--        method: 'POST',-->
+<!--        headers: {-->
+<!--          'Accept': '*/*',-->
+<!--          'Content-Type': `multipart/form-data`-->
+<!--        },-->
+<!--        body: stringData-->
+<!--      })-->
+<!--        .then(response => response.json())-->
+<!--        .then(data => {-->
+<!--          if (data.response.errors) console.log(data.response.errors)-->
+<!--          if (data) console.log(data)-->
+<!--        }).catch(err222 => console.log(err222))-->
+
+
+<!--    } catch (err111) {-->
+<!--      console.log("err111 ", err111);-->
+
+
+
+
+
+
+<!--    }-->
+
+
+<!--  }-->
+<!--</script>-->
+
+<!-- We're Global And Growing section -->
+<%# include src/views %>

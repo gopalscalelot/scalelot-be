@@ -5,11 +5,12 @@ import Logger from "../../../utils/Logger";
 import {autoInjectable} from "tsyringe";
 import CareerService from '../../../service/CareerService';
 import AsyncHandler from '../../../utils/AsyncHandler';
-import { instanceToPlain, plainToInstance } from "class-transformer";
+import {instanceToPlain, plainToInstance} from "class-transformer";
 import Career from '../../../dto/Career';
 import AppUtils from "../../../utils/AppUtils";
 import {ProtectedRequest} from "../../../utils/app-request";
 import FileDTO from "../../../dto/FileDTO";
+import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class CareerController {
@@ -43,7 +44,7 @@ export default class CareerController {
         });
 
         career = await this._careerService.createCareer(career, files);
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, AppUtils.nullPropsRemover(instanceToPlain(career))).send(res);
+        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.CREATE_CAREER_QUERY, AppUtils.nullPropsRemover(instanceToPlain(career))).send(res);
     }
 
     private async getAllCareer(req: any, res: any) {
@@ -51,7 +52,7 @@ export default class CareerController {
 
         let careerList: Career[] = await this._careerService.fetchAllCareer();
 
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, careerList).send(res);
+        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.GET_ALL_CAREER_QUERY, careerList).send(res);
         
     }
 

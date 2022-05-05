@@ -20,9 +20,15 @@ export default class ContactUsService {
     }
 
     public async addContactUsQuery(contactUs: ContactUs, files: FileDTO[]): Promise<ContactUs> {
-        const savedFiles: FileDTO[] = await this._fileService.saveFiles(files);
-        Logger.debug(savedFiles.map(savedFile => savedFile.id));
-        contactUs.files = savedFiles.map(savedFile => savedFile.id);
+        let savedFiles: FileDTO[] = [];
+
+        if(files && files.length != 0) {
+            savedFiles = await this._fileService.saveFiles(files);
+        }
+
+        if(savedFiles.length != 0) {
+            contactUs.files = savedFiles.map(savedFile => savedFile.id);
+        }
 
         let contactUsFromDB: ContactUs = await this._contactUsRepository.saveContactUs(contactUs);
 

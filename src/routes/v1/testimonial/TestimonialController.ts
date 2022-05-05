@@ -8,6 +8,7 @@ import {SuccessResponse} from "../../../utils/ApiResponse";
 import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import AppUtils from "../../../utils/AppUtils";
 import Testimonial from "../../../dto/Testimonial";
+import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class TestimonialController {
@@ -31,7 +32,7 @@ export default class TestimonialController {
         let testimonial: Testimonial = plainToInstance(Testimonial, req.body, {excludeExtraneousValues: true});
 
         testimonial = await this._testimonialService.addTestimonial(testimonial);
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, AppUtils.nullPropsRemover(instanceToPlain(testimonial))).send(res);
+        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.ADD_TESTIMONIAL, AppUtils.nullPropsRemover(instanceToPlain(testimonial))).send(res);
     }
 
 }

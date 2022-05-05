@@ -1,4 +1,5 @@
 export default class ResponseMessages {
+    public static get ADD_CONTACT_US_SUCCESS(): string{return "Contact us query registered successfully"}
     public static get CREATE_CAREER_SUCCESS(): string{return "Career created successfully"}
     public static get CREATE_PORTFOLIO_PROJECT_SUCCESS(): string{return "Portfolio project created successfully"}
     public static get LOGIN_SUCCESS(): string{return "Logged in suuccessfully"}

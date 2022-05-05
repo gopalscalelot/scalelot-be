@@ -6,9 +6,9 @@ import {SuccessResponse} from "../../../utils/ApiResponse";
 import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import MetaKeywordsService from "../../../service/MetaKeywordsService";
 import {ProtectedRequest} from "../../../utils/app-request";
-import ContactUs from "../../../dto/ContactUs";
 import {plainToInstance} from "class-transformer";
 import MetaKeywords from "../../../dto/MetaKeywords";
+import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class MetaKeywordsController {
@@ -34,6 +34,6 @@ export default class MetaKeywordsController {
 
         metaKeywords = await this._metaKeywordsService.addMetaKeywords(metaKeywords);
 
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, metaKeywords).send(res);
+        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.ADD_META_KEYWORDS, metaKeywords).send(res);
     }
 }
