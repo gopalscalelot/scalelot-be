@@ -129,24 +129,24 @@
   <div class="text-center pb-16">
     <h2>Apply your next job at Scalelot</h2>
   </div>
-  <from action="/v1/" method="post">
+  <form action="/api/v1/career" method="POST" enctype="multipart/form-data">
     <div class="pr-0 px-0 xl:px-28 lg:px-14 mx-auto">
       <div class="flex flex-wrap">
         <div class="w-full sm:w-1/2 sm:px-3.5 mb-5">
           <label for="first-name" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">First Name<span class="text-scalelot-secondary">*</span></label>
-          <input type="text" id="first-name" name="first-name" placeholder="First Name" class="dInput small rounded-lg form-control" />
+          <input type="text" id="firstName" name="firstName" placeholder="First Name" class="dInput small rounded-lg form-control" />
         </div>
         <div class="w-full sm:w-1/2 sm:px-3.5 mb-5">
           <label for="last-name" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Last Name<span class="text-scalelot-secondary">*</span></label>
-          <input type="text" id="last-name" name="last-name" placeholder="Last Name" class="dInput small rounded-lg form-control" />
+          <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="dInput small rounded-lg form-control" />
         </div>
         <div class="w-full sm:w-1/2 sm:px-3.5 mb-5">
           <label for="email-add" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Email Address<span class="text-scalelot-secondary">*</span></label>
-          <input type="email" id="email-add" name="email-add" placeholder="Email Address" class="dInput small rounded-lg form-control" />
+          <input type="email" id="email" name="email" placeholder="Email Address" class="dInput small rounded-lg form-control" />
         </div>
         <div class="w-full sm:w-1/2 sm:px-3.5 mb-5">
           <label for="phone-num" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Phone Number<span class="text-scalelot-secondary">*</span></label>
-          <input type="number" id="phone-num" name="phone-num" placeholder="Phone Number" class="dInput small rounded-lg form-control" />
+          <input type="number" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="dInput small rounded-lg form-control" />
         </div>
         <div class="w-full sm:px-3.5 mb-5">
           <label for="address" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Address<span class="text-scalelot-secondary">*</span></label>
@@ -154,19 +154,19 @@
         </div>
         <div class="w-full sm:w-1/2 sm:px-3.5 mb-5">
           <label for="apply-for" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Apply For<span class="text-scalelot-secondary">*</span></label>
-          <input type="text" id="apply-for" name="apply-for" placeholder="Apply For" class="dInput small rounded-lg form-control" />             
+          <input type="text" id="applyFor" name="applyFor" placeholder="Apply For" class="dInput small rounded-lg form-control" />
         </div>
         <div class="w-full sm:w-1/2 sm:px-3.5 mb-5">
           <label for="exp" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Experience<span class="text-scalelot-secondary">*</span></label>
-          <input type="text" id="exp" name="exp" placeholder="Experience" class="dInput small rounded-lg form-control" />     
+          <input type="text" id="experience" name="experience" placeholder="Experience" class="dInput small rounded-lg form-control" />
         </div>
         <div class="w-full sm:w-1/2 sm:px-3.5 mb-5">
           <label for="curr-salary" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Current Salary (Per Annum)<span class="text-scalelot-secondary">*</span></label>
-          <input type="text" id="curr-salary" name="curr-salary" placeholder="Current Salary" class="dInput small rounded-lg form-control" />             
+          <input type="text" id="currentCTC" name="currentCTC" placeholder="Current Salary" class="dInput small rounded-lg form-control" />
         </div>
         <div class="w-full sm:w-1/2 sm:px-3.5 mb-5">
           <label for="exp-salary" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Expected Salary (Per Annum)<span class="text-scalelot-secondary">*</span></label>
-          <input type="text" id="exp-salary" name="exp-salary" placeholder="Expected Salary" class="dInput small rounded-lg form-control" />
+          <input type="text" id="expectedCTC" name="expectedCTC" placeholder="Expected Salary" class="dInput small rounded-lg form-control" />
         </div>
         <div class="w-full sm:px-3.5 mb-5">
           <div class="flex w-full items-center justify-center bg-grey-lighter">
@@ -179,7 +179,7 @@
                 <path id="Path_413" data-name="Path 413" d="M171.949,255.387a1.275,1.275,0,0,1-.9-2.176l3.465-3.465a2.981,2.981,0,0,1,4.212,0l3.04,3.04a1.274,1.274,0,1,1-1.8,1.8l-3.04-3.04a.368.368,0,0,0-.61,0l-3.465,3.465A1.263,1.263,0,0,1,171.949,255.387Zm0,0" transform="translate(-157.443 -229.503)" class="fill-current"/>
               </svg>
               <span class="text-xl pl-5">Upload Resume</span>
-              <input type="file" class="hidden form-control" />
+              <input type="file" name="files" class="hidden form-control" />
             </label>
           </div>
         </div>
@@ -192,7 +192,7 @@
         </div>
       </div>
     </div>
-  </from>
+  </form>
 </div>
 <!-- country pop up -->
 <div id="country" class="fixed inset-0 w-full h-full flex items-center justify-center z-50 anim transform scale-0">

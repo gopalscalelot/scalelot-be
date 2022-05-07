@@ -9,6 +9,7 @@ import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import AppUtils from "../../../utils/AppUtils";
 import Testimonial from "../../../dto/Testimonial";
 import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
+import FileDTO from "../../../dto/FileDTO";
 
 @autoInjectable()
 export default class TestimonialController {
@@ -31,8 +32,21 @@ export default class TestimonialController {
 
         let testimonial: Testimonial = plainToInstance(Testimonial, req.body, {excludeExtraneousValues: true});
 
-        testimonial = await this._testimonialService.addTestimonial(testimonial);
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.ADD_TESTIMONIAL, AppUtils.nullPropsRemover(instanceToPlain(testimonial))).send(res);
+        let files: FileDTO[] = req.files.map((file: any) => {
+            Logger.debug(file);
+            let fileDTO: FileDTO = plainToInstance(FileDTO, file, { excludeExtraneousValues: true });
+            fileDTO.buffer = file.buffer.toString("base64");
+            return fileDTO;
+        });
+
+        Logger.debug(files);
+
+        testimonial = await this._testimonialService.addTestimonial(testimonial, files);
+
+        Logger.debug("Saved Testimonial: ")
+        Logger.debug(testimonial);
+
+        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.ADD_TESTIMONIAL, testimonial).send(res);
     }
 
 }

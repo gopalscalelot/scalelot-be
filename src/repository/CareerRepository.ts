@@ -10,7 +10,10 @@ export default class CareerRepository {
 
     public async saveCareer(career: Career): Promise<Career> {
 
+        Logger.debug("Saving career");
+        Logger.debug(career);
         const careerEntity: any = new CareerEntity(AppUtils.nullPropsRemover(instanceToPlain(career)));
+        Logger.debug(careerEntity);
         await careerEntity.save();
         return plainToInstance(Career, careerEntity, {excludeExtraneousValues: true});
 

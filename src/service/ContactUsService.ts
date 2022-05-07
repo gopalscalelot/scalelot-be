@@ -22,6 +22,7 @@ export default class ContactUsService {
     public async addContactUsQuery(contactUs: ContactUs, files: FileDTO[]): Promise<ContactUs> {
         let savedFiles: FileDTO[] = [];
 
+        Logger.debug("Saving Files");
         if(files && files.length != 0) {
             savedFiles = await this._fileService.saveFiles(files);
         }

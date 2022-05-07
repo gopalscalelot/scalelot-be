@@ -8,4 +8,13 @@ export enum OperationTypeEnum {
     ADD_PORTFOLIO = "AddPortfolio",
     GET_ALL_PORTFOLIO = "AddPortfolio",
     ADD_TESTIMONIAL = "AddTestimonials",
+    AUTH_FAILURE = "AuthFailure",
+    NOT_FOUND = "NotFound",
+    FORBIDDEN = "Forbidden",
+    BAD_REQUEST = "BadRequest",
+    INTERNAL_ERROR = "InternalError",
+    SUCCESS_MSG = "SuccessMessage",
+    FAILURE_MESSAGE = "FailureMessage",
+    ACCESS_TOKEN_ERROR = "AccessTokenError",
+    TOKEN_REFRESH = "TokenRefres"
 }

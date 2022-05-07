@@ -4,12 +4,12 @@
       <img src="/assets/images/scalelot-logo.svg" alt="" class="mx-auto h-16 dark:hidden">
       <img src="/assets/images/scalelot-footer-logo.svg" alt="" class="mx-auto h-16 hidden dark:block">
     </div>
-    <form action="#">
+    <form action="/api/v1/login" method="POST" >
       <div class="bg-white dark:bg-opacity-5 backdrop-blur-xl md:w-96 w-80 rounded-lg px-5 py-8">
         <h3 class="text-center">Admin Login</h3>
         <div class="w-full">
           <label for="name" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block pt-7">Username</label>
-          <input type="text" id="name" name="name" placeholder="Enter Your Username" class="dInput small rounded-lg" />
+          <input type="text" id="userName" name="userName" placeholder="Enter Your Username" class="dInput small rounded-lg" />
         </div>
         <div class="w-full">
           <label for="password" class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block pt-7">Password</label>

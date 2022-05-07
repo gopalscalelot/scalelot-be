@@ -1,10 +1,10 @@
 import {Expose, Transform} from "class-transformer";
-import {ObjectId} from "mongodb";
+import mongoose from "mongoose";
 
 export default class Testimonial {
     @Expose()
-    @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
-    private readonly _id?: ObjectId;
+    @Transform(param => param.obj ? param.obj.id : null, {toClassOnly: true})
+    private readonly _id?: string;
 
     @Expose({name: 'rating'})
     private _rating: string;
@@ -18,16 +18,27 @@ export default class Testimonial {
     @Expose({name: 'review'})
     private _review: string;
 
-    constructor(id: ObjectId, rating: string, clientName: string, clientDesignation: string, review: string) {
+    @Expose({name: "files"})
+    @Transform(params => {
+            if(params.obj.files && params.obj.files.length != 0) {
+                return params.obj.files;
+            }
+            return null;
+        }, { toClassOnly: true }
+    )
+    private _files: mongoose.Types.ObjectId[];
+
+    constructor(id: string, rating: string, clientName: string, clientDesignation: string, review: string, files: mongoose.Types.ObjectId[]) {
         this._id = id;
         this._rating = rating;
         this._clientName = clientName;
         this._clientDesignation = clientDesignation;
         this._review = review;
+        this._files = files;
     }
 
-    get id(): ObjectId {
-        return <ObjectId>this._id;
+    get id(): string {
+        return <string>this._id;
     }
 
     get rating(): string {
@@ -60,5 +71,13 @@ export default class Testimonial {
 
     set review(value: string) {
         this._review = value;
+    }
+
+    get files(): mongoose.Types.ObjectId[] {
+        return this._files;
+    }
+
+    set files(value: mongoose.Types.ObjectId[]) {
+        this._files = value;
     }
 }

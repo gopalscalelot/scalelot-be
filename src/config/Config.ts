@@ -25,4 +25,4 @@ export const GMAIL_CONFIG = {
 
 export const corsUrl = process.env.CORS_URL || "*";
 
-export const logDirectory = process.env.LOG_DIR || "/";
+export const logDirectory = process.env.LOG_DIR || '';

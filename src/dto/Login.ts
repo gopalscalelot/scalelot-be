@@ -1,10 +1,10 @@
 import {Expose, Transform} from "class-transformer";
-import {ObjectId} from "mongodb";
+import mongoose from "mongoose";
 
 export default class Login{
     @Expose()
-    @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
-    private readonly _id?: ObjectId;
+    @Transform(param => param.obj ? param.obj.id : null, {toClassOnly: true})
+    private readonly _id?: mongoose.Types.ObjectId;
 
     @Expose({name: "userName"})
     private _userName: string;
@@ -12,14 +12,15 @@ export default class Login{
     @Expose({name: "password"})
     private _password: string;
 
-    constructor(id: ObjectId, userName: string, password: string) {
+    constructor(id: mongoose.Types.ObjectId, userName: string, password: string) {
         this._id = id;
         this._userName = userName;
         this._password = password;
     }
 
-    get id(): ObjectId {
-        return <ObjectId>this._id;
+
+    get id(): mongoose.Types.ObjectId {
+        return <mongoose.Types.ObjectId>this._id;
     }
 
     get userName(): string {

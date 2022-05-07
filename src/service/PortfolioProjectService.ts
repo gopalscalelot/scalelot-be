@@ -27,7 +27,6 @@ export default class PortfolioProjectService {
 
         portfolioProject.files = savedFiles.map(savedFile => savedFile.id);
 
-
         return this._portfolioProjectRepository.addPortfolioProject(portfolioProject);
     }
 

@@ -27,7 +27,7 @@ export default class LoginController {
     }
 
     private async loginUser(req: any, res: any) {
-        Logger.debug("New Career Create Requested." + JSON.stringify(req.body));
+        Logger.debug("Login requested." + JSON.stringify(req.body));
 
         let login: Login = plainToInstance(Login, req.body, {excludeExtraneousValues: true});
 
