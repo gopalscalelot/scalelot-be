@@ -46,7 +46,8 @@ export default class CareerController {
         career = await this._careerService.createCareer(career, files);
         Logger.debug("Before sending respones: ");
         Logger.debug(career);
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.CREATE_CAREER_QUERY, instanceToPlain(career)).send(res);
+        return res.render("confirmation");
+        // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS,  instanceToPlain(career)).send(res);
     }
 
     private async getAllCareer(req: any, res: any) {
@@ -54,7 +55,7 @@ export default class CareerController {
 
         let careerList: Career[] = await this._careerService.fetchAllCareer();
 
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.GET_ALL_CAREER_QUERY, careerList).send(res);
+        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, careerList).send(res);
         
     }
 

@@ -3,8 +3,8 @@ export const environment = process.env.NODE_ENV || "development";
 export const port = process.env.PORT || "3100";
 
 export const db = {
-    connectionString: "mongodb://localhost:27017"
-    // connectionString: "mongodb+srv://gopal_scalelot:root%40Scalelot@cluster0.xjusu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    // connectionString: "mongodb://localhost:27017"
+    connectionString: "mongodb+srv://gopal_scalelot:root%40Scalelot@cluster0.xjusu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     // connectionString: environment == 'production' ? process.env.PROD_DB_CONNECTION_STRING : process.env.DB_CONNECTION_STRING || '',
     // user: environment == 'production' ? process.env.PROD_DB_USER : process.env.DB_USER || '',
     // password: environment == 'production' ? process.env.PROD_DB_PASSWORD : process.env.DB_PASSWORD || '',

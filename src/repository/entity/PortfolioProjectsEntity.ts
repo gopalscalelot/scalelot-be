@@ -81,7 +81,6 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
     },
     tags: [{
         type: String,
-        required: true
     }],
     files: [{
         type: ObjectId,

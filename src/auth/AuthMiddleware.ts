@@ -59,6 +59,7 @@ export default class AuthMiddleware {
                     req.sessionPayload = sessionPayload;
                     Logger.debug(sessionPayload);
                 }
+                Logger.debug("Validation success")
                 next();
             }catch(e: any) {
                 Logger.error(e.stack);

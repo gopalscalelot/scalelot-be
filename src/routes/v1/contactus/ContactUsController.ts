@@ -45,7 +45,9 @@ export default class ContactUsController {
 
         contactUs = await this._contactUsService.addContactUsQuery(contactUs, files);
 
-        return new SuccessResponse(ResponseMessages.ADD_CONTACT_US_SUCCESS, OperationTypeEnum.ADD_CONTACT_US_QUERY, contactUs).send(res);
+        return res.render("confirmation");
+
+        // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, contactUs).send(res);
     }
 
     private async getAllContactUsQuery(req: ProtectedRequest, res: any) {
@@ -53,6 +55,6 @@ export default class ContactUsController {
 
         let contactUsList: ContactUs[] = await this._contactUsService.getAllContactUsQuery();
 
-        return new SuccessResponse(ResponseMessages.FETCH_ALL_CONTACT_US_SUCCESS, OperationTypeEnum.GET_ALL_CONTACT_US, contactUsList).send(res);
+        return new SuccessResponse(ResponseMessages.FETCH_ALL_CONTACT_US_SUCCESS, contactUsList).send(res);
     }
 }

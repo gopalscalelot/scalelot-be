@@ -3,12 +3,10 @@ import express, {Router} from "express";
 import Logger from "../../../utils/Logger";
 import AsyncHandler from "../../../utils/AsyncHandler";
 import TestimonialService from "../../../service/TestimonialService";
-import {instanceToPlain, plainToInstance} from "class-transformer";
+import { plainToInstance} from "class-transformer";
 import {SuccessResponse} from "../../../utils/ApiResponse";
 import ResponseMessages from "../../../utils/statics/ResponseMessages";
-import AppUtils from "../../../utils/AppUtils";
 import Testimonial from "../../../dto/Testimonial";
-import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 import FileDTO from "../../../dto/FileDTO";
 
 @autoInjectable()
@@ -46,7 +44,9 @@ export default class TestimonialController {
         Logger.debug("Saved Testimonial: ")
         Logger.debug(testimonial);
 
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.ADD_TESTIMONIAL, testimonial).send(res);
+        return res.render("confirmation");
+
+        // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, testimonial).send(res);
     }
 
 }

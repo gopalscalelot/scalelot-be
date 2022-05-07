@@ -101,7 +101,7 @@ export class FailureMsgResponse extends ApiResponse {
 
 export class SuccessResponse<T> extends ApiResponse {
     private data: any;
-    constructor(message: string,operationType: OperationTypeEnum,  data: T) {
+    constructor(message: string,  data: T) {
         super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
         this.data = instanceToPlain(data);
     }

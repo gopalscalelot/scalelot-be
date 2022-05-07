@@ -34,6 +34,7 @@ export default class MetaKeywordsController {
 
         metaKeywords = await this._metaKeywordsService.addMetaKeywords(metaKeywords);
 
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, OperationTypeEnum.ADD_META_KEYWORDS, metaKeywords).send(res);
+        return res.render("confirmation");
+        // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, metaKeywords).send(res);
     }
 }

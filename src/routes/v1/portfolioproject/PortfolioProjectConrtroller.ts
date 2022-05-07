@@ -44,7 +44,8 @@ export default class PortfolioProjectController {
 
         portfolioProject = await this._portfolioProjectService.addPortfolioProject(portfolioProject, files);
 
-        return new SuccessResponse(ResponseMessages.CREATE_PORTFOLIO_PROJECT_SUCCESS, OperationTypeEnum.ADD_PORTFOLIO, portfolioProject).send(res);
+        return res.render("confirmation");
+        // return new SuccessResponse(ResponseMessages.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProject).send(res);
     }
 
 }
