@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.webp" />
     <title>Scalelot Technologies : Web and Mobile Solution</title>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
@@ -99,7 +99,7 @@
                         <li><a class="text-xs md:text-sm xl:text-base hover:text-scalelot-secondary" href="/services/web-development/mysql-database-design">Mysql</a></li>
                       </ul>
                   </li>
-                  <li><a class="text-xs md:text-sm xl:text-base hover:text-scalelot-secondary" href="/services/app-development">Mobile Development</a>
+                  <li><a class="text-xs md:text-sm xl:text-base hover:text-scalelot-secondary" href="/services/mobile-app-development">Mobile Development</a>
                       <ul>
                         <li><a class="text-xs md:text-sm xl:text-base hover:text-scalelot-secondary" href="/services/app-development/ios-app-development">iOS</a></li>
                         <li><a class="text-xs md:text-sm xl:text-base hover:text-scalelot-secondary" href="/services/app-development/android-app-development">Android</a></li>
@@ -184,7 +184,7 @@
             <div class="w-full flex flex-wrap bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-10 text-left overflow-hidden">
               <div class="w-full md:w-1/2">
                 <div class="relative w-full h-48 md:h-full md:min-h-[250px]">
-                  <iframe class="w-full h-full object-cover absolute inset-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.2779513262235!2d72.80684800983268!3d21.220823912414286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x34936c011302a1ab!2sScalelot%20Technologies!5e0!3m2!1sen!2sin!4v1648029206126!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <iframe class="w-full h-full object-cover absolute inset-0" title="Scalelot Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.2779513262235!2d72.80684800983268!3d21.220823912414286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x34936c011302a1ab!2sScalelot%20Technologies!5e0!3m2!1sen!2sin!4v1648029206126!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
               </div>
               <div class="w-full md:w-1/2 flex flex-wrap py-5 px-1 md:px-4 lg:p-9 xl:py-12">
@@ -438,10 +438,15 @@
                 </div> -->
                 
                 <div class="w-full md:w-1/2 lg:w-1/4 p-3.5 relative">
-                  <a href="#" class="h-full bg-scalelot-primary px-5 py-9 flex flex-col justify-between dark:border border-slate-300 rounded-md relative overflow-hidden">
-                    <img src="/assets/images/home/light/talk.svg" class="absolute inset-0 w-full h-full object-cover border-0 opacity-20">
-                    <h3 class="uppercase relative text-white">We Are <br> <span class="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl uppercase relative inline-block after:z-0 after:absolute after:bottom-2.5 md:after:bottom-[30%] after:inset-x-0 after:h-[16%] anim after:w-full after:bg-scalelot-secondary after:opacity-50"><span class="relative z-10">Hiring</span></span></h3>
-                    <p class="relative text-scalelot-secondary mt-auto ml-auto">hr@scalelot.com</p>
+                  <a href="/careers" class="h-full bg-white bg-opacity-50 dark:bg-scalelot-primary text-scalelot-dark dark:text-white px-5 py-9 flex flex-col justify-between rounded-md relative overflow-hidden">
+                    <h3 class="uppercase relative text-current">We Are <br> <span class="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl uppercase relative inline-block after:z-0 after:absolute after:bottom-2.5 md:after:bottom-[30%] after:inset-x-0 after:h-[16%] anim after:w-full after:bg-scalelot-secondary after:opacity-50"><span class="relative z-10">Hiring</span></span></h3>
+                    <p class="relative text-scalelot-secondary flex items-center text-sm mt-2 font-semibold">hr@scalelot.com</p>
+                    <p class="relative text-scalelot-secondary flex items-center text-sm mt-1 font-semibold">+(91) 878 033 3608</p>
+                    <button type="submit" class="btn-border small text-current border-current w-36 group anim rounded-full border mt-auto">
+                      <span class="bleft anim group-hover:left-0"></span>
+                      Hire Now
+                      <span class="bright anim group-hover:-right-full"></span>
+                    </button>
                   </a>
                 </div>
               </div>
@@ -473,9 +478,11 @@
 
 
     <!-- Jquery Plugin -->
-    <script src="/assets/js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- <script src="/assets/js/jquery.min.js"></script> -->
     <!-- Swiper JS -->
-    <script src="/assets/js/swiper-bundle.min.js"></script>
+    <!-- <script src="/assets/js/swiper-bundle.min.js"></script> -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <!-- Select2 JS -->
     <script src="/assets/js/select2.full.min.js"></script>
     <!-- Menu JS -->
