@@ -1,11 +1,13 @@
 import {Expose, Transform} from "class-transformer";
 import {ObjectId} from "mongodb";
+import mongoose from "mongoose";
+import Logger from "../utils/Logger";
 
 export default class ContactUs {
 
     @Expose()
-    @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
-    private readonly _id?: ObjectId;
+    @Transform(param => param.obj ? param.obj.id : null, {toClassOnly: true})
+    private readonly _id?: string;
 
     @Expose({name: 'name'})
     private _name: string;
@@ -23,9 +25,17 @@ export default class ContactUs {
     private _description: string;
 
     @Expose({name: "files"})
-    private _files: ObjectId[];
+    @Transform(params => {
+        Logger.debug("Trying to map file Ids in ContactUs");
+            if(params.obj.files && params.obj.files.length != 0) {
+                return params.obj.files;
+            }
+            return null;
+        }, { toClassOnly: true }
+    )
+    private _files: mongoose.Types.ObjectId[];
 
-    constructor(id: ObjectId, name: string, companyName: string, email: string, phoneNumber: string, description: string, files: ObjectId[]) {
+    constructor(id: string, name: string, companyName: string, email: string, phoneNumber: string, description: string, files: mongoose.Types.ObjectId[]) {
         this._id = id;
         this._name = name;
         this._companyName = companyName;
@@ -35,8 +45,8 @@ export default class ContactUs {
         this._files = files;
     }
 
-    get id(): ObjectId {
-        return <ObjectId>this._id;
+    get id(): string {
+        return <string>this._id;
     }
 
     get name(): string {
@@ -79,11 +89,11 @@ export default class ContactUs {
         this._description = value;
     }
 
-    get files(): ObjectId[] {
+    get files(): mongoose.Types.ObjectId[] {
         return this._files;
     }
 
-    set files(value: ObjectId[]) {
+    set files(value: mongoose.Types.ObjectId[]) {
         this._files = value;
     }
 }

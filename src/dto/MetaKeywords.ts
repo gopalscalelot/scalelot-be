@@ -1,10 +1,10 @@
 import {Expose, Transform} from "class-transformer";
-import {ObjectId} from "mongodb";
+import mongoose from "mongoose";
 
 export default class MetaKeywords {
     @Expose()
-    @Transform(param => param.value ? (param.value as ObjectId).toString() : null)
-    private readonly _id?: ObjectId;
+    @Transform(param => param.obj ? param.obj.id : null, {toClassOnly: true})
+    private readonly _id?: mongoose.Types.ObjectId;
 
     @Expose({name: "country"})
     private _country: string;
@@ -15,15 +15,15 @@ export default class MetaKeywords {
     @Expose({name: "keywords"})
     private _keywords: string;
 
-    constructor(id: ObjectId, country: string, page: string, keywords: string) {
+    constructor(id: mongoose.Types.ObjectId, country: string, page: string, keywords: string) {
         this._id = id;
         this._country = country;
         this._page = page;
         this._keywords = keywords;
     }
 
-    get id(): ObjectId {
-        return <ObjectId>this._id;
+    get id(): mongoose.Types.ObjectId {
+        return <mongoose.Types.ObjectId>this._id;
     }
 
     get country(): string {

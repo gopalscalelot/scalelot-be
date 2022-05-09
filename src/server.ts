@@ -4,6 +4,9 @@ import {db, environment, port} from "./config/Config";
 import {container} from "tsyringe";
 import AppWideConfig from './config/AppWideConfig';
 
+Logger.debug("Your env file:")
+Logger.debug(require("dotenv").config());
+
 const appWideConfig: AppWideConfig = container.resolve(AppWideConfig);
 
 appWideConfig.getConfiguredApp().listen(port, () => {

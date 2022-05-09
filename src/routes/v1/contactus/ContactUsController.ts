@@ -9,6 +9,7 @@ import ContactUs from "../../../dto/ContactUs";
 import {plainToInstance} from "class-transformer";
 import {ProtectedRequest} from "../../../utils/app-request";
 import FileDTO from "../../../dto/FileDTO";
+import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class ContactUsController {
@@ -28,20 +29,25 @@ export default class ContactUsController {
     }
 
     private async addContactUsQuery(req: any, res: any) {
-        Logger.debug("New Contact US requested");
+        Logger.debug("New Contact US requested: " + req.body);
 
+        let files: FileDTO[] = [];
         let contactUs: ContactUs = plainToInstance(ContactUs, req.body, {excludeExtraneousValues: true});
 
-        let files: FileDTO[] = req.files.map((file: any) => {
-            Logger.debug(file);
-            let fileDTO: FileDTO = plainToInstance(FileDTO, file, { excludeExtraneousValues: true });
-            fileDTO.buffer = file.buffer.toString("base64");
-            return fileDTO;
-        });
+        if(req.files && req.files.length != 0) {
+            files = req.files.map((file: any) => {
+                Logger.debug(file);
+                let fileDTO: FileDTO = plainToInstance(FileDTO, file, {excludeExtraneousValues: true});
+                fileDTO.buffer = file.buffer.toString("base64");
+                return fileDTO;
+            });
+        }
 
         contactUs = await this._contactUsService.addContactUsQuery(contactUs, files);
 
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, contactUs).send(res);
+        return res.render("confirmation");
+
+        // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, contactUs).send(res);
     }
 
     private async getAllContactUsQuery(req: ProtectedRequest, res: any) {

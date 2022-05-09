@@ -5,11 +5,11 @@ import Logger from "../../../utils/Logger";
 import {autoInjectable} from "tsyringe";
 import CareerService from '../../../service/CareerService';
 import AsyncHandler from '../../../utils/AsyncHandler';
-import { instanceToPlain, plainToInstance } from "class-transformer";
+import {instanceToPlain, plainToInstance} from "class-transformer";
 import Career from '../../../dto/Career';
-import AppUtils from "../../../utils/AppUtils";
 import {ProtectedRequest} from "../../../utils/app-request";
 import FileDTO from "../../../dto/FileDTO";
+import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class CareerController {
@@ -36,14 +36,18 @@ export default class CareerController {
         let career: Career = plainToInstance(Career, req.body, { excludeExtraneousValues: true });
 
         let files: FileDTO[] = req.files.map((file: any) => {
-            Logger.debug(file);
             let fileDTO: FileDTO = plainToInstance(FileDTO, file, { excludeExtraneousValues: true });
             fileDTO.buffer = file.buffer.toString("base64");
             return fileDTO;
         });
 
+        Logger.debug("Found Files Count: " + files.length);
+
         career = await this._careerService.createCareer(career, files);
-        return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, AppUtils.nullPropsRemover(instanceToPlain(career))).send(res);
+        Logger.debug("Before sending respones: ");
+        Logger.debug(career);
+        return res.render("confirmation");
+        // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS,  instanceToPlain(career)).send(res);
     }
 
     private async getAllCareer(req: any, res: any) {

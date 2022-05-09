@@ -2,6 +2,7 @@ import {Response} from 'express';
 import Logger from "./Logger";
 import AppUtils from "./AppUtils";
 import {instanceToPlain} from "class-transformer";
+import {OperationTypeEnum} from "./enum/OperationTypeEnum";
 
 // Helper code for the API consumer to understand the error and handle is accordingly
 enum StatusCode {
@@ -100,7 +101,7 @@ export class FailureMsgResponse extends ApiResponse {
 
 export class SuccessResponse<T> extends ApiResponse {
     private data: any;
-    constructor(message: string, data: T) {
+    constructor(message: string,  data: T) {
         super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
         this.data = instanceToPlain(data);
     }

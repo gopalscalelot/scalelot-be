@@ -15,6 +15,7 @@ export default class RouterConfig {
     }
     
     private configureCareerRoutes() {
+        console.log("0000")
         this.router.use('/career', this.beanConfig.careerController.routes());
         this.router.use('/login', this.beanConfig.loginController.routes());
         this.router.use('/contact-us', this.beanConfig.contactUsController.routes());

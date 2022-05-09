@@ -1,12 +1,12 @@
 import {Expose, Transform} from "class-transformer";
-import {ObjectId} from "mongodb";
 import FileDTO from "./FileDTO";
+import mongoose from "mongoose";
 
 export default class PortfolioProject {
 
     @Expose()
-    @Transform(param => param.value ? (param.value as ObjectId).toHexString() : null, {toPlainOnly: true})
-    private readonly _id?: ObjectId;
+    @Transform(param => param.obj ? param.obj.id : null, {toClassOnly: true})
+    private readonly _id?: mongoose.Types.ObjectId;
 
     @Expose({name: "title"})
     private _title: string;
@@ -48,12 +48,19 @@ export default class PortfolioProject {
     private _tags: string[];
 
     @Expose({name: "files"})
-    private _files: ObjectId[];
+    @Transform(params => {
+            if(params.obj.files && params.obj.files.length != 0) {
+                return params.obj.files;
+            }
+            return null;
+        }, { toClassOnly: true }
+    )
+    private _files: mongoose.Types.ObjectId[];
 
     @Expose({name: "images"})
     private _images?: FileDTO[];
 
-    constructor(id: ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, tags: string[], files: ObjectId[], images: FileDTO[]) {
+    constructor(id: mongoose.Types.ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, tags: string[], files: mongoose.Types.ObjectId[], images: FileDTO[]) {
         this._id = id;
         this._title = title;
         this._category = category;
@@ -72,8 +79,8 @@ export default class PortfolioProject {
         this._images = images;
     }
 
-    get id(): ObjectId {
-        return <ObjectId>this._id;
+    get id(): mongoose.Types.ObjectId {
+        return <mongoose.Types.ObjectId>this._id;
     }
 
     get title(): string {
@@ -172,11 +179,11 @@ export default class PortfolioProject {
         this._designingTools = value;
     }
 
-    get files(): ObjectId[] {
+    get files(): mongoose.Types.ObjectId[] {
         return this._files;
     }
 
-    set files(value: ObjectId[]) {
+    set files(value: mongoose.Types.ObjectId[]) {
         this._files = value;
     }
 

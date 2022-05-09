@@ -8,6 +8,7 @@ import {SuccessResponse} from "../../../utils/ApiResponse";
 import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import PortfolioProjectService from "../../../service/PortfolioProjectService";
 import FileDTO from "../../../dto/FileDTO";
+import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class PortfolioProjectController {
@@ -23,7 +24,6 @@ export default class PortfolioProjectController {
     routes() {
         Logger.debug("Configuring Meta Keywords Router");
         this._router.post('/', AsyncHandler(async (req: any, res: any) => this.addPortfolioProject(req, res)));
-        this._router.get("/all", AsyncHandler(async (req: any, res: any) => this.getAllPortfolio(req, res)));
         return this._router;
     }
 
@@ -44,11 +44,8 @@ export default class PortfolioProjectController {
 
         portfolioProject = await this._portfolioProjectService.addPortfolioProject(portfolioProject, files);
 
-        return new SuccessResponse(ResponseMessages.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProject).send(res);
+        return res.render("confirmation");
+        // return new SuccessResponse(ResponseMessages.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProject).send(res);
     }
 
-    private async getAllPortfolio(req: any, res: any) {
-        let portfolioProjectList: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
-        return new SuccessResponse(ResponseMessages.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProjectList).send(res);
-    }
 }

@@ -1,10 +1,9 @@
 import {Expose, Transform} from "class-transformer";
-import {ObjectId} from "mongodb";
-
+import mongoose from "mongoose";
 export default class FileDTO {
     @Expose()
-    @Transform(param => param.value ? (param.value as ObjectId).toHexString() : null, {toPlainOnly:true})
-    private readonly _id?: ObjectId;
+    @Transform(param => param.obj ? param.obj.id : null)
+    private readonly _id?: mongoose.Types.ObjectId;
 
     @Expose({name: 'fieldname'})
     private _fieldname: string;
@@ -24,7 +23,8 @@ export default class FileDTO {
     @Expose({name: 'size'})
     private _size: number;
 
-    constructor(fieldname: string, originalname: string, encoding: string, mimetype: string, buffer: string, size: number) {
+    constructor(id: mongoose.Types.ObjectId, fieldname: string, originalname: string, encoding: string, mimetype: string, buffer: string, size: number) {
+        this._id = id;
         this._fieldname = fieldname;
         this._originalname = originalname;
         this._encoding = encoding;
@@ -33,9 +33,8 @@ export default class FileDTO {
         this._size = size;
     }
 
-
-    get id(): ObjectId {
-        return <ObjectId>this._id;
+    get id(): mongoose.Types.ObjectId {
+        return <mongoose.Types.ObjectId>this._id;
     }
 
     get fieldname(): string {
