@@ -19,16 +19,9 @@ export default class Testimonial {
     private _review: string;
 
     @Expose({name: "files"})
-    @Transform(params => {
-            if(params.obj.files && params.obj.files.length != 0) {
-                return params.obj.files;
-            }
-            return null;
-        }, { toClassOnly: true }
-    )
-    private _files: mongoose.Types.ObjectId[];
+    private _files: string[];
 
-    constructor(id: string, rating: string, clientName: string, clientDesignation: string, review: string, files: mongoose.Types.ObjectId[]) {
+    constructor(id: string, rating: string, clientName: string, clientDesignation: string, review: string, files: string[]) {
         this._id = id;
         this._rating = rating;
         this._clientName = clientName;
@@ -73,11 +66,11 @@ export default class Testimonial {
         this._review = value;
     }
 
-    get files(): mongoose.Types.ObjectId[] {
+    get files(): string[] {
         return this._files;
     }
 
-    set files(value: mongoose.Types.ObjectId[]) {
+    set files(value: string[]) {
         this._files = value;
     }
 }

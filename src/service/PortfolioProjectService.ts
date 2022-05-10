@@ -18,14 +18,17 @@ export default class PortfolioProjectService {
 
     public async addPortfolioProject(portfolioProject: PortfolioProject, files: FileDTO[]): Promise<PortfolioProject> {
 
-        Logger.debug("Saving files");
-        const savedFiles: FileDTO[] = await this._fileService.saveFiles(files);
-        Logger.debug(savedFiles.map(savedFile => savedFile.id));
+        let fileIds: string[] = [];
 
-        Logger.debug("Saved files");
-        Logger.debug(savedFiles.map(savedFile => savedFile.id));
+        for (let fileIndex in files) {
+            let savedFile: FileDTO = await this._fileService.saveFile(files[fileIndex]);
+            require("fs").writeFile("./public/assets/images/dynamic-images/" + savedFile.id, files[fileIndex].buffer, 'base64', function(err: any) {
+                console.log(err);
+            });
+            fileIds.push(savedFile.id.toString());
+        }
 
-        portfolioProject.files = savedFiles.map(savedFile => savedFile.id);
+        portfolioProject.files = fileIds;
 
         return this._portfolioProjectRepository.addPortfolioProject(portfolioProject);
     }

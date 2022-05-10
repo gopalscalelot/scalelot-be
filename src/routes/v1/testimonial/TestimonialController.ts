@@ -3,9 +3,7 @@ import express, {Router} from "express";
 import Logger from "../../../utils/Logger";
 import AsyncHandler from "../../../utils/AsyncHandler";
 import TestimonialService from "../../../service/TestimonialService";
-import { plainToInstance} from "class-transformer";
-import {SuccessResponse} from "../../../utils/ApiResponse";
-import ResponseMessages from "../../../utils/statics/ResponseMessages";
+import {plainToInstance} from "class-transformer";
 import Testimonial from "../../../dto/Testimonial";
 import FileDTO from "../../../dto/FileDTO";
 
@@ -32,7 +30,7 @@ export default class TestimonialController {
 
         let files: FileDTO[] = req.files.map((file: any) => {
             Logger.debug(file);
-            let fileDTO: FileDTO = plainToInstance(FileDTO, file, { excludeExtraneousValues: true });
+            let fileDTO: FileDTO = plainToInstance(FileDTO, file, {excludeExtraneousValues: true});
             fileDTO.buffer = file.buffer.toString("base64");
             return fileDTO;
         });

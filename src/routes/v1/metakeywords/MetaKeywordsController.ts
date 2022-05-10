@@ -2,13 +2,10 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../utils/Logger";
 import AsyncHandler from "../../../utils/AsyncHandler";
-import {SuccessResponse} from "../../../utils/ApiResponse";
-import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import MetaKeywordsService from "../../../service/MetaKeywordsService";
 import {ProtectedRequest} from "../../../utils/app-request";
 import {plainToInstance} from "class-transformer";
 import MetaKeywords from "../../../dto/MetaKeywords";
-import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class MetaKeywordsController {

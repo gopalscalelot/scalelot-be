@@ -1,10 +1,76 @@
 // Active Class JS
+
 function toggleActive(Id, db) {
   var element = document.querySelector(Id);
   element.classList.toggle(db);
 }
-function addActiveD(Id1, db1) {
+function addActiveD(Id1, db1, description, imageId, webFrameworks, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools) {
   var element = document.querySelector(Id1);
+  document.getElementById("popupImage").setAttribute("src", "/assets/images/dynamic-images/" + imageId);
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("descriptionParent") && document.getElementById("descriptionParent").remove();
+  }
+  else {
+    document.getElementById("description").innerHTML = description;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("descriptionMobileParent") && document.getElementById("descriptionMobileParent").remove();
+  }
+  else {
+    document.getElementById("descriptionMobile").innerHTML = description;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("webFrameworksParent") && document.getElementById("webFrameworksParent").remove();
+  }
+  else {
+    document.getElementById("webFrameworks").innerHTML = webFrameworks;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("programmingLanguagesParent") && document.getElementById("programmingLanguagesParent").remove();
+  }
+  else {
+    document.getElementById("programmingLanguages").innerHTML = programmingLanguages;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("miscellaneousParent") && document.getElementById("miscellaneousParent").remove();
+  }
+  else {
+    document.getElementById("miscellaneous").innerHTML = miscellaneous;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("librariesParent") && document.getElementById("librariesParent").remove();
+  }
+  else {
+    document.getElementById("libraries").innerHTML = libraries;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("uiFrameworksParent") && document.getElementById("uiFrameworksParent").remove();
+  }
+  else {
+    document.getElementById("uiFrameworks").innerHTML = uiFrameworks;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("designingToolsParent") && document.getElementById("designingToolsParent").remove();
+  }
+  else {
+    document.getElementById("designingTools").innerHTML = designingTools;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("designingLanguageParent") && document.getElementById("designingLanguageParent").remove();
+  }
+  else {
+    document.getElementById("designingLanguage").innerHTML = designingLanguage;
+  }
+
   element.classList.add(db1);
 }
 function removeActiveD(Id2, db2) {

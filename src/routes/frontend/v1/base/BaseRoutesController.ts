@@ -33,7 +33,8 @@ export default class BaseController {
     private async serveIndex(req: Response, res: any): Promise<Response> {
         Logger.debug("Need to return index")
         let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
-        Logger.debug("Returning response with portfolios");
+        Logger.debug("Returning response with portfolios: ");
+        Logger.debug(portfolioProjects);
         return res.render('index', { title: 'Express', portfolios: portfolioProjects });
     }
 

@@ -1,5 +1,4 @@
 // The base directory that we want to use
-const baseDirectory = "src";
 
 module.exports = {
     // The current mode, defaults to production
@@ -7,7 +6,7 @@ module.exports = {
 
     // The entry points ("location to store": "location to find")
     entry: {
-        "/": [`./${baseDirectory}`],
+        "/": [`./`],
         // "other output points" : ["other entry point"]
     },
     // Using the ts-loader module

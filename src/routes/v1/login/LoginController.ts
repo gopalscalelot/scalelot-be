@@ -1,13 +1,10 @@
 import express, {Router} from "express";
-import {SuccessResponse} from "../../../utils/ApiResponse";
-import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import Logger from "../../../utils/Logger";
 import {autoInjectable} from "tsyringe";
 import AsyncHandler from '../../../utils/AsyncHandler';
 import {plainToInstance} from "class-transformer";
 import Login from "../../../dto/Login";
 import LoginService from "../../../service/LoginService";
-import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class LoginController {

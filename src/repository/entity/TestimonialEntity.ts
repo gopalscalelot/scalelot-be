@@ -6,7 +6,7 @@ interface TestimonialEntity extends Document {
     clientName: string,
     clientDesignation: string,
     review: string,
-    files: ObjectId[],
+    files: string[],
 }
 
 const testimonialSchema = new Schema<TestimonialEntity>({
@@ -31,7 +31,7 @@ const testimonialSchema = new Schema<TestimonialEntity>({
         required: true
     },
     files: [{
-        type: ObjectId,
+        type: String,
         required: true
     }],
 });

@@ -6,7 +6,6 @@ interface FileEntity extends Document {
     originalname: string,
     encoding: string,
     mimetype: string,
-    buffer: string,
     size: string,
 }
 
@@ -27,11 +26,6 @@ const fileSchema = new Schema<FileEntity>({
         required: true
     },
     mimetype: {
-        type: String,
-        minlength: 2,
-        required: true
-    },
-    buffer: {
         type: String,
         minlength: 2,
         required: true
