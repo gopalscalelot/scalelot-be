@@ -9,21 +9,6 @@
             class="font-bold text-scalelot-secondary text-lg">info@scalelot.com</a></p>
       </div>
       <div class="pr-0 xl:pr-28 lg:pr-14">
-        <!-- <form action="192.168.29.105:3100/v1/contact-us" method="POST" class="flex flex-wrap -mx-3" enctype="multipart/form-data" onsubmit="return validateForm()"> -->
-
-        <form method="POST" action="/contact-us" class="flex flex-wrap -mx-3" enctype="multipart/form-data">
-          <div class="w-full lg:w-3/12 p-3">
-            <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Upload File
-              <input type="file" name="uploadFile" id="uploadFile"/>
-            </label>
-          </div>
-          <button type="submit" value="Submit" class="btn-border group anim rounded-full border ml-auto">
-            <span class="bleft anim group-hover:left-0"></span>
-            Call API
-            <span class="bright anim group-hover:-right-full"></span>
-          </button>
-        </form>
-
         <form method="POST" action="/contact-us" class="flex flex-wrap -mx-3" enctype="multipart/form-data">
           <div class="w-full md:w-1/2 p-3">
             <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Name <span
@@ -193,4 +178,4 @@
 <!--</script>-->
 
 <!-- We're Global And Growing section -->
-<%# include src/views %>
+<%- include ("components/global_contact.ejs") %>
