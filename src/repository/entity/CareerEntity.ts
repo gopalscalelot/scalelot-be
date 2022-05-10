@@ -38,7 +38,6 @@ const careerSchema = new Schema<CareerEntity>({
   address: {
     type: String,
     minlength: 2,
-    required: true
   },
   applyFor: {
     type: String,

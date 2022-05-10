@@ -4,7 +4,7 @@ function toggleActive(Id, db) {
   var element = document.querySelector(Id);
   element.classList.toggle(db);
 }
-function addActiveD(Id1, db1, description, imageId, webFrameworks, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools) {
+function addActiveD(Id1, db1, description, imageId, webFrameworks, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools, rating) {
   var element = document.querySelector(Id1);
   document.getElementById("popupImage").setAttribute("src", "/assets/images/dynamic-images/" + imageId);
 
@@ -69,6 +69,13 @@ function addActiveD(Id1, db1, description, imageId, webFrameworks, programmingLa
   }
   else {
     document.getElementById("designingLanguage").innerHTML = designingLanguage;
+  }
+
+  if(!webFrameworks || webFrameworks.length == 0) {
+    document.getElementById("ratingDynamic") && document.getElementById("ratingDynamic").remove();
+  }
+  else {
+    document.getElementById("ratingDynamic").innerHTML = rating;
   }
 
   element.classList.add(db1);

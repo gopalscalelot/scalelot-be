@@ -4,16 +4,21 @@ import Logger from "../../../../utils/Logger";
 import AsyncHandler from "../../../../utils/AsyncHandler";
 import PortfolioProjectService from "../../../../service/PortfolioProjectService";
 import PortfolioProject from "../../../../dto/PortfolioProject";
+import {PriorityEnum} from "../../../../utils/enum/PriorityEnum";
+import Testimonial from "../../../../dto/Testimonial";
+import TestimonialService from "../../../../service/TestimonialService";
 
 @autoInjectable()
 export default class BaseController {
     private _router: Router;
     private _portfolioProjectService: PortfolioProjectService;
+    private _testimonialService: TestimonialService;
 
-    constructor(portfolioProjectService: PortfolioProjectService) {
+    constructor(portfolioProjectService: PortfolioProjectService, testimonialService: TestimonialService) {
         Logger.debug("Initialising Base FrontEnd Routes");
         this._router = express.Router();
         this._portfolioProjectService = portfolioProjectService;
+        this._testimonialService = testimonialService;
     }
 
     routes() {
@@ -33,9 +38,13 @@ export default class BaseController {
     private async serveIndex(req: Response, res: any): Promise<Response> {
         Logger.debug("Need to return index")
         let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let highPriorityProjects: PortfolioProject[] = portfolioProjects.filter(portfolio => portfolio.priority === PriorityEnum.HIGH);
+        let mediumPriorityProjects: PortfolioProject[] = portfolioProjects.filter(portfolio => portfolio.priority === PriorityEnum.MEDIUM);
+        let lowPriorityProjects: PortfolioProject[] = portfolioProjects.filter(portfolio => portfolio.priority === PriorityEnum.LOW);
+        let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
         Logger.debug("Returning response with portfolios: ");
         Logger.debug(portfolioProjects);
-        return res.render('index', { title: 'Express', portfolios: portfolioProjects });
+        return res.render('index', { title: 'Express', portfolios: [...highPriorityProjects, ...mediumPriorityProjects, ...lowPriorityProjects], testimonials: testimonials });
     }
 
     private async serveAboutUs(req: any, res: any) {
