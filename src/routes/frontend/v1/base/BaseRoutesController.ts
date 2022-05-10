@@ -27,6 +27,7 @@ export default class BaseController {
         this._router.get('/offshore', AsyncHandler(async (req:any, res:any) => this.serveOffshore(req, res)));
         this._router.get('/contact-us', AsyncHandler(async (req:any, res:any) => this.serveContactUs(req, res)));
         this._router.get('/html-sitemap', AsyncHandler(async (req:any, res:any) => this.serveHtmlSiteMap(req, res)));
+        this._router.get('/thanks', AsyncHandler(async (req:any, res:any) => this.serveThanksMap(req, res)));
         return this._router;
     }
 
@@ -68,5 +69,8 @@ export default class BaseController {
 
     private async serveHtmlSiteMap(req: any, res: any) {
         return res.render('html-sitemap', { title: 'Express' });
+    }
+    private async serveThanksMap(req: any, res: any) {
+        return res.render('thanks', { title: 'Express' });
     }
 }

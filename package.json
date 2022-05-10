@@ -6,6 +6,7 @@
   "scripts": {
     "start:gulp": "npm-run-all gulp start-gulp",
     "webpack": "webpack",
+    "tailwind": "npx tailwindcss -i ./public/assets/css/tailwind.css -o ./public/assets/css/style.css --watch",
     "gulp": "gulp",
     "start-gulp": "node ./dist/server.js",
     "gulp-dev": "nodemon --watch src -e ts,ejs --exec npm run start:gulp -w tailwind.config.js -w /public/assets/css/tailwind.css",
