@@ -15,7 +15,7 @@ interface PortfolioProjectsEntity extends Document {
     designingLanguage: string,
     designingTools: string,
     tags: string[],
-    files: ObjectId[],
+    files: string[],
 }
 
 const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
@@ -83,7 +83,7 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
         type: String,
     }],
     files: [{
-        type: ObjectId,
+        type: String,
         required: true
     }],
 });

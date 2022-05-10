@@ -20,9 +20,17 @@ export default class CareerService{
 
   public async createCareer(career: Career, files: FileDTO[]): Promise<Career> {
 
-      const savedFiles: FileDTO[] = await this._fileService.saveFiles(files);
-      Logger.debug(savedFiles.map(savedFile => savedFile.id));
-      career.files = savedFiles.map(savedFile => savedFile.id);
+      let fileIds: string[] = [];
+
+      for (let fileIndex in files) {
+          let savedFile: FileDTO = await this._fileService.saveFile(files[fileIndex]);
+          require("fs").writeFile("./public/assets/images/dynamic-images/" + savedFile.id, files[fileIndex].buffer, 'base64', function(err: any) {
+              console.log(err);
+          });
+          fileIds.push(savedFile.id.toString());
+      }
+
+      career.files = fileIds;
       return this._careerRepository.saveCareer(career);
       
     }

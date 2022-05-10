@@ -35,16 +35,9 @@ export default class Career {
     private _expectedCTC: string;
 
     @Expose({name: "files"})
-    @Transform(params => {
-            if(params.obj.files && params.obj.files.length != 0) {
-                return params.obj.files;
-            }
-            return null;
-        }, { toClassOnly: true }
-    )
-    private _files: mongoose.Types.ObjectId[];
+    private _files: string[];
 
-    constructor(id: mongoose.Types.ObjectId, firstName: string, lastName: string, email: string, phoneNumber: string, address: string, applyFor: string, experience: string, currentCTC: string, expectedCTC: string, files: mongoose.Types.ObjectId[]) {
+    constructor(id: mongoose.Types.ObjectId, firstName: string, lastName: string, email: string, phoneNumber: string, address: string, applyFor: string, experience: string, currentCTC: string, expectedCTC: string, files: string[]) {
         this._id = id;
         this._firstName = firstName;
         this._lastName = lastName;
@@ -134,11 +127,11 @@ export default class Career {
         this._expectedCTC = value;
     }
 
-    get files(): mongoose.Types.ObjectId[] {
+    get files(): string[] {
         return this._files;
     }
 
-    set files(value: mongoose.Types.ObjectId[]) {
+    set files(value: string[]) {
         this._files = value;
     }
 }

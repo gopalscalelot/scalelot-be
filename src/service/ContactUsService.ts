@@ -22,14 +22,17 @@ export default class ContactUsService {
     public async addContactUsQuery(contactUs: ContactUs, files: FileDTO[]): Promise<ContactUs> {
         let savedFiles: FileDTO[] = [];
 
-        Logger.debug("Saving Files");
-        if(files && files.length != 0) {
-            savedFiles = await this._fileService.saveFiles(files);
+        let fileIds: string[] = [];
+
+        for (let fileIndex in files) {
+            let savedFile: FileDTO = await this._fileService.saveFile(files[fileIndex]);
+            require("fs").writeFile("./public/assets/images/dynamic-images/" + savedFile.id, files[fileIndex].buffer, 'base64', function(err: any) {
+                console.log(err);
+            });
+            fileIds.push(savedFile.id.toString());
         }
 
-        if(savedFiles.length != 0) {
-            contactUs.files = savedFiles.map(savedFile => savedFile.id);
-        }
+        contactUs.files = fileIds;
 
         let contactUsFromDB: ContactUs = await this._contactUsRepository.saveContactUs(contactUs);
 

@@ -25,17 +25,9 @@ export default class ContactUs {
     private _description: string;
 
     @Expose({name: "files"})
-    @Transform(params => {
-        Logger.debug("Trying to map file Ids in ContactUs");
-            if(params.obj.files && params.obj.files.length != 0) {
-                return params.obj.files;
-            }
-            return null;
-        }, { toClassOnly: true }
-    )
-    private _files: mongoose.Types.ObjectId[];
+    private _files: string[];
 
-    constructor(id: string, name: string, companyName: string, email: string, phoneNumber: string, description: string, files: mongoose.Types.ObjectId[]) {
+    constructor(id: string, name: string, companyName: string, email: string, phoneNumber: string, description: string, files: string[]) {
         this._id = id;
         this._name = name;
         this._companyName = companyName;
@@ -89,11 +81,11 @@ export default class ContactUs {
         this._description = value;
     }
 
-    get files(): mongoose.Types.ObjectId[] {
+    get files(): string[] {
         return this._files;
     }
 
-    set files(value: mongoose.Types.ObjectId[]) {
+    set files(value: string[]) {
         this._files = value;
     }
 }

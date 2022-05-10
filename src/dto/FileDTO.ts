@@ -2,7 +2,7 @@ import {Expose, Transform} from "class-transformer";
 import mongoose from "mongoose";
 export default class FileDTO {
     @Expose()
-    @Transform(param => param.obj ? param.obj.id : null)
+    @Transform(param => param.obj ? param.obj.id : null, {toClassOnly: true})
     private readonly _id?: mongoose.Types.ObjectId;
 
     @Expose({name: 'fieldname'})

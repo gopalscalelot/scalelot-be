@@ -18,4 +18,10 @@ export default class FilesRepository {
         Logger.debug(fileDTOs.map(file => file.id));
         return fileDTOs;
     }
+
+    public async saveFile(file: FileDTO): Promise<FileDTO> {
+        let savedFile = await FileEntity.create(AppUtils.nullPropsRemover(instanceToPlain(file)));
+        await savedFile.save();
+        return plainToInstance(FileDTO, savedFile);
+    }
 }

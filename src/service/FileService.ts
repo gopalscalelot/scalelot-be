@@ -15,4 +15,10 @@ export default class FileService {
         Logger.debug("Saving file Service");
         return this._filesRepository.saveFiles(files)
     }
+
+    public async saveFile(file: FileDTO): Promise<FileDTO> {
+        Logger.debug("Saving file Service");
+        Logger.debug(file);
+        return this._filesRepository.saveFile(file)
+    }
 }

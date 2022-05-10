@@ -5,7 +5,8 @@ import mongoose from "mongoose";
 export default class PortfolioProject {
 
     @Expose()
-    @Transform(param => param.obj ? param.obj.id : null, {toClassOnly: true})
+    @Transform(param => param.obj ? param.obj._id : null, {toClassOnly: true})
+    @Transform(param => param.obj && param.obj._id ? param.obj._id.toString() : null, {toPlainOnly: true})
     private readonly _id?: mongoose.Types.ObjectId;
 
     @Expose({name: "title"})
@@ -48,19 +49,9 @@ export default class PortfolioProject {
     private _tags: string[];
 
     @Expose({name: "files"})
-    @Transform(params => {
-            if(params.obj.files && params.obj.files.length != 0) {
-                return params.obj.files;
-            }
-            return null;
-        }, { toClassOnly: true }
-    )
-    private _files: mongoose.Types.ObjectId[];
+    private _files: string[];
 
-    @Expose({name: "images"})
-    private _images?: FileDTO[];
-
-    constructor(id: mongoose.Types.ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, tags: string[], files: mongoose.Types.ObjectId[], images: FileDTO[]) {
+    constructor(id: mongoose.Types.ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, tags: string[], files: string[]) {
         this._id = id;
         this._title = title;
         this._category = category;
@@ -76,7 +67,6 @@ export default class PortfolioProject {
         this._designingTools = designingTools;
         this._tags = tags;
         this._files = files;
-        this._images = images;
     }
 
     get id(): mongoose.Types.ObjectId {
@@ -179,20 +169,12 @@ export default class PortfolioProject {
         this._designingTools = value;
     }
 
-    get files(): mongoose.Types.ObjectId[] {
+    get files(): string[] {
         return this._files;
     }
 
-    set files(value: mongoose.Types.ObjectId[]) {
+    set files(value: string[]) {
         this._files = value;
-    }
-
-    get images(): FileDTO[] {
-        return <FileDTO[]>this._images;
-    }
-
-    set images(value: FileDTO[]) {
-        this._images = value;
     }
 
     get tags(): string[] {
