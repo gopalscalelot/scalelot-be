@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 export default class Testimonial {
     @Expose()
     @Transform(param => param.obj ? param.obj.id : null, {toClassOnly: true})
+    @Transform(param => param.obj && param.obj._id ? param.obj._id.toString() : null, {toPlainOnly: true})
     private readonly _id?: string;
 
     @Expose({name: 'rating'})
