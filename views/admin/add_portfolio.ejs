@@ -31,6 +31,27 @@
             <input type="text" class="dInput small rounded-lg form-control" placeholder="Page Link" value="" name="pageLink"/>
           </div>
           <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Portfolio Tags<span class="text-scalelot-secondary">*</span></label>
+            <select name="portfolio_tags" class="tags dInput small rounded-lg" multiple>
+              <option value="">Select Tags</option>
+              <option value="index">Index</option>
+              <option value="ui_ux">UI-UX</option>
+              <option value="web_development">Web Development</option>
+              <option value="mobile_development">Mobile Development</option>
+              <option value="sales_funnels">Sales Funnels</option>
+              <option value="graphic_design">Graphic Design</option>
+            </select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Select Priority<span class="text-scalelot-secondary">*</span></label>
+            <select name="portfolio_tags" class="dInput small rounded-lg">
+              <option value="">Select Priority</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
             <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Project Rating<span class="text-scalelot-secondary">*</span></label>
             <div class="flex items-center"><input type="range" class="form-control" value="1.0" step="0.1" min="1.0" max="5.0" value="" name="rating"/><span class="flex items-center"><output class="ml-3 mr-2 w-5 text-right">0.0</output><span class="text-2xl leading-3 text-yellow-400">&#9733;</span></span></div>
           </div>
