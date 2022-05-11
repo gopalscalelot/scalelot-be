@@ -43,9 +43,9 @@ export default class BaseController {
         let mediumPriorityProjects: PortfolioProject[] = portfolioProjects.filter(portfolio => portfolio.priority === PriorityEnum.MEDIUM);
         let lowPriorityProjects: PortfolioProject[] = portfolioProjects.filter(portfolio => portfolio.priority === PriorityEnum.LOW);
         let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
-        Logger.debug("Returning response with portfolios: ");
-        Logger.debug(portfolioProjects);
-        return res.render('index', { title: 'Express', portfolios: [...highPriorityProjects, ...mediumPriorityProjects, ...lowPriorityProjects], testimonials: testimonials });
+        Logger.debug("Final Portfolio projects");
+        Logger.debug([...highPriorityProjects, ...mediumPriorityProjects, ...lowPriorityProjects]);
+        return res.render('index', { title: 'Express', portfolios: portfolioProjects, testimonials: testimonials });
     }
 
     private async serveAboutUs(req: any, res: any) {

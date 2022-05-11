@@ -27,7 +27,6 @@ export default class TestimonialRepository {
                 as: 'images'
             }
         }]);
-        Logger.debug(result);
         return plainToInstance(Testimonial, result,{excludeExtraneousValues: true});
     }
 }

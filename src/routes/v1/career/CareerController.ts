@@ -45,7 +45,7 @@ export default class CareerController {
         career = await this._careerService.createCareer(career, files);
         Logger.debug("Before sending respones: ");
         Logger.debug(career);
-        return res.render("confirmation");
+        return res.redirect("/thanks");
         // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS,  instanceToPlain(career)).send(res);
     }
 

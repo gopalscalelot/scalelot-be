@@ -161,8 +161,8 @@
 <!-- ToDo: Make technologies dynamic using map -->
 <!-- ToDo: [IMP] Instead base64 image, get image from /assets/images/dynamicImages-->
 
-          <% portfolios.forEach(function( portfolio){ %>
-
+          <% portfolios.forEach(function(portfolio){ %>
+          <h1><%= portfolios.length %></h1>
             <div class="swiper-slide w-11/12 md:w-1/3 lg:w-1/4">
               <a href="javascript:void(0);" onclick='addActiveD("#pop1", "show", "<%= portfolio.description %>", "<%= portfolio.files[0] %>", "<%= portfolio.webFramework %>", "<%= portfolio.programmingLanguages %>", "<%= portfolio.miscellaneous %>", "<%= portfolio.libraries %>", "<%= portfolio.uiFrameworks %>", "<%= portfolio.designingLanguage %>", "<%= portfolio.designingTools %>", "<%= portfolio.rating %>")'
                  class="relative group block overflow-hidden text-gray-100 rounded-xl lg:rounded-3xl">

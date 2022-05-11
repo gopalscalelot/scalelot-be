@@ -42,7 +42,7 @@ export default class TestimonialController {
         Logger.debug("Saved Testimonial: ")
         Logger.debug(testimonial);
 
-        return res.render("confirmation");
+        return res.redirect("/thanks");
 
         // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, testimonial).send(res);
     }

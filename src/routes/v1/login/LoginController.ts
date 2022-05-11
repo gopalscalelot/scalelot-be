@@ -29,7 +29,7 @@ export default class LoginController {
         let login: Login = plainToInstance(Login, req.body, {excludeExtraneousValues: true});
 
         let token: string = await this._loginService.loginUser(login);
-        return res.render("confirmation");
+        return res.redirect("/thanks");
         // return new SuccessResponse(ResponseMessages.LOGIN_SUCCESS, {token: token}).send(res);
     }
 

@@ -20,6 +20,7 @@ export default class FrontEndRouterConfig {
     }
 
     private configureBaseRoutes() {
+
         this.router.use('/', this.frontEndBeanConfig.baseController.routes());
     }
 
