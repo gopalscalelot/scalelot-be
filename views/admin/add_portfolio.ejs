@@ -1,4 +1,10 @@
 <section>
+  <div class="max-w-screen-2xl mx-auto flex items-center space-x-7 px-5 lg:px-9 py-12 lg:py-16 xl:py-24 2xl:py-28">
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/admin/addMeta">Meta Keywords</a>
+    <a href="/admin/addPortfolio">Portfolio</a>
+    <a href="/admin/AddTestimonial">Testimonial</a>
+  </div>
   <div class="max-w-screen-2xl mx-auto items-center px-5 lg:px-9 py-12 lg:py-16 xl:py-24 2xl:py-28">
     <form action="/api/v1/portfolio-project" method="POST" enctype="multipart/form-data">
       <!--        <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Upload File-->
@@ -32,10 +38,10 @@
           </div>
           <div class="w-full lg:w-1/2 px-3.5 mb-5">
             <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Portfolio Tags<span class="text-scalelot-secondary">*</span></label>
-            <select name="portfolio_tags" class="tags dInput small rounded-lg" multiple>
+            <select name="tags" class="tags dInput small rounded-lg" multiple>
               <option value="">Select Tags</option>
               <option value="index">Index</option>
-              <option value="ui_ux">UI-UX</option>
+              <option value="uiux_design">UI-UX</option>
               <option value="web_development">Web Development</option>
               <option value="mobile_development">Mobile Development</option>
               <option value="sales_funnels">Sales Funnels</option>

@@ -49,7 +49,7 @@ body  div section:nth-child(2n) {@apply bg-slate-50 dark:bg-scalelot-darkPlus da
 
 .mm-listitem:after {inset-inline-start: 0;}
 .mm-listitem__btn:not(.mm-listitem__text),.mm-navbar__title {@apply text-xs md:text-sm xl:text-base w-16 lg:w-24 pr-10 lg:pr-16;}
-@media (max-width: 1200px) { 
+@media (max-width: 1200px) {
   .mm-listitem__btn:not(.mm-listitem__text)::after {inset-inline-end: 16px;}
 }
 .mm-navbar .mm-navbar__breadcrumbs {@apply text-xs;}
@@ -377,11 +377,11 @@ input[type=number]::-webkit-outer-spin-button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-size: 18px;
   color: silver;
   -webkit-transition: .3s ease-out;
@@ -416,14 +416,14 @@ input[type=number]::-webkit-outer-spin-button {
   min-height: 100px;
   max-height: 180px;
   -webkit-box-shadow: 0 0 5px 0 rgba(118, 93, 93, 0.2);
-          box-shadow: 0 0 5px 0 rgba(118, 93, 93, 0.2);
+  box-shadow: 0 0 5px 0 rgba(118, 93, 93, 0.2);
   border-radius: 8px;
   overflow: hidden;
 }
 
 .form__image-container .form__image {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .form__image-container:after {
@@ -437,11 +437,11 @@ input[type=number]::-webkit-outer-spin-button {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   top: 0;
   right: 0;
   left: 0;
@@ -461,7 +461,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .form__image {
   -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   width: 100%;
   height: 100%;
 }
@@ -473,6 +473,35 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: #303030;
   color: white;
 }
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Select Files';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.active-text-secondary .active {@apply text-scalelot-secondary;}
+.show.flexBox {@apply flex;}
+.show {@apply block;}
 
 #toTop.arrow-down {@apply hidden opacity-0;}
 #toTop.arrow-up{@apply block opacity-100;}

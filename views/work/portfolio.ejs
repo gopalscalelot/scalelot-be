@@ -1,303 +1,176 @@
 <!-- Our Best Work -->
 <section class="pb-12 pt-16 lg:py-16 xl:py-24 2xl:py-28">
-  <div class="max-w-screen-2xl mx-auto flex flex-wrap px-5 lg:px-9 items-center space-y-8 lg:space-y-16">
-    <div class="menu text-center w-full flex flex-wrap items-center justify-center xl:justify-between">
-      <h1 class="text-center">Our Best Work</h1>
-      <div class="tabsHead text-xl capitalize flex flex-wrap items-center justify-center text-base text-left">
-        <a href="javascript:void(0);" class="text-scalelot-secondary hover:text-scalelot-secondary cursor-pointer px-5 active">all</a>
-        <a href="javascript:void(0);" class="hover:text-scalelot-secondary cursor-pointer px-5">Mobile Apps</a>
-        <a href="javascript:void(0);" class="hover:text-scalelot-secondary cursor-pointer px-5">Website</a>
-        <a href="javascript:void(0);" class="hover:text-scalelot-secondary cursor-pointer px-5">AppsApplication</a>
-        <a href="javascript:void(0);" class="hover:text-scalelot-secondary cursor-pointer px-5">Games</a>
+  <div class="portfolio section max-w-screen-2xl mx-auto flex flex-wrap px-5 lg:px-9 items-center space-y-8 lg:space-y-16">
+    <div class="text-center w-full flex flex-wrap items-center justify-center xl:justify-between">
+      <h1 class="text-center text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl">Our Best Work</h1>
+      <div id="myBtnContainer" class="active-text-secondary capitalize flexBox flex flex-wrap items-center justify-center text-base text-left ml-auto">
+        <a href="javascript:void(0);" onclick="filterSelection(' ')" class="filterBtn hover:text-scalelot-secondary cursor-pointer mx-3 block active">ALL</a>
+        <a href="javascript:void(0);" onclick="filterSelection('uiux_design')" class="filterBtn hover:text-scalelot-secondary cursor-pointer mx-3 block">UI-UX</a>
+        <a href="javascript:void(0);" onclick="filterSelection('web_development')" class="filterBtn hover:text-scalelot-secondary cursor-pointer mx-3 block">Web Development</a>
+        <a href="javascript:void(0);" onclick="filterSelection('mobile_development')" class="filterBtn hover:text-scalelot-secondary cursor-pointer mx-3 block">Mobile Development</a>
+        <a href="javascript:void(0);" onclick="filterSelection('sales_funnels')" class="filterBtn hover:text-scalelot-secondary cursor-pointer mx-3 block">Sales Funnels</a>
+        <a href="javascript:void(0);" onclick="filterSelection('graphic_design')" class="filterBtn hover:text-scalelot-secondary cursor-pointer mx-3 block">Graphic Design</a>
       </div>
     </div>
-    <div class="tabsCompBox relative">
-      <div class="tabsCompIn active">
-        <div class="flex flex-wrap justify-center">
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
+
+    <div class="physicianList w-full">
+      <input type='hidden' id='current_page' />
+      <input type='hidden' id='show_per_page' />
+      <div id="pagingBox" class="portfolio-gallery flex flex-wrap relative w-full">
+        <% portfolios.forEach(function(portfolio){ %>
+          <div class="portfolio-item hidden <%= portfolio.tags.join(' ') %> w-full md:w-1/2 xl:w-1/3 p-0 py-3 md:py-4 md:p-4 space-y-2.5 anim">
+            <a href="javascript:void(0);" onclick='addActiveD("#pop1", "show", "<%= portfolio.description %>", "<%= portfolio.files[0] %>", "<%= portfolio.webFramework %>", "<%= portfolio.programmingLanguages %>", "<%= portfolio.miscellaneous %>", "<%= portfolio.libraries %>", "<%= portfolio.uiFrameworks %>", "<%= portfolio.designingLanguage %>", "<%= portfolio.designingTools %>", "<%= portfolio.rating %>")'
+               class="relative group block overflow-hidden text-gray-100 rounded-xl lg:rounded-3xl">
+                <span
+                        class="bg-gradient-to-t from-scalelot-secondary to-transparent block absolute z-0 inset-0 w-full h-full opacity-0 group-hover:opacity-100"></span>
+              <span
+                      class="absolute anim w-9 h-[calc(100%+300px)] top-1/2 transform -translate-y-1/2 -rotate-45 bg-white opacity-0 group-hover:opacity-30 right-full block delay-150 group-hover:-right-9"></span>
+              <!-- <img src="/assets/images/ourworkimg1.png" class="w-full anim" /> -->
+              <img src="/assets/images/dynamic-images/<%= portfolio.files[0] %>" alt="Scalelot Portfolio" class="w-full anim" />
+              <div
+                      class="absolute inset-x-0 bottom-0 w-full py-8 pl-20 pr-5 group-hover:pl-5 opacity-0 group-hover:opacity-100 anim delay-300 flex items-end justify-between">
+                <div class="">
+                  <p>
+                    <%= portfolio.title %>
+                  </p>
+                  <h5 class="font-pop text-white">
+                    <%= portfolio.category %>
+                  </h5>
+                </div>
+                <div class="text-xl whitespace-nowrap">
+                  <%= portfolio.rating %> <span class="text-2xl text-yellow-400">&#9733;</span>
+                </div>
+              </div>
+            </a>
           </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork6.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg3.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork5.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork7.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork8.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork10.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg2.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork11.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
+
+        <% }) %>
+      </div>
+    </div>
+<!--    <div id='page_navigation' class="mx-auto"></div>-->
+  </div>
+</section>
+
+<div id="pop1"
+     class="popup fixed inset-0 left-full w-screen h-screen flex items-center justify-center bg-white dark:bg-scalelot-darkPlus lg:bg-opacity-80 backdrop-blur-sm p-4 md:py-12 anim z-50">
+  <div
+          class="max-w-6xl w-full max-h-[90vh] overflow-y-auto bg-slate-50 text-black dark:bg-scalelot-primary dark:text-white p-5 rounded-lg relative shadow">
+    <a href="javascript:void(0);" onclick="removeActiveD('#pop1', 'show')"
+       class="absolute right-0 top-0 lg:right-5 lg:top-5 text-2xl lg:text-3xl 2xl:text-4xl hover:text-scalelot-secondary">&#x2715;</a>
+    <div class="flex flex-wrap -mx-3">
+      <div class="w-full md:w-1/2 px-3 pb-5 md:pb-0">
+        <img id="popupImage" src="" alt="/assets/images/ourworkimg1.webp">
+        <div class="w-full px-3 space-y-2 pt-5 hidden md:block" id="descriptionParent">
+          <h5 class="w-full text-sm lg:text-lg uppercase">Description</h5>
+          <p class="w-full text-xs lg:text-sm" id="description"></p>
         </div>
       </div>
-      <div class="tabsCompIn">
-        <div class="flex flex-wrap justify-center">
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
+      <div class="w-full md:w-1/2 px-3 space-y-2">
+        <div class="flex items-end justify-between">
+          <div class="">
+            <p>Health &amp; Fitness</p>
+            <h3 class="font-pop">Contrary To Popular Belief</h3>
           </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork6.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg3.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork5.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
+          <div class="text-xl whitespace-nowrap">
+            <span id="ratingDynamic"></span> <span class="text-2xl text-yellow-400">&#9733;</span>
           </div>
         </div>
-      </div>
-      <div class="tabsCompIn">
-        <div class="flex flex-wrap justify-center">
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
+
+        <div class="flex">
+          <div class="w-1/2 md:w-full flex flex-wrap py-1 md:py-5 pr-2">
+            <h5 class="w-full text-sm lg:text-lg uppercase">Technologies</h5>
+            <div class="w-full md:w-1/2 py-1 md:py-2" id="webFrameworksParent">
+              <h6 class="text-sm md:text-base">Web Frameworks</h6>
+              <p class="text-xs lg:text-sm opacity-75" id="webFrameworks">Express</p>
+            </div>
+            <div class="w-full md:w-1/2 py-1 md:py-2" id="programmingLanguagesParent">
+              <h6 class="text-sm md:text-base">Programming Languages</h6>
+              <p class="text-xs lg:text-sm opacity-75" id="programmingLanguages">Node js</p>
+            </div>
+            <div class="w-full md:w-1/2 py-1 md:py-2" id="miscellaneousParent">
+              <h6 class="text-sm md:text-base">Miscellaneous</h6>
+              <p class="text-xs lg:text-sm opacity-75" id="miscellaneous">Swiper Slider</p>
+            </div>
+            <div class="w-full md:w-1/2 py-1 md:py-2" id="librariesParent">
+              <h6 class="text-sm md:text-base">Javascript Libraries</h6>
+              <p class="text-xs lg:text-sm opacity-75" id="libraries">jQuery 3.5.1</p>
+            </div>
+            <div class="w-full md:w-1/2 py-1 md:py-2" id="uiFrameworksParent">
+              <h6 class="text-sm md:text-base">UI Frameworks</h6>
+              <p class="text-xs lg:text-sm opacity-75" id="uiFrameworks">Tailwind CSS 3</p>
+            </div>
+            <div class="w-full md:w-1/2 py-1 md:py-2" id="uiFrameworksParent">
+              <h6 class="text-sm md:text-base">UI Frameworks</h6>
+              <p class="text-xs lg:text-sm opacity-75" id="uiFrameworks">Tailwind CSS 3</p>
+            </div>
+            <div class="w-full md:w-1/2 py-1 md:py-2" id="designingToolsParent">
+              <h6 class="text-sm md:text-base">Designing Language</h6>
+              <p class="text-xs lg:text-sm opacity-75" id="designingTools">Tailwind CSS 3</p>
+            </div>
+            <div class="w-full md:w-1/2 py-1 md:py-2" id="designingLanguageParent">
+              <h6 class="text-sm md:text-base">Designing Tools</h6>
+              <p class="text-xs lg:text-sm opacity-75" id="designingLanguage">Tailwind CSS 3</p>
+            </div>
           </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork6.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg3.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork5.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork7.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork8.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork10.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg2.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork11.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
+          <div class="w-1/2 pl-3 space-y-2 py-1 md:py-5 border-l border-scalelot-primary md:hidden" id="descriptionMobileParent">
+            <h5 class="w-full text-sm lg:text-lg uppercase">Description</h5>
+            <p class="text-xs lg:text-sm " id="descriptionMobile"></p>
           </div>
         </div>
-      </div>
-      <div class="tabsCompIn">
-        <div class="flex flex-wrap justify-center">
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork6.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg3.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork5.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork7.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork8.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork10.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg2.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork11.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-        </div>
-      </div>
-      <div class="tabsCompIn">
-        <div class="flex flex-wrap justify-center">
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork6.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg3.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork5.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork7.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork8.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork9.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork10.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg2.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourworkimg1.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-          <div class="w-full md:w-1/2 xl:w-1/3 p-0 py-4 md:py-5 md:p-5 space-y-2.5">
-            <img src="/assets/images/ourbestwork11.webp" class="w-full" />
-            <p>Health & Fitness</p>
-            <h5 class="font-pop">Contrary To Popular Belief</h5>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
-</section>
-<script></script>
+</div>
+
+
+<script>
+  filterSelection("all"); // Execute the function and show all columns
+  function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("portfolio-item");
+    if (c == "all") c = "";
+    // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+    for (i = 0; i < x.length; i++) {
+      w3RemoveClass(x[i], "show");
+      if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+    }
+  }
+
+  // Show filtered elements
+  function w3AddClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      if (arr1.indexOf(arr2[i]) == -1) {
+        element.className += " " + arr2[i];
+      }
+    }
+  }
+
+  // Hide elements that are not selected
+  function w3RemoveClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      while (arr1.indexOf(arr2[i]) > -1) {
+        arr1.splice(arr1.indexOf(arr2[i]), 1);
+      }
+    }
+    element.className = arr1.join(" ");
+  }
+
+  // Add active class to the current button (highlight it)
+  var btnContainer = document.getElementById("myBtnContainer");
+  var btns = btnContainer.getElementsByClassName("filterBtn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function () {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
+
+</script>

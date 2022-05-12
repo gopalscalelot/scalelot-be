@@ -2,14 +2,19 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../../utils/Logger";
 import AsyncHandler from "../../../../utils/AsyncHandler";
+import TestimonialService from "../../../../service/TestimonialService";
+import PortfolioProjectService from "../../../../service/PortfolioProjectService";
+import PortfolioProject from "../../../../dto/PortfolioProject";
 
 @autoInjectable()
 export default class WorkController {
     private _router: Router;
+    private _portfolioProjectService: PortfolioProjectService;
 
-    constructor() {
+    constructor(portfolioProjectService: PortfolioProjectService) {
         Logger.debug("Initialising Work FrontEnd Routes");
         this._router = express.Router();
+        this._portfolioProjectService = portfolioProjectService;
     }
 
     routes() {
@@ -25,7 +30,8 @@ export default class WorkController {
     }
 
     private async servePortfolio(req: any, res: any) {
-        return res.render('work/portfolio', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        return res.render('work/portfolio', { title: 'Express', portfolios: portfolioProjects });
     }
 
     private async serveTestimonials(req: any, res: any) {

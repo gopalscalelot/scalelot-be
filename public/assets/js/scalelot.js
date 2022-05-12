@@ -5,6 +5,7 @@ function toggleActive(Id, db) {
   element.classList.toggle(db);
 }
 function addActiveD(Id1, db1, description, imageId, webFrameworks, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools, rating) {
+  console.log("Show popup called")
   var element = document.querySelector(Id1);
   document.getElementById("popupImage").setAttribute("src", "/assets/images/dynamic-images/" + imageId);
 

@@ -2,14 +2,19 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../../../utils/Logger";
 import AsyncHandler from "../../../../../utils/AsyncHandler";
+import Testimonial from "../../../../../dto/Testimonial";
+import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
+import TestimonialService from "../../../../../service/TestimonialService";
 
 @autoInjectable()
 export default class GraphicDesignController {
     private _router: Router;
+    private _testimonialService: TestimonialService;
 
-    constructor() {
+    constructor(testimonialService: TestimonialService) {
         Logger.debug("Initialising Service Graphic Design FrontEnd Routes");
         this._router = express.Router();
+        this._testimonialService = testimonialService;
     }
 
     routes() {
@@ -25,7 +30,9 @@ export default class GraphicDesignController {
     }
 
     private async serveGraphicDesign(req: any, res: any) {
-        return res.render('services/graphics-design', { title: 'Express' });
+        let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
+        let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.GRAPHIC_DESIGN);
+        return res.render('services/graphics-design', { title: 'Express', testimonials: filteredTestimonials });
     }
 
     private async serveLogoDesign(req: any, res: any) {

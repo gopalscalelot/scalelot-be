@@ -2,7 +2,7 @@
   <div class="max-w-screen-4k mx-auto flex flex-wrap py-12 lg:py-16 xl:py-24 2xl:py-28 items-center space-y-7 md:space-y-9">
     <h2 class="text-center w-full">Our Clients Say</h2>
     <div class="w-full mx-auto relative">
-      <div class="w-full flex items-center justify-center space-x-7 mb-5 md:mb-7 -mt-5">
+      <div class="w-full flex items-center justify-center space-x-7 mb-5 md:mb-0 -mt-5">
         <div class="navArrowPrev cursor-pointer hover:text-scalelot-secondary anim">
           <span class="block text-3xl md:text-4xl lg:text-5xl text-current">&#8592;</span>
         </div>
@@ -11,7 +11,7 @@
           <span class="block text-3xl md:text-4xl lg:text-5xl text-current">&#8594;</span>
         </div>
       </div>
-      <div class="swiper clientsSay- recentWork pb-2">
+      <div class="swiper clientsSay- recentWork py-8">
         <div class="swiper-wrapper">
           <% testimonials.forEach(function(testimonial){ %>
             <div class="swiper-slide h-auto w-11/12 md:w-1/2 lg:w-1/3 2xl:w-1/4">
@@ -33,13 +33,16 @@
                   </div>
                   <p class="pb-5"><%= testimonial.review %></p>
                 </div>
-                <div class="user flex items-center">
-                  <div class="image mr-5">
-                    <img src="/assets/images/dynamic-images/<%= testimonial.files[0] %>" alt="" class="rounded-full w-16 h-16 object-cover">
-                  </div>
+                <div class="user flex items-center justify-between">
+<!--                  <div class="image mr-5">-->
+<!--                    <img src="/assets/images/dynamic-images/<%# testimonial.files[0] %>" alt="" class="rounded-full w-16 h-16 object-cover">-->
+<!--                  </div>-->
                   <div class="user-text">
                     <h5 class=""><%= testimonial.clientName %></h5>
                   </div>
+                    <div class="text-xl whitespace-nowrap">
+                        <%= testimonial.rating %> <span class="text-2xl text-yellow-400">&#9733;</span>
+                    </div>
                 </div>
               </div>
             </div>

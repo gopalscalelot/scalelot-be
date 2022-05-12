@@ -2,14 +2,19 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../../../utils/Logger";
 import AsyncHandler from "../../../../../utils/AsyncHandler";
+import Testimonial from "../../../../../dto/Testimonial";
+import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
+import TestimonialService from "../../../../../service/TestimonialService";
 
 @autoInjectable()
 export default class AppDevelopmentController {
     private _router: Router;
+    private _testimonialService: TestimonialService;
 
-    constructor() {
+    constructor(testimonialService: TestimonialService) {
         Logger.debug("Initialising Service App Development FrontEnd Routes");
         this._router = express.Router();
+        this._testimonialService = testimonialService;
     }
 
     routes() {
@@ -24,7 +29,9 @@ export default class AppDevelopmentController {
     }
 
     private async serveAppDev(req: any, res: any) {
-        return res.render('services/mobile-application-development', { title: 'Express' });
+        let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
+        let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.APP_DEVELOPMENT);
+        return res.render('services/mobile-application-development', { title: 'Express', testimonials: filteredTestimonials });
     }
 
     private async serveIosAppDev(req: any, res: any) {

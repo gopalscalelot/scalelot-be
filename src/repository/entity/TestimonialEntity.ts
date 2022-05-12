@@ -23,8 +23,6 @@ const testimonialSchema = new Schema<TestimonialEntity>({
     },
     clientDesignation: {
         type: String,
-        minlength: 2,
-        required: true
     },
     review: {
         type: String,
