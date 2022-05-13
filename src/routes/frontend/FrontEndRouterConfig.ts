@@ -20,6 +20,7 @@ export default class FrontEndRouterConfig {
     }
 
     private configureBaseRoutes() {
+
         this.router.use('/', this.frontEndBeanConfig.baseController.routes());
     }
 
@@ -40,7 +41,7 @@ export default class FrontEndRouterConfig {
         serviceRouter.use('/', webDevelopmentRouter);
 
         serviceRouter.use('/', this.frontEndBeanConfig.servicesController.routes());
-        appDevelopmentRouter.use('/app-development', this.frontEndBeanConfig.appDevelopmentController.routes());
+        appDevelopmentRouter.use('/mobile-app-development', this.frontEndBeanConfig.appDevelopmentController.routes());
         digitalMarketingRouter.use('/digital-marketing', this.frontEndBeanConfig.digitalMarketingController.routes());
         graphicDesignRouter.use('/graphic-design', this.frontEndBeanConfig.graphicDesignController.routes());
         salesFunnelRouter.use('/sales-funnels-design', this.frontEndBeanConfig.salesFunnelDesignController.routes());

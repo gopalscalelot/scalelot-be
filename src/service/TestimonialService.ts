@@ -31,4 +31,8 @@ export default class TestimonialService {
         Logger.debug("Files saved");
         return this._testimonialRepository.addTestimonial(testimonial);
     }
+
+    public async getAllTestimonials() {
+        return this._testimonialRepository.getAllTestimonails();
+    }
 }

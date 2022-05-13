@@ -14,6 +14,7 @@ interface PortfolioProjectsEntity extends Document {
     uiFrameworks: string,
     designingLanguage: string,
     designingTools: string,
+    priority: string,
     tags: string[],
     files: string[],
 }
@@ -47,37 +48,34 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
     webFramework:{
         type: String,
         minlength: 2,
-        required: true
     },
     programmingLanguages:{
         type: String,
         minlength: 2,
-        required: true
     },
     miscellaneous:{
         type: String,
         minlength: 2,
-        required: true
     },
     libraries:{
         type: String,
         minlength: 2,
-        required: true
     },
     uiFrameworks:{
         type: String,
         minlength: 2,
-        required: true
     },
     designingLanguage:{
         type: String,
         minlength: 2,
-        required: true
     },
     designingTools:{
         type: String,
         minlength: 2,
-        required: true
+    },
+    priority: {
+        type: String,
+        required: true,
     },
     tags: [{
         type: String,

@@ -1,6 +1,7 @@
 import {Expose, Transform} from "class-transformer";
 import FileDTO from "./FileDTO";
 import mongoose from "mongoose";
+import {PriorityEnum} from "../utils/enum/PriorityEnum";
 
 export default class PortfolioProject {
 
@@ -48,10 +49,13 @@ export default class PortfolioProject {
     @Expose({name: "tags"})
     private _tags: string[];
 
+    @Expose({name: "priority"})
+    private _priority: PriorityEnum;
+
     @Expose({name: "files"})
     private _files: string[];
 
-    constructor(id: mongoose.Types.ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, tags: string[], files: string[]) {
+    constructor(id: mongoose.Types.ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, tags: string[], priority: PriorityEnum, files: string[]) {
         this._id = id;
         this._title = title;
         this._category = category;
@@ -66,6 +70,7 @@ export default class PortfolioProject {
         this._designingLanguage = designingLanguage;
         this._designingTools = designingTools;
         this._tags = tags;
+        this._priority = priority;
         this._files = files;
     }
 
@@ -175,6 +180,14 @@ export default class PortfolioProject {
 
     set files(value: string[]) {
         this._files = value;
+    }
+
+    get priority(): PriorityEnum {
+        return this._priority;
+    }
+
+    set priority(value: PriorityEnum) {
+        this._priority = value;
     }
 
     get tags(): string[] {

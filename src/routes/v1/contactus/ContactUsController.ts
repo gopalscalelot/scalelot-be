@@ -44,7 +44,7 @@ export default class ContactUsController {
 
         contactUs = await this._contactUsService.addContactUsQuery(contactUs, files);
 
-        return res.render("confirmation");
+        return res.redirect("/thanks");
 
         // return new SuccessResponse(ResponseMessages.CREATE_CAREER_SUCCESS, contactUs).send(res);
     }

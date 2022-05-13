@@ -2,14 +2,19 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../../../utils/Logger";
 import AsyncHandler from "../../../../../utils/AsyncHandler";
+import TestimonialService from "../../../../../service/TestimonialService";
+import Testimonial from "../../../../../dto/Testimonial";
+import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
 
 @autoInjectable()
 export default class UiUxDesignController {
     private _router: Router;
+    private _testimonialService: TestimonialService;
 
-    constructor() {
+    constructor(testimonialService: TestimonialService) {
         Logger.debug("Initialising Service UI/UX Design FrontEnd Routes");
         this._router = express.Router();
+        this._testimonialService = testimonialService;
     }
 
     routes() {
@@ -25,7 +30,9 @@ export default class UiUxDesignController {
     }
 
     private async serveUiUxDesign(req: any, res: any) {
-        return res.render('services/uiuxdesign', { title: 'Express' });
+        let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
+        let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.UI_UX_DESIGN);
+        return res.render('services/uiuxdesign', { title: 'Express', testimonials: filteredTestimonials });
     }
 
     private async serveMobileAppDesign(req: any, res: any) {

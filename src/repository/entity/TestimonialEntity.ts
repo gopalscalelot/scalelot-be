@@ -6,6 +6,7 @@ interface TestimonialEntity extends Document {
     clientName: string,
     clientDesignation: string,
     review: string,
+    tags: string,
     files: string[],
 }
 
@@ -22,13 +23,14 @@ const testimonialSchema = new Schema<TestimonialEntity>({
     },
     clientDesignation: {
         type: String,
-        minlength: 2,
-        required: true
     },
     review: {
         type: String,
         minlength: 2,
         required: true
+    },
+    tags: {
+        type: String
     },
     files: [{
         type: String,

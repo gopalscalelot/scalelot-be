@@ -3595,10 +3595,6 @@ body  div section:nth-child(2n){
      object-position:left;
 }
 
-.p-1{
-  padding:0.25rem;
-}
-
 .p-4{
   padding:1rem;
 }
@@ -4346,6 +4342,11 @@ body  div section:nth-child(2n){
   filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.invert{
+  --tw-invert:invert(100%);
+  filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .filter{
   filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -4698,6 +4699,47 @@ input[type=number]::-webkit-outer-spin-button {
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: #303030;
   color: white;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: 'Select Files';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+.custom-file-input:hover::before {
+  border-color: black;
+}
+
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.active-text-secondary .active{
+  --tw-text-opacity:1;
+  color:rgb(238 49 57 / var(--tw-text-opacity));
+}
+
+.show.flexBox{
+  display:flex;
+}
+
+.show{
+  display:block;
 }
 
 #toTop.arrow-down{
@@ -5879,6 +5921,11 @@ input[type=number]::-webkit-outer-spin-button {
   .md\:px-0{
     padding-left:0px;
     padding-right:0px;
+  }
+
+  .md\:py-4{
+    padding-top:1rem;
+    padding-bottom:1rem;
   }
 
   .md\:pb-10{

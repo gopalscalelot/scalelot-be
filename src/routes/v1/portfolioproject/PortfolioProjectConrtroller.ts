@@ -4,11 +4,8 @@ import Logger from "../../../utils/Logger";
 import AsyncHandler from "../../../utils/AsyncHandler";
 import {plainToInstance} from "class-transformer";
 import PortfolioProject from "../../../dto/PortfolioProject";
-import {SuccessResponse} from "../../../utils/ApiResponse";
-import ResponseMessages from "../../../utils/statics/ResponseMessages";
 import PortfolioProjectService from "../../../service/PortfolioProjectService";
 import FileDTO from "../../../dto/FileDTO";
-import {OperationTypeEnum} from "../../../utils/enum/OperationTypeEnum";
 
 @autoInjectable()
 export default class PortfolioProjectController {
@@ -37,14 +34,14 @@ export default class PortfolioProjectController {
 
         let files: FileDTO[] = req.files.map((file: any) => {
             Logger.debug(file);
-            let fileDTO: FileDTO = plainToInstance(FileDTO, file, { excludeExtraneousValues: true });
+            let fileDTO: FileDTO = plainToInstance(FileDTO, file, {excludeExtraneousValues: true});
             fileDTO.buffer = file.buffer.toString("base64");
             return fileDTO;
         });
 
         portfolioProject = await this._portfolioProjectService.addPortfolioProject(portfolioProject, files);
 
-        return res.render("confirmation");
+        return res.redirect("/thanks");
         // return new SuccessResponse(ResponseMessages.CREATE_PORTFOLIO_PROJECT_SUCCESS, portfolioProject).send(res);
     }
 

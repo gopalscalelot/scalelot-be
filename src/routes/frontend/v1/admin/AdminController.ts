@@ -18,6 +18,7 @@ export default class AdminController {
         this._router.get('/addMeta', AsyncHandler(async (req:any, res:any) => this.serveAddMeta(req, res)));
         this._router.get('/addPortfolio', AsyncHandler(async (req:any, res:any) => this.serveAddPortfolio(req, res)));
         this._router.get('/AddTestimonial', AsyncHandler(async (req:any, res:any) => this.serveAddTestimonial(req, res)));
+        this._router.get('/dashboard', AsyncHandler(async (req:any, res:any) => this.serveDashboard(req, res)));
         return this._router;
     }
 
@@ -35,6 +36,10 @@ export default class AdminController {
 
     private async serveAddTestimonial(req: any, res: any) {
         return res.render('admin/add_testimonial', { title: 'Express' });
+    }
+
+    private async serveDashboard(req: any, res: any) {
+        return res.render('admin/dashboard', {title: 'Express'});
     }
 
 }

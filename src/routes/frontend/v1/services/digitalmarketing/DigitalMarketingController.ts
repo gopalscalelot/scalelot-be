@@ -2,14 +2,19 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../../../utils/Logger";
 import AsyncHandler from "../../../../../utils/AsyncHandler";
+import TestimonialService from "../../../../../service/TestimonialService";
+import Testimonial from "../../../../../dto/Testimonial";
+import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
 
 @autoInjectable()
 export default class DigitalMarketingController {
     private _router: Router;
+    private _testimonialService: TestimonialService;
 
-    constructor() {
+    constructor(testimonialService: TestimonialService) {
         Logger.debug("Initialising Service Digital Marketing FrontEnd Routes");
         this._router = express.Router();
+        this._testimonialService = testimonialService;
     }
 
     routes() {
@@ -22,7 +27,9 @@ export default class DigitalMarketingController {
     }
 
     private async serveDigitalMarketing(req: any, res: any) {
-        return res.render('services/digital-marketing', { title: 'Express' });
+        let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
+        let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.DIGITAL_MARKETING);
+        return res.render('services/digital-marketing', { title: 'Express', testimonials: filteredTestimonials });
     }
 
     private async serveSeoMarketing(req: any, res: any) {

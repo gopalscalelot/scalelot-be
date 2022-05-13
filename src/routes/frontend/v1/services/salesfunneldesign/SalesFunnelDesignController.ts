@@ -2,14 +2,19 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../../../utils/Logger";
 import AsyncHandler from "../../../../../utils/AsyncHandler";
+import TestimonialService from "../../../../../service/TestimonialService";
+import Testimonial from "../../../../../dto/Testimonial";
+import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
 
 @autoInjectable()
 export default class SalesFunnelDesignController {
     private _router: Router;
+    private _testimonialService: TestimonialService;
 
-    constructor() {
+    constructor(testimonialService: TestimonialService) {
         Logger.debug("Initialising Service Sales Funnel FrontEnd Routes");
         this._router = express.Router();
+        this._testimonialService = testimonialService;
     }
 
     routes() {
@@ -23,7 +28,9 @@ export default class SalesFunnelDesignController {
     }
 
     private async serveSalesFunnelDesign(req: any, res: any) {
-        return res.render('services/sales-funnel', { title: 'Express' });
+        let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
+        let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.SALES_FUNNELS);
+        return res.render('services/sales-funnel', { title: 'Express', testimonials: filteredTestimonials });
     }
 
     private async serveULPDev(req: any, res: any) {

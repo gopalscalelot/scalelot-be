@@ -2,14 +2,18 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../../utils/Logger";
 import AsyncHandler from "../../../../utils/AsyncHandler";
+import Testimonial from "../../../../dto/Testimonial";
+import TestimonialService from "../../../../service/TestimonialService";
 
 @autoInjectable()
 export default class ServicesController {
     private _router: Router;
+    private _testimonialService: TestimonialService;
 
-    constructor() {
+    constructor(testimonialService: TestimonialService) {
         Logger.debug("Initialising Service FrontEnd Routes");
         this._router = express.Router();
+        this._testimonialService = testimonialService;
     }
 
     routes() {
@@ -19,7 +23,8 @@ export default class ServicesController {
     }
 
     private async serveServices(req: any, res: any) {
-        return res.render('services', { title: 'Express' });
+        let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
+        return res.render('services', { title: 'Express', testimonials: testimonials });
     }
 
 }
