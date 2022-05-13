@@ -4,10 +4,13 @@ function toggleActive(Id, db) {
   var element = document.querySelector(Id);
   element.classList.toggle(db);
 }
-function addActiveD(Id1, db1, description, imageId, webFrameworks, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools, rating) {
+function addActiveD(Id1, db1, title, category, description, imageId, webFrameworks, programmingLanguages, miscellaneous, libraries, uiFrameworks, designingLanguage, designingTools, rating) {
   console.log("Show popup called")
   var element = document.querySelector(Id1);
   document.getElementById("popupImage").setAttribute("src", "/assets/images/dynamic-images/" + imageId);
+  document.getElementById("portfolioTitle").innerHTML = title;
+  document.getElementById("portfolioCategory").innerHTML = category;
+
 
   if(!webFrameworks || webFrameworks.length == 0) {
     document.getElementById("descriptionParent") && document.getElementById("descriptionParent").remove();
@@ -113,7 +116,7 @@ $(document).ready(function() {
     slidesPerView: "auto",
     centeredSlides: true,
     slidesPerGroup: 1,
-    loop: true,
+    loop: false,
     loopFillGroupWithBlank: true,
     spaceBetween: 30,
     pagination: {
@@ -668,3 +671,10 @@ function go_to_page(page_num) {
   //update the current page input field
   $("#current_page").val(page_num);
 }
+
+
+$("document").ready(function() {
+  setTimeout(function() {
+    $("#allPortfolio").trigger('click');
+  },10);
+});

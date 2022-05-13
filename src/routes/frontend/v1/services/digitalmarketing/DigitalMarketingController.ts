@@ -5,16 +5,21 @@ import AsyncHandler from "../../../../../utils/AsyncHandler";
 import TestimonialService from "../../../../../service/TestimonialService";
 import Testimonial from "../../../../../dto/Testimonial";
 import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
+import PortfolioProjectService from "../../../../../service/PortfolioProjectService";
+import PortfolioProject from "../../../../../dto/PortfolioProject";
+import {PortfolioTagsEnum} from "../../../../../utils/enum/PortfolioTagsEnum";
 
 @autoInjectable()
 export default class DigitalMarketingController {
     private _router: Router;
     private _testimonialService: TestimonialService;
+    private _portfolioProjectService: PortfolioProjectService;
 
-    constructor(testimonialService: TestimonialService) {
+    constructor(portfolioProjectService: PortfolioProjectService, testimonialService: TestimonialService) {
         Logger.debug("Initialising Service Digital Marketing FrontEnd Routes");
         this._router = express.Router();
         this._testimonialService = testimonialService;
+        this._portfolioProjectService = portfolioProjectService;
     }
 
     routes() {
@@ -29,19 +34,40 @@ export default class DigitalMarketingController {
     private async serveDigitalMarketing(req: any, res: any) {
         let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
         let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.DIGITAL_MARKETING);
-        return res.render('services/digital-marketing', { title: 'Express', testimonials: filteredTestimonials });
+
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.DIGITAL_MARKETING) >= 0 ? true : false;
+        });
+
+        return res.render('services/digital-marketing', { title: 'Express', portfolios: filteredPortfolioProjects, testimonials: filteredTestimonials });
     }
 
     private async serveSeoMarketing(req: any, res: any) {
-        return res.render('services/digital-marketing/seo-services', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.DIGITAL_MARKETING) >= 0 ? true : false;
+        });
+
+        return res.render('services/digital-marketing/seo-services', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveSemPpcMarketing(req: any, res: any) {
-        return res.render('services/digital-marketing/sem-ppc-management', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.DIGITAL_MARKETING) >= 0 ? true : false;
+        });
+
+        return res.render('services/digital-marketing/sem-ppc-management', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveSMMMarketing(req: any, res: any) {
-        return res.render('services/digital-marketing/social-media-marketing', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.DIGITAL_MARKETING) >= 0 ? true : false;
+        });
+
+        return res.render('services/digital-marketing/social-media-marketing', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
 }

@@ -4600,6 +4600,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .popup.show{
   left:0px;
+  display:flex;
 }
 
 /* Drag */
@@ -5540,12 +5541,12 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top:0.5rem;
   }
 
-  .md\:mb-7{
-    margin-bottom:1.75rem;
-  }
-
   .md\:ml-0{
     margin-left:0px;
+  }
+
+  .md\:mb-7{
+    margin-bottom:1.75rem;
   }
 
   .md\:mb-1\.5{

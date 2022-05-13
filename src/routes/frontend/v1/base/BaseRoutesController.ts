@@ -7,6 +7,7 @@ import PortfolioProject from "../../../../dto/PortfolioProject";
 import {PriorityEnum} from "../../../../utils/enum/PriorityEnum";
 import Testimonial from "../../../../dto/Testimonial";
 import TestimonialService from "../../../../service/TestimonialService";
+import {PortfolioTagsEnum} from "../../../../utils/enum/PortfolioTagsEnum";
 
 @autoInjectable()
 export default class BaseController {
@@ -39,12 +40,11 @@ export default class BaseController {
     private async serveIndex(req: Response, res: any): Promise<Response> {
         Logger.debug("Need to return index")
         let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
-        let highPriorityProjects: PortfolioProject[] = portfolioProjects.filter(portfolio => portfolio.priority === PriorityEnum.HIGH);
-        let mediumPriorityProjects: PortfolioProject[] = portfolioProjects.filter(portfolio => portfolio.priority === PriorityEnum.MEDIUM);
-        let lowPriorityProjects: PortfolioProject[] = portfolioProjects.filter(portfolio => portfolio.priority === PriorityEnum.LOW);
         let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
-        Logger.debug("Final Portfolio projects");
-        Logger.debug([...highPriorityProjects, ...mediumPriorityProjects, ...lowPriorityProjects]);
+
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.INDEX) >= 0 ? true : false;
+        });
         return res.render('index', { title: 'Express', portfolios: portfolioProjects, testimonials: testimonials });
     }
 

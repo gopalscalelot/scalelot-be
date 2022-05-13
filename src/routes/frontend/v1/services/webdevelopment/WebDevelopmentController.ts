@@ -5,17 +5,21 @@ import AsyncHandler from "../../../../../utils/AsyncHandler";
 import TestimonialService from "../../../../../service/TestimonialService";
 import Testimonial from "../../../../../dto/Testimonial";
 import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
+import PortfolioProject from "../../../../../dto/PortfolioProject";
+import PortfolioProjectService from "../../../../../service/PortfolioProjectService";
+import {PortfolioTagsEnum} from "../../../../../utils/enum/PortfolioTagsEnum";
 
 @autoInjectable()
 export default class WebDevelopmentController {
     private _router: Router;
     private _testimonialService: TestimonialService;
+    private _portfolioProjectService: PortfolioProjectService;
 
-    constructor(testimonialService: TestimonialService) {
+    constructor(portfolioProjectService: PortfolioProjectService, testimonialService: TestimonialService) {
         Logger.debug("Initialising Service WebDevelopment FrontEnd Routes");
         this._router = express.Router();
         this._testimonialService = testimonialService;
-
+        this._portfolioProjectService = portfolioProjectService;
     }
 
     routes() {
@@ -38,56 +42,121 @@ export default class WebDevelopmentController {
 
     private async serveWebDev(req: any, res: any) {
         let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
-        let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.WEB_DEVELOPMENT)
-        return res.render('services/web-development', { title: 'Express', testimonials: filteredTestimonials });
+        let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.WEB_DEVELOPMENT);
+
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+        return res.render('services/web-development', { title: 'Express', portfolios: filteredPortfolioProjects, testimonials: filteredTestimonials });
     }
 
     private async serveAngularDev(req: any, res: any) {
-        return res.render('services/web-development/angular-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/angular-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveReactDev(req: any, res: any) {
-        return res.render('services/web-development/react-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/react-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveNodeDev(req: any, res: any) {
-        return res.render('services/web-development/node-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/node-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async servePythonDev(req: any, res: any) {
-        return res.render('services/web-development/python-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/python-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveHtml5Dev(req: any, res: any) {
-        return res.render('services/web-development/html5-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/html5-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveWordpressDev(req: any, res: any) {
-        return res.render('services/web-development/wordpress-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/wordpress-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveMagentoDev(req: any, res: any) {
-        return res.render('services/web-development/magento-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/magento-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveWooComDev(req: any, res: any) {
-        return res.render('services/web-development/woo-commerce-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/woo-commerce-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveShopifyDev(req: any, res: any) {
-        return res.render('services/web-development/shopify-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/shopify-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveCMSDev(req: any, res: any) {
-        return res.render('services/web-development/cms-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/cms-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveMongoDBDesign(req: any, res: any) {
-        return res.render('services/web-development/mongodb-design', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/mongodb-design', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveMySqlDesign(req: any, res: any) {
-        return res.render('services/web-development/mysql-database', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.WEB_DEVELOPMENT) >= 0 ? true : false;
+        });
+
+        return res.render('services/web-development/mysql-database', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
 }

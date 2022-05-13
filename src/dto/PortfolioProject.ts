@@ -26,22 +26,22 @@ export default class PortfolioProject {
     private _description: string;
 
     @Expose({name: "webFramework"})
-    private _webFramework: string;
+    private _webFramework: string[];
 
     @Expose({name: "programmingLanguages"})
-    private _programmingLanguages: string;
+    private _programmingLanguages: string[];
 
     @Expose({name: "miscellaneous"})
-    private _miscellaneous: string;
+    private _miscellaneous: string[];
 
     @Expose({name: "libraries"})
-    private _libraries: string;
+    private _libraries: string[];
 
     @Expose({name: "uiFrameworks"})
-    private _uiFrameworks: string;
+    private _uiFrameworks: string[];
 
     @Expose({name: "designingLanguage"})
-    private _designingLanguage: string;
+    private _designingLanguage: string[];
 
     @Expose({name: "designingTools"})
     private _designingTools: string;
@@ -55,7 +55,7 @@ export default class PortfolioProject {
     @Expose({name: "files"})
     private _files: string[];
 
-    constructor(id: mongoose.Types.ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string, programmingLanguages: string, miscellaneous: string, libraries: string, uiFrameworks: string, designingLanguage: string, designingTools: string, tags: string[], priority: PriorityEnum, files: string[]) {
+    constructor(id: mongoose.Types.ObjectId, title: string, category: string, pageLink: string, rating: string, description: string, webFramework: string[], programmingLanguages: string[], miscellaneous: string[], libraries: string[], uiFrameworks: string[], designingLanguage: string[], designingTools: string, tags: string[], priority: PriorityEnum, files: string[]) {
         this._id = id;
         this._title = title;
         this._category = category;
@@ -118,51 +118,51 @@ export default class PortfolioProject {
         this._description = value;
     }
 
-    get webFramework(): string {
+    get webFramework(): string[] {
         return this._webFramework;
     }
 
-    set webFramework(value: string) {
+    set webFramework(value: string[]) {
         this._webFramework = value;
     }
 
-    get programmingLanguages(): string {
+    get programmingLanguages(): string[] {
         return this._programmingLanguages;
     }
 
-    set programmingLanguages(value: string) {
+    set programmingLanguages(value: string[]) {
         this._programmingLanguages = value;
     }
 
-    get miscellaneous(): string {
+    get miscellaneous(): string[] {
         return this._miscellaneous;
     }
 
-    set miscellaneous(value: string) {
+    set miscellaneous(value: string[]) {
         this._miscellaneous = value;
     }
 
-    get libraries(): string {
+    get libraries(): string[] {
         return this._libraries;
     }
 
-    set libraries(value: string) {
+    set libraries(value: string[]) {
         this._libraries = value;
     }
 
-    get uiFrameworks(): string {
+    get uiFrameworks(): string[] {
         return this._uiFrameworks;
     }
 
-    set uiFrameworks(value: string) {
+    set uiFrameworks(value: string[]) {
         this._uiFrameworks = value;
     }
 
-    get designingLanguage(): string {
+    get designingLanguage(): string[] {
         return this._designingLanguage;
     }
 
-    set designingLanguage(value: string) {
+    set designingLanguage(value: string[]) {
         this._designingLanguage = value;
     }
 

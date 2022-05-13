@@ -5,16 +5,21 @@ import AsyncHandler from "../../../../../utils/AsyncHandler";
 import Testimonial from "../../../../../dto/Testimonial";
 import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
 import TestimonialService from "../../../../../service/TestimonialService";
+import PortfolioProjectService from "../../../../../service/PortfolioProjectService";
+import PortfolioProject from "../../../../../dto/PortfolioProject";
+import {PortfolioTagsEnum} from "../../../../../utils/enum/PortfolioTagsEnum";
 
 @autoInjectable()
 export default class AppDevelopmentController {
     private _router: Router;
     private _testimonialService: TestimonialService;
+    private _portfolioProjectService: PortfolioProjectService;
 
-    constructor(testimonialService: TestimonialService) {
+    constructor(portfolioProjectService: PortfolioProjectService, testimonialService: TestimonialService) {
         Logger.debug("Initialising Service App Development FrontEnd Routes");
         this._router = express.Router();
         this._testimonialService = testimonialService;
+        this._portfolioProjectService = portfolioProjectService;
     }
 
     routes() {
@@ -31,27 +36,52 @@ export default class AppDevelopmentController {
     private async serveAppDev(req: any, res: any) {
         let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
         let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.APP_DEVELOPMENT);
-        return res.render('services/mobile-application-development', { title: 'Express', testimonials: filteredTestimonials });
+
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.APP_DEVELOPMENT) >= 0 ? true : false;
+        });
+        return res.render('services/mobile-application-development', { title: 'Express', portfolios: filteredPortfolioProjects, testimonials: filteredTestimonials });
     }
 
     private async serveIosAppDev(req: any, res: any) {
-        return res.render('services/mobile-app-development/ios-native-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.APP_DEVELOPMENT) >= 0 ? true : false;
+        });
+        return res.render('services/mobile-app-development/ios-native-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveAndroidAppDev(req: any, res: any) {
-        return res.render('services/mobile-app-development/android-app-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.APP_DEVELOPMENT) >= 0 ? true : false;
+        });
+        return res.render('services/mobile-app-development/android-app-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveHybridAppDev(req: any, res: any) {
-        return res.render('services/mobile-app-development/hybrid-app-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.APP_DEVELOPMENT) >= 0 ? true : false;
+        });
+        return res.render('services/mobile-app-development/hybrid-app-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveFlutterAppDev(req: any, res: any) {
-        return res.render('services/mobile-app-development/flutter-app-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.APP_DEVELOPMENT) >= 0 ? true : false;
+        });
+        return res.render('services/mobile-app-development/flutter-app-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveReactNativeAppDev(req: any, res: any) {
-        return res.render('services/mobile-app-development/react-native-app-development', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.APP_DEVELOPMENT) >= 0 ? true : false;
+        });
+        return res.render('services/mobile-app-development/react-native-app-development', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
 }

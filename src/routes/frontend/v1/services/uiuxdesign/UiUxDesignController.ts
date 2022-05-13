@@ -5,16 +5,21 @@ import AsyncHandler from "../../../../../utils/AsyncHandler";
 import TestimonialService from "../../../../../service/TestimonialService";
 import Testimonial from "../../../../../dto/Testimonial";
 import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
+import PortfolioProjectService from "../../../../../service/PortfolioProjectService";
+import PortfolioProject from "../../../../../dto/PortfolioProject";
+import {PortfolioTagsEnum} from "../../../../../utils/enum/PortfolioTagsEnum";
 
 @autoInjectable()
 export default class UiUxDesignController {
     private _router: Router;
     private _testimonialService: TestimonialService;
+    private _portfolioProjectService: PortfolioProjectService;
 
-    constructor(testimonialService: TestimonialService) {
+    constructor(portfolioProjectService: PortfolioProjectService, testimonialService: TestimonialService) {
         Logger.debug("Initialising Service UI/UX Design FrontEnd Routes");
         this._router = express.Router();
         this._testimonialService = testimonialService;
+        this._portfolioProjectService = portfolioProjectService;
     }
 
     routes() {
@@ -32,31 +37,67 @@ export default class UiUxDesignController {
     private async serveUiUxDesign(req: any, res: any) {
         let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
         let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.UI_UX_DESIGN);
-        return res.render('services/uiuxdesign', { title: 'Express', testimonials: filteredTestimonials });
+
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.UI_UX_DESIGN) >= 0 ? true : false;
+        });
+
+        return res.render('services/uiuxdesign', { title: 'Express', portfolios: filteredPortfolioProjects, testimonials: filteredTestimonials });
     }
 
     private async serveMobileAppDesign(req: any, res: any) {
-        return res.render('services/uiuxdesign/mobile-application-design', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.UI_UX_DESIGN) >= 0 ? true : false;
+        });
+
+        return res.render('services/uiuxdesign/mobile-application-design', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveWebsiteDesign(req: any, res: any) {
-        return res.render('services/uiuxdesign/website-design', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.UI_UX_DESIGN) >= 0 ? true : false;
+        });
+
+        return res.render('services/uiuxdesign/website-design', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveWebAppDesign(req: any, res: any) {
-        return res.render('services/uiuxdesign/web-application-design', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.UI_UX_DESIGN) >= 0 ? true : false;
+        });
+
+        return res.render('services/uiuxdesign/web-application-design', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveSalesFunnelDesign(req: any, res: any) {
-        return res.render('services/uiuxdesign/sales-funnels-design', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.UI_UX_DESIGN) >= 0 ? true : false;
+        });
+
+        return res.render('services/uiuxdesign/sales-funnels-design', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveGameDesign(req: any, res: any) {
-        return res.render('services/uiuxdesign/game-design', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.UI_UX_DESIGN) >= 0 ? true : false;
+        });
+
+        return res.render('services/uiuxdesign/game-design', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveWebRevampDesign(req: any, res: any) {
-        return res.render('services/uiuxdesign/website-redesign', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.UI_UX_DESIGN) >= 0 ? true : false;
+        });
+
+        return res.render('services/uiuxdesign/website-redesign', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
 }

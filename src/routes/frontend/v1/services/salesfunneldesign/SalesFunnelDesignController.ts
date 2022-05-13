@@ -5,16 +5,21 @@ import AsyncHandler from "../../../../../utils/AsyncHandler";
 import TestimonialService from "../../../../../service/TestimonialService";
 import Testimonial from "../../../../../dto/Testimonial";
 import {TestimonialTagsEnum} from "../../../../../utils/enum/TestimonialTagsEnum";
+import PortfolioProjectService from "../../../../../service/PortfolioProjectService";
+import PortfolioProject from "../../../../../dto/PortfolioProject";
+import {PortfolioTagsEnum} from "../../../../../utils/enum/PortfolioTagsEnum";
 
 @autoInjectable()
 export default class SalesFunnelDesignController {
     private _router: Router;
     private _testimonialService: TestimonialService;
+    private _portfolioProjectService: PortfolioProjectService;
 
-    constructor(testimonialService: TestimonialService) {
+    constructor(portfolioProjectService: PortfolioProjectService, testimonialService: TestimonialService) {
         Logger.debug("Initialising Service Sales Funnel FrontEnd Routes");
         this._router = express.Router();
         this._testimonialService = testimonialService;
+        this._portfolioProjectService = portfolioProjectService;
     }
 
     routes() {
@@ -30,23 +35,49 @@ export default class SalesFunnelDesignController {
     private async serveSalesFunnelDesign(req: any, res: any) {
         let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
         let filteredTestimonials: Testimonial[] = testimonials.filter(testimonial => testimonial.tags == TestimonialTagsEnum.SALES_FUNNELS);
-        return res.render('services/sales-funnel', { title: 'Express', testimonials: filteredTestimonials });
+
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.SALES_FUNNELS) >= 0 ? true : false;
+        });
+
+        return res.render('services/sales-funnel', { title: 'Express', portfolios: filteredPortfolioProjects, testimonials: filteredTestimonials });
     }
 
     private async serveULPDev(req: any, res: any) {
-        return res.render('services/sales-funnel/unbounce', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.SALES_FUNNELS) >= 0 ? true : false;
+        });
+
+        return res.render('services/sales-funnel/unbounce', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveClickFunnel(req: any, res: any) {
-        return res.render('services/sales-funnel/click-funnels', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.SALES_FUNNELS) >= 0 ? true : false;
+        });
+
+        return res.render('services/sales-funnel/click-funnels', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveInstaLandingPageDev(req: any, res: any) {
-        return res.render('services/sales-funnel/instapage', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.SALES_FUNNELS) >= 0 ? true : false;
+        });
+
+        return res.render('services/sales-funnel/instapage', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async serveHubspotDev(req: any, res: any) {
-        return res.render('services/sales-funnel/hubspot', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.SALES_FUNNELS) >= 0 ? true : false;
+        });
+
+        return res.render('services/sales-funnel/hubspot', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
 }

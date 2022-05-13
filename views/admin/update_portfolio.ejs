@@ -1,0 +1,337 @@
+<section>
+  <div class="max-w-screen-2xl mx-auto flex items-center space-x-7 px-5 lg:px-9 py-12 lg:py-16 xl:py-24 2xl:py-28">
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/admin/addMeta">Meta Keywords</a>
+    <a href="/admin/addPortfolio">Portfolio</a>
+    <a href="/admin/AddTestimonial">Testimonial</a>
+  </div>
+  <div class="max-w-screen-2xl mx-auto items-center px-5 lg:px-9 py-12 lg:py-16 xl:py-24 2xl:py-28">
+    <form action="/api/v1/portfolio-project" method="POST" enctype="multipart/form-data">
+      <!--        <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Upload File-->
+      <!--            <input accept="image/*" type="file" name="uploadFile"/>-->
+      <!--        </label>-->
+      <div class="pr-0 px-0 mx-auto">
+        <div class="flex flex-wrap">
+          <div class="w-full px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium block">Project Images<span class="text-scalelot-secondary">*</span></label>
+            <div class="py-5 w-full" id="upload-container">
+              <!--              <form class="form flex flex-col gap-y-5">-->
+              <label class="form__container hover:shadow-lg rounded-md">Choose or Drag & Drop Files
+                <input class="form__file form-control" id="upload-files" type="file" accept="image/*" multiple="multiple" value="" name="files"/>
+              </label>
+
+              <div class="form__files-container grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4" id="files-list-container"></div>
+              <!--              </form>-->
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Project Title<span class="text-scalelot-secondary">*</span></label>
+            <input type="text" class="dInput small rounded-lg form-control" placeholder="Add Title" value="" name="title"/>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Project Category<span class="text-scalelot-secondary">*</span></label>
+            <input type="text" class="dInput small rounded-lg form-control" placeholder="Category" value="" name="category"/>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Project Page Link<span class="text-scalelot-secondary">*</span></label>
+            <input type="text" class="dInput small rounded-lg form-control" placeholder="Page Link" value="" name="pageLink"/>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Portfolio Tags<span class="text-scalelot-secondary">*</span></label>
+            <select name="portfolio_tags" class="tags dInput small rounded-lg" multiple>
+              <option value="">Select Tags</option>
+              <option value="index">Index</option>
+              <option value="ui_ux">UI-UX</option>
+              <option value="web_development">Web Development</option>
+              <option value="mobile_development">Mobile Development</option>
+              <option value="sales_funnels">Sales Funnels</option>
+              <option value="graphic_design">Graphic Design</option>
+            </select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Select Priority<span class="text-scalelot-secondary">*</span></label>
+            <select name="priority" class="dInput small rounded-lg">
+              <option value="">Select Priority</option>
+              <option value="LOW">Low</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="HIGH">High</option>
+            </select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Project Rating<span class="text-scalelot-secondary">*</span></label>
+            <div class="flex items-center"><input type="range" class="form-control" value="1.0" step="0.1" min="1.0" max="5.0" value="" name="rating"/><span class="flex items-center"><output class="ml-3 mr-2 w-5 text-right">0.0</output><span class="text-2xl leading-3 text-yellow-400">&#9733;</span></span></div>
+          </div>
+          <div class="w-full px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Project Description<span class="text-scalelot-secondary">*</span></label>
+            <textarea class="dInput small rounded-lg form-control" placeholder="Project Description" value="" name="description"></textarea>
+          </div>
+
+          <div class="w-full px-3.5 pt-5 mb-3">
+            <h5>TECHNOLOGIES</h5>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Web Frameworks</label>
+            <select class="tags dInput small rounded-lg  form-control" multiple value="" name="webFramework"></select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Programming Languages</label>
+            <select class="tags dInput small rounded-lg form-control" multiple value="" name="programmingLanguages"></select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Miscellaneous</label>
+            <select class="tags dInput small rounded-lg form-control" multiple value="" name="miscellaneous"></select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Libraries</label>
+            <select class="tags dInput small rounded-lg form-control" multiple value="" name="libraries"></select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">UI Frameworks</label>
+            <select class="tags dInput small rounded-lg form-control" multiple value="" name="uiFrameworks"></select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Designing Language</label>
+            <select class="tags dInput small rounded-lg form-control" multiple value="" name="designingLanguage"></select>
+          </div>
+          <div class="w-full lg:w-1/2 px-3.5 mb-5">
+            <label class="text-sm lg:text-base text-scalelot-primary dark:text-white font-medium mb-2 block">Designing Tools </label>
+            <select class="tags dInput small rounded-lg form-control" multiple value="" name="designingTools"></select>
+          </div>
+          <div class="w-full px-3.5 mb-5 text-right flex items-center justify-end">
+            <div class="pl-5">
+              <button type="submit" class="btn-border bg-scalelot-primary text-white border-white group anim rounded-xl border ml-auto">
+                <span class="bleft anim group-hover:left-0"></span>
+                Save
+                <span class="bright anim group-hover:-right-full"></span>
+              </button>
+            </div>
+            <!--            <div class="pl-5">-->
+            <!--              <button type="submit" class="btn-border bg-scalelot-primary text-white border-white group anim rounded-xl border ml-auto">-->
+            <!--              <span class="bleft anim group-hover:left-0"></span>-->
+            <!--              Update-->
+            <!--              <span class="bright anim group-hover:-right-full"></span>-->
+            <!--              </button>-->
+            <!--            </div>-->
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
+
+
+<!-- <div class="Accordions w-full mx-auto px-3 space-y-2 mb-5">
+  <div class="Accordion_item py-3 px-5 rounded-md border border-scalelot-primary border-opacity-20 dark:border-white dark:border-opacity-50">
+    <h3 class="title_tab flex items-center justify-between cursor-pointer text-xs lg:text-sm capitalize font-pop font-medium">
+      <span>Web Frameworks</span>
+      <svg class="icon anim ml-3 w-3 transform active:rotate-180 stroke-current" xmlns="http://www.w3.org/2000/svg" width="21.994" height="13.118" viewBox="0 0 21.994 13.118"><path id="Path_4" data-name="Path 4" d="M871.513,5912.957l-8.876,8.876-8.876-8.876" transform="translate(-851.64 -5910.835)" fill="none" stroke="" stroke-linecap="round" stroke-width="3"/></svg>
+    </h3>
+    <div class="inner_content tracking-normal w-11/12 lg:w-10/12 space-y-4 mt-2 hidden">
+      <div class="flex flex-wrap">
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="Accordion_item py-3 px-5 rounded-md border border-scalelot-primary border-opacity-20 dark:border-white dark:border-opacity-50">
+    <h3 class="title_tab flex items-center justify-between cursor-pointer text-xs lg:text-sm capitalize font-pop font-medium">
+      <span>Programming Languages</span>
+      <svg class="icon anim ml-3 w-3 transform active:rotate-180 stroke-current" xmlns="http://www.w3.org/2000/svg" width="21.994" height="13.118" viewBox="0 0 21.994 13.118"><path id="Path_4" data-name="Path 4" d="M871.513,5912.957l-8.876,8.876-8.876-8.876" transform="translate(-851.64 -5910.835)" fill="none" stroke="" stroke-linecap="round" stroke-width="3"/></svg>
+    </h3>
+    <div class="inner_content tracking-normal w-11/12 lg:w-10/12 space-y-4 mt-2 hidden">
+      <div class="flex flex-wrap">
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="Accordion_item py-3 px-5 rounded-md border border-scalelot-primary border-opacity-20 dark:border-white dark:border-opacity-50">
+    <h3 class="title_tab flex items-center justify-between cursor-pointer text-xs lg:text-sm capitalize font-pop font-medium">
+      <span>Miscellaneous</span>
+      <svg class="icon anim ml-3 w-3 transform active:rotate-180 stroke-current" xmlns="http://www.w3.org/2000/svg" width="21.994" height="13.118" viewBox="0 0 21.994 13.118"><path id="Path_4" data-name="Path 4" d="M871.513,5912.957l-8.876,8.876-8.876-8.876" transform="translate(-851.64 -5910.835)" fill="none" stroke="" stroke-linecap="round" stroke-width="3"/></svg>
+    </h3>
+    <div class="inner_content tracking-normal w-11/12 lg:w-10/12 space-y-4 mt-2 hidden">
+      <div class="flex flex-wrap">
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="Accordion_item py-3 px-5 rounded-md border border-scalelot-primary border-opacity-20 dark:border-white dark:border-opacity-50">
+    <h3 class="title_tab flex items-center justify-between cursor-pointer text-xs lg:text-sm capitalize font-pop font-medium">
+      <span>Libraries</span>
+      <svg class="icon anim ml-3 w-3 transform active:rotate-180 stroke-current" xmlns="http://www.w3.org/2000/svg" width="21.994" height="13.118" viewBox="0 0 21.994 13.118"><path id="Path_4" data-name="Path 4" d="M871.513,5912.957l-8.876,8.876-8.876-8.876" transform="translate(-851.64 -5910.835)" fill="none" stroke="" stroke-linecap="round" stroke-width="3"/></svg>
+    </h3>
+    <div class="inner_content tracking-normal w-11/12 lg:w-10/12 space-y-4 mt-2 hidden">
+      <div class="flex flex-wrap">
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="Accordion_item py-3 px-5 rounded-md border border-scalelot-primary border-opacity-20 dark:border-white dark:border-opacity-50">
+    <h3 class="title_tab flex items-center justify-between cursor-pointer text-xs lg:text-sm capitalize font-pop font-medium">
+      <span>UI Frameworks</span>
+      <svg class="icon anim ml-3 w-3 transform active:rotate-180 stroke-current" xmlns="http://www.w3.org/2000/svg" width="21.994" height="13.118" viewBox="0 0 21.994 13.118"><path id="Path_4" data-name="Path 4" d="M871.513,5912.957l-8.876,8.876-8.876-8.876" transform="translate(-851.64 -5910.835)" fill="none" stroke="" stroke-linecap="round" stroke-width="3"/></svg>
+    </h3>
+    <div class="inner_content tracking-normal w-11/12 lg:w-10/12 space-y-4 mt-2 hidden">
+      <div class="flex flex-wrap">
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Tailwind</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Bootstrap</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Angular</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Laravel</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="Accordion_item py-3 px-5 rounded-md border border-scalelot-primary border-opacity-20 dark:border-white dark:border-opacity-50">
+    <h3 class="title_tab flex items-center justify-between cursor-pointer text-xs lg:text-sm capitalize font-pop font-medium">
+      <span>Designing Language</span>
+      <svg class="icon anim ml-3 w-3 transform active:rotate-180 stroke-current" xmlns="http://www.w3.org/2000/svg" width="21.994" height="13.118" viewBox="0 0 21.994 13.118"><path id="Path_4" data-name="Path 4" d="M871.513,5912.957l-8.876,8.876-8.876-8.876" transform="translate(-851.64 -5910.835)" fill="none" stroke="" stroke-linecap="round" stroke-width="3"/></svg>
+    </h3>
+    <div class="inner_content tracking-normal w-11/12 lg:w-10/12 space-y-4 mt-2 hidden">
+      <div class="flex flex-wrap">
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="Accordion_item py-3 px-5 rounded-md border border-scalelot-primary border-opacity-20 dark:border-white dark:border-opacity-50">
+    <h3 class="title_tab flex items-center justify-between cursor-pointer text-xs lg:text-sm capitalize font-pop font-medium">
+      <span>designing tools </span>
+      <svg class="icon anim ml-3 w-3 transform active:rotate-180 stroke-current" xmlns="http://www.w3.org/2000/svg" width="21.994" height="13.118" viewBox="0 0 21.994 13.118"><path id="Path_4" data-name="Path 4" d="M871.513,5912.957l-8.876,8.876-8.876-8.876" transform="translate(-851.64 -5910.835)" fill="none" stroke="" stroke-linecap="round" stroke-width="3"/></svg>
+    </h3>
+    <div class="inner_content tracking-normal w-11/12 lg:w-10/12 space-y-4 mt-2 hidden">
+      <div class="flex flex-wrap">
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+        <label class="text-xs lg:text-sm flex items-center space-x-3 cursor-pointer mr-6">
+          <input type="checkbox" name="" class="appearance-none w-3.5 h-3.5 rounded-sm border border-current checked:bg-current" />
+          <span>Express</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div> -->
