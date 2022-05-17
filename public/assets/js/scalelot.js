@@ -303,7 +303,7 @@ document.addEventListener(
           "<a href='https://www.instagram.com/scalelot/' class='icon-instagram text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
           "<a href='https://www.linkedin.com/in/scalelot-technologies-a61027221/' class='icon-linkedin text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
           "<a href='https://twitter.com/ScalelotT' class='icon-twitter text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
-          "<a href='https://join.skype.com/invite/y01KBTjj8kTx' class='icon-skype text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
+          "<a href='https://join.skype.com/invite/y01KBTjj8kTx' class='icon-skype1 text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
         ]
       },
       navbars: [

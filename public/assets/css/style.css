@@ -2109,6 +2109,30 @@ body  div section:nth-child(2n){
   top:100%;
 }
 
+.top-2\.5{
+  top:0.625rem;
+}
+
+.top-2{
+  top:0.5rem;
+}
+
+.right-1{
+  right:0.25rem;
+}
+
+.bottom-full{
+  bottom:100%;
+}
+
+.top-7{
+  top:1.75rem;
+}
+
+.right-\[calc\(100\%\+20px\)\]{
+  right:calc(100% + 20px);
+}
+
 .top-10{
   top:2.5rem;
 }
@@ -2161,30 +2185,6 @@ body  div section:nth-child(2n){
   left:27%;
 }
 
-.top-2\.5{
-  top:0.625rem;
-}
-
-.top-2{
-  top:0.5rem;
-}
-
-.right-1{
-  right:0.25rem;
-}
-
-.bottom-full{
-  bottom:100%;
-}
-
-.top-7{
-  top:1.75rem;
-}
-
-.right-\[calc\(100\%\+20px\)\]{
-  right:calc(100% + 20px);
-}
-
 .bottom-24{
   bottom:6rem;
 }
@@ -2229,6 +2229,10 @@ body  div section:nth-child(2n){
   z-index:30;
 }
 
+.z-40{
+  z-index:40;
+}
+
 .-z-10{
   z-index:-10;
 }
@@ -2255,10 +2259,6 @@ body  div section:nth-child(2n){
 
 .z-\[5\]{
   z-index:5;
-}
-
-.z-40{
-  z-index:40;
 }
 
 .order-2{
@@ -2467,6 +2467,10 @@ body  div section:nth-child(2n){
   margin-top:0.875rem;
 }
 
+.ml-5{
+  margin-left:1.25rem;
+}
+
 .mt-2{
   margin-top:0.5rem;
 }
@@ -2501,10 +2505,6 @@ body  div section:nth-child(2n){
 
 .mt-2\.5{
   margin-top:0.625rem;
-}
-
-.ml-5{
-  margin-left:1.25rem;
 }
 
 .mt-4{
@@ -2619,8 +2619,24 @@ body  div section:nth-child(2n){
   height:16rem;
 }
 
+.h-9{
+  height:2.25rem;
+}
+
 .h-4{
   height:1rem;
+}
+
+.h-0\.5{
+  height:0.125rem;
+}
+
+.h-0{
+  height:0px;
+}
+
+.h-6{
+  height:1.5rem;
 }
 
 .h-3\.5{
@@ -2643,28 +2659,12 @@ body  div section:nth-child(2n){
   height:20rem;
 }
 
-.h-6{
-  height:1.5rem;
-}
-
 .h-7{
   height:1.75rem;
 }
 
 .h-36{
   height:9rem;
-}
-
-.h-9{
-  height:2.25rem;
-}
-
-.h-0\.5{
-  height:0.125rem;
-}
-
-.h-0{
-  height:0px;
 }
 
 .h-48{
@@ -2763,6 +2763,14 @@ body  div section:nth-child(2n){
   width:25%;
 }
 
+.w-6{
+  width:1.5rem;
+}
+
+.w-7{
+  width:1.75rem;
+}
+
 .w-5{
   width:1.25rem;
 }
@@ -2795,16 +2803,8 @@ body  div section:nth-child(2n){
   width:14rem;
 }
 
-.w-6{
-  width:1.5rem;
-}
-
 .w-11{
   width:2.75rem;
-}
-
-.w-7{
-  width:1.75rem;
 }
 
 .w-\[10\%\]{
@@ -3425,6 +3425,10 @@ body  div section:nth-child(2n){
   background-color:rgb(238 49 57 / var(--tw-bg-opacity));
 }
 
+.bg-current{
+  background-color:currentColor;
+}
+
 .bg-gray-700{
   --tw-bg-opacity:1;
   background-color:rgb(55 65 81 / var(--tw-bg-opacity));
@@ -3467,10 +3471,6 @@ body  div section:nth-child(2n){
 
 .bg-\[rgba\(133\2c 177\2c 203\2c 0\.15\)\]{
   background-color:rgba(133,177,203,0.15);
-}
-
-.bg-current{
-  background-color:currentColor;
 }
 
 .bg-black{
@@ -4189,6 +4189,10 @@ body  div section:nth-child(2n){
   color:rgb(249 213 120 / var(--tw-text-opacity));
 }
 
+.text-inherit{
+  color:inherit;
+}
+
 .text-gray-700{
   --tw-text-opacity:1;
   color:rgb(55 65 81 / var(--tw-text-opacity));
@@ -4234,10 +4238,6 @@ body  div section:nth-child(2n){
   color:rgb(68 68 68 / var(--tw-text-opacity));
 }
 
-.text-inherit{
-  color:inherit;
-}
-
 .text-scalelot-dark{
   --tw-text-opacity:1;
   color:rgb(1 24 58 / var(--tw-text-opacity));
@@ -4272,6 +4272,10 @@ body  div section:nth-child(2n){
   opacity:0.1;
 }
 
+.opacity-100{
+  opacity:1;
+}
+
 .opacity-60{
   opacity:0.6;
 }
@@ -4282,10 +4286,6 @@ body  div section:nth-child(2n){
 
 .opacity-20{
   opacity:0.2;
-}
-
-.opacity-100{
-  opacity:1;
 }
 
 .mix-blend-multiply{
@@ -4421,16 +4421,16 @@ body  div section:nth-child(2n){
   transition-duration:300ms;
 }
 
+.duration-700{
+  transition-duration:700ms;
+}
+
 .duration-100{
   transition-duration:100ms;
 }
 
 .duration-1000{
   transition-duration:1000ms;
-}
-
-.duration-700{
-  transition-duration:700ms;
 }
 
 .nav-up .scrollJS{
@@ -5593,20 +5593,20 @@ input[type=number]::-webkit-outer-spin-button {
     height:6rem;
   }
 
-  .md\:h-auto{
-    height:auto;
-  }
-
-  .md\:h-8{
-    height:2rem;
-  }
-
   .md\:h-11{
     height:2.75rem;
   }
 
   .md\:h-6{
     height:1.5rem;
+  }
+
+  .md\:h-auto{
+    height:auto;
+  }
+
+  .md\:h-8{
+    height:2rem;
   }
 
   .md\:h-\[75\%\]{
@@ -5713,6 +5713,14 @@ input[type=number]::-webkit-outer-spin-button {
     width:6rem;
   }
 
+  .md\:w-11{
+    width:2.75rem;
+  }
+
+  .md\:w-7{
+    width:1.75rem;
+  }
+
   .md\:w-96{
     width:24rem;
   }
@@ -5725,14 +5733,6 @@ input[type=number]::-webkit-outer-spin-button {
     width:-webkit-max-content;
     width:-moz-max-content;
     width:max-content;
-  }
-
-  .md\:w-11{
-    width:2.75rem;
-  }
-
-  .md\:w-7{
-    width:1.75rem;
   }
 
   .md\:w-10{
@@ -6060,14 +6060,14 @@ input[type=number]::-webkit-outer-spin-button {
     line-height:2.25rem;
   }
 
-  .md\:text-3xl{
-    font-size:1.875rem;
-    line-height:2.5rem;
-  }
-
   .md\:text-sm{
     font-size:.875rem;
     line-height:1.356rem;
+  }
+
+  .md\:text-3xl{
+    font-size:1.875rem;
+    line-height:2.5rem;
   }
 
   .md\:text-6xl{
@@ -6606,12 +6606,12 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom:2.5rem;
   }
 
-  .xl\:mt-\[4\.5rem\]{
-    margin-top:4.5rem;
-  }
-
   .xl\:ml-10{
     margin-left:2.5rem;
+  }
+
+  .xl\:mt-\[4\.5rem\]{
+    margin-top:4.5rem;
   }
 
   .xl\:block{
@@ -6716,16 +6716,16 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom:calc(3rem * var(--tw-space-y-reverse));
   }
 
-  .xl\:space-x-16 > :not([hidden]) ~ :not([hidden]){
-    --tw-space-x-reverse:0;
-    margin-right:calc(4rem * var(--tw-space-x-reverse));
-    margin-left:calc(4rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
   .xl\:space-x-7 > :not([hidden]) ~ :not([hidden]){
     --tw-space-x-reverse:0;
     margin-right:calc(1.75rem * var(--tw-space-x-reverse));
     margin-left:calc(1.75rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .xl\:space-x-16 > :not([hidden]) ~ :not([hidden]){
+    --tw-space-x-reverse:0;
+    margin-right:calc(4rem * var(--tw-space-x-reverse));
+    margin-left:calc(4rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .xl\:overflow-x-hidden{
@@ -6820,6 +6820,11 @@ input[type=number]::-webkit-outer-spin-button {
     line-height:1.875rem;
   }
 
+  .xl\:text-base{
+    font-size:1rem;
+    line-height:1.45rem;
+  }
+
   .xl\:text-5xl{
     font-size:3rem;
     line-height:3.75rem;
@@ -6828,11 +6833,6 @@ input[type=number]::-webkit-outer-spin-button {
   .xl\:text-4xl{
     font-size:2.25rem;
     line-height:2.75rem;
-  }
-
-  .xl\:text-base{
-    font-size:1rem;
-    line-height:1.45rem;
   }
 
   .xl\:leading-8{
@@ -6845,20 +6845,20 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (min-width: 1536px){
-  .\32xl\:bottom-4{
-    bottom:1rem;
-  }
-
-  .\32xl\:top-4{
-    top:1rem;
-  }
-
   .\32xl\:top-5{
     top:1.25rem;
   }
 
   .\32xl\:top-3{
     top:0.75rem;
+  }
+
+  .\32xl\:bottom-4{
+    bottom:1rem;
+  }
+
+  .\32xl\:top-4{
+    top:1rem;
   }
 
   .\32xl\:mx-0{

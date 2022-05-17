@@ -26,7 +26,7 @@ export default class BaseController {
         Logger.debug("Configuring routes for Base");
         this._router.get('/', AsyncHandler(async (req:any, res:any) => this.serveIndex(req, res)));
         this._router.get('/about-us', AsyncHandler(async (req:any, res:any) => this.serveAboutUs(req, res)));
-        this._router.get('/careers', AsyncHandler(async (req:any, res:any) => this.serveCareers(req, res)));
+        this._router.get('/career', AsyncHandler(async (req:any, res:any) => this.serveCareer(req, res)));
         this._router.get('/how-we-work', AsyncHandler(async (req:any, res:any) => this.serveHowWeWork(req, res)));
         this._router.get('/blog', AsyncHandler(async (req:any, res:any) => this.serveBlog(req, res)));
         this._router.get('/faq', AsyncHandler(async (req:any, res:any) => this.serveFaq(req, res)));
@@ -52,8 +52,8 @@ export default class BaseController {
         return res.render('aboutus', { title: 'Express' });
     }
 
-    private async serveCareers(req: any, res: any) {
-        return res.render('careers', { title: 'Express' });
+    private async serveCareer(req: any, res: any) {
+        return res.render('career', { title: 'Express' });
     }
 
     private async serveHowWeWork(req: any, res: any) {

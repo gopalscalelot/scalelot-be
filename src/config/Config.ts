@@ -1,6 +1,6 @@
 // Mapper for environment variables
 export const environment = process.env.NODE_ENV || "development";
-export const port = process.env.PORT || "5100";
+export const port = process.env.PORT || "5000";
 
 export const db = {
     // connectionString: "mongodb://localhost:27017"
