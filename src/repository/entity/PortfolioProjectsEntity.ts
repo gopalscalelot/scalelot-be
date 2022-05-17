@@ -32,8 +32,6 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
     },
     pageLink:{
         type: String,
-        minlength: 2,
-        required: true
     },
     rating:{
         type: String,

@@ -122,31 +122,7 @@ export default class AppWideConfig {
         this.app.use(robots([
             {
                 UserAgent: '*',
-                Disallow: ['https://scalelot.com/public/assets/images/favicon/',
-                    'https://scalelot.com/public/assets/css/font-awesome/all.min.css',
-                    'https://scalelot.com/public/assets/css/flaticon/flaticon.css',
-                    'https://scalelot.com/public/assets/css/bootstrap/bootstrap.min.css',
-                    'https://scalelot.com/public/assets/css/owl-carousel/owl.carousel.min.css',
-                    'https://scalelot.com/public/assets/css/swiper/swiper.min.css',
-                    'https://scalelot.com/public/assets/css/animate/animate.min.css',
-                    'https://scalelot.com/public/assets/css/magnific-popup/magnific-popup.css',
-                    'https://scalelot.com/public/assets/css/style.css',
-                    'https://scalelot.com/public/assets/js/jquery-3.6.0.min.js',
-                    'https://scalelot.com/public/assets/js/popper/popper.min.js',
-                    'https://scalelot.com/public/assets/js/bootstrap/bootstrap.min.js',
-                    'https://scalelot.com/public/assets/images/',
-                    'https://scalelot.com/public/assets/images/svg/',
-                    'https://scalelot.com/public/assets/images/service/',
-                    'https://scalelot.com/public/assets/js/jquery.appear.js',
-                    'https://scalelot.com/public/assets/js/swiper/swiper.min.js',
-                    'https://scalelot.com/public/assets/js/swiperanimation/SwiperAnimation.min.js',
-                    'https://scalelot.com/public/assets/js/counter/jquery.countTo.js',
-                    'https://scalelot.com/public/assets/js/owl-carousel/owl.carousel.min.js',
-                    'https://scalelot.com/public/assets/js/magnific-popup/jquery.magnific-popup.min.js',
-                    'https://scalelot.com/public/assets/js/custom.js',
-                ],
-                CrawlDelay: '5',
-                Sitemap: 'https://scalelot.com/sitemap.xml',
+                Disallow: '/',
             }
         ]));
     }
