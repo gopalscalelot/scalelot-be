@@ -1,5 +1,28 @@
-// Active Class JS
 
+$('.toggle-mode').toggleClass(localStorage.toggled);
+
+function darkLight() {
+  /*DARK CLASS*/
+  if (localStorage.toggled != 'dark') {
+    $('html').toggleClass('dark', true);
+    localStorage.toggled = "dark";
+     
+  } else {
+    $('html').toggleClass('dark', false);
+    localStorage.toggled = "";
+  }
+}
+
+/*Add 'checked' property to input if background == dark*/
+if ($('main').hasClass('dark')) {
+  $('html').toggleClass('dark')
+} else {
+  $('#checkBox').toggleClass('dark')
+}
+
+
+
+// Active Class JS
 function toggleActive(Id, db) {
   var element = document.querySelector(Id);
   element.classList.toggle(db);
@@ -12,73 +35,83 @@ function addActiveD(Id1, db1, title, category, description, imageId, webFramewor
   document.getElementById("portfolioCategory").innerHTML = category;
 
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("descriptionParent") && document.getElementById("descriptionParent").remove();
+  if(!description || description.length == 0) {
+    document.getElementById("descriptionParent") && document.getElementById("descriptionParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("descriptionParent") && document.getElementById("descriptionParent").classList.remove('showhidden');
     document.getElementById("description").innerHTML = description;
   }
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("descriptionMobileParent") && document.getElementById("descriptionMobileParent").remove();
+  if(!description || description.length == 0) {
+    document.getElementById("descriptionMobileParent") && document.getElementById("descriptionMobileParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("descriptionMobileParent") && document.getElementById("descriptionMobileParent").classList.remove('showhidden');
     document.getElementById("descriptionMobile").innerHTML = description;
   }
 
   if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("webFrameworksParent") && document.getElementById("webFrameworksParent").remove();
+    document.getElementById("webFrameworksParent") && document.getElementById("webFrameworksParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("webFrameworksParent") && document.getElementById("webFrameworksParent").classList.remove('showhidden');
     document.getElementById("webFrameworks").innerHTML = webFrameworks;
   }
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("programmingLanguagesParent") && document.getElementById("programmingLanguagesParent").remove();
+  if(!programmingLanguages || programmingLanguages.length == 0) {
+    document.getElementById("programmingLanguagesParent") && document.getElementById("programmingLanguagesParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("programmingLanguagesParent") && document.getElementById("programmingLanguagesParent").classList.remove('showhidden');
     document.getElementById("programmingLanguages").innerHTML = programmingLanguages;
   }
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("miscellaneousParent") && document.getElementById("miscellaneousParent").remove();
+  if(!miscellaneous || miscellaneous.length == 0) {
+    document.getElementById("miscellaneousParent") && document.getElementById("miscellaneousParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("miscellaneousParent") && document.getElementById("miscellaneousParent").classList.remove('showhidden');
     document.getElementById("miscellaneous").innerHTML = miscellaneous;
   }
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("librariesParent") && document.getElementById("librariesParent").remove();
+  if(!libraries || libraries.length == 0) {
+    document.getElementById("librariesParent") && document.getElementById("librariesParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("librariesParent") && document.getElementById("librariesParent").classList.remove('showhidden');
     document.getElementById("libraries").innerHTML = libraries;
   }
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("uiFrameworksParent") && document.getElementById("uiFrameworksParent").remove();
+  if(!uiFrameworks || uiFrameworks.length == 0) {
+    document.getElementById("uiFrameworksParent") && document.getElementById("uiFrameworksParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("uiFrameworksParent") && document.getElementById("uiFrameworksParent").classList.remove('showhidden');
     document.getElementById("uiFrameworks").innerHTML = uiFrameworks;
   }
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("designingToolsParent") && document.getElementById("designingToolsParent").remove();
+  if(!designingTools || designingTools.length == 0) {
+    document.getElementById("designingToolsParent") && document.getElementById("designingToolsParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("designingToolsParent") && document.getElementById("designingToolsParent").classList.remove('showhidden');
     document.getElementById("designingTools").innerHTML = designingTools;
   }
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("designingLanguageParent") && document.getElementById("designingLanguageParent").remove();
+  if(!designingLanguage || designingLanguage.length == 0) {
+    document.getElementById("designingLanguageParent") && document.getElementById("designingLanguageParent").classList.add('showhidden');
   }
   else {
+    document.getElementById("designingLanguageParent") && document.getElementById("designingLanguageParent").classList.remove('showhidden');
     document.getElementById("designingLanguage").innerHTML = designingLanguage;
   }
 
-  if(!webFrameworks || webFrameworks.length == 0) {
-    document.getElementById("ratingDynamic") && document.getElementById("ratingDynamic").remove();
+  if(!rating || rating.length == 0) {
+    document.getElementById("ratingDynamic") && document.getElementById("ratingDynamic").classList.add('showhidden');
   }
   else {
+    document.getElementById("ratingDynamic") && document.getElementById("ratingDynamic").classList.remove('showhidden');
     document.getElementById("ratingDynamic").innerHTML = rating;
   }
 
@@ -300,7 +333,7 @@ document.addEventListener(
         ],
         "bottom": [
           "<a href='https://www.facebook.com/scalelottech' class='icon-facebook text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
-          "<a href='https://www.instagram.com/scalelot/' class='icon-instagram text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
+          "<a href='https://www.instagram.com/scalelot_technologies/' class='icon-instagram text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
           "<a href='https://www.linkedin.com/in/scalelot-technologies-a61027221/' class='icon-linkedin text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
           "<a href='https://twitter.com/ScalelotT' class='icon-twitter text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
           "<a href='https://join.skype.com/invite/y01KBTjj8kTx' class='icon-skype1 text-lg pb-4 pt-0 hover:text-scalelot-secondary'></a>",
@@ -308,13 +341,13 @@ document.addEventListener(
       },
       navbars: [
         {
-            content: ["prev", "breadcrumbs", "close"],
+          content: ["prev", "breadcrumbs", "close"],
         },
         {
-            position: "bottom",
-            content: [
-              '<div class="block px-5 py-3.5"><label class="toSwitch bg-white dark:bg-scalelot-darkPlus border border-scalelot-grayLight dark:border-scalelot-primary text-scalelot-darkPlus dark:text-white relative block h-11 md:h-14 w-full rounded-full mx-auto"><span class="block w-1/2 h-full absolute top-0 left-0 rounded-full bg-scalelot-grayLight bg-opacity-30 dark:bg-scalelot-primary anim dark:translate-x-full"></span><div class="flex items-center text-center h-full relative cursor-pointer"><span class="w-1/2 flex items-center justify-center text-scalelot-darkPlus dark:text-white text-sm md:text-base" onclick="removeActive();"><span class="icon-light text-base md:text-xl block md:w-8 mr-2 text-yellow-400"></span> Light</span><span class="w-1/2 flex items-center justify-center text-scalelot-darkPlus dark:text-white text-sm md:text-base" onclick="addActive();"><span class="icon-dark text-base md:text-xl block md:w-8 mr-2"></span> Dark</span></div></label></div>'
-            ],
+          position: "bottom",
+          content: [               
+            '<div class="block px-5 py-3.5"><label class="toSwitch bg-white dark:bg-scalelot-darkPlus border border-scalelot-grayLight dark:border-scalelot-primary text-scalelot-darkPlus dark:text-white relative block h-11 md:h-14 w-full rounded-full mx-auto"><span class="block w-1/2 h-full absolute top-0 left-0 rounded-full bg-scalelot-grayLight bg-opacity-30 dark:bg-scalelot-primary anim dark:translate-x-full"></span><div class="flex items-center text-center h-full relative cursor-pointer"><span class="w-1/2 flex items-center justify-center text-scalelot-darkPlus dark:text-white text-sm md:text-base" onclick="removeActive();"><span class="icon-light text-base md:text-xl block md:w-8 mr-2 text-yellow-400"></span> Light</span><span class="w-1/2 flex items-center justify-center text-scalelot-darkPlus dark:text-white text-sm md:text-base" onclick="addActive();"><span class="icon-dark text-base md:text-xl block md:w-8 mr-2"></span> Dark</span></div></label></div>'
+          ],
         },
       ],
     });

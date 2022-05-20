@@ -45,7 +45,7 @@ export default class BaseController {
         let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
             return portfolioProject.tags.indexOf(PortfolioTagsEnum.INDEX) >= 0 ? true : false;
         });
-        return res.render('index', { title: 'Express', portfolios: portfolioProjects, testimonials: testimonials });
+        return res.render('index', { title: 'Express', portfolios: filteredPortfolioProjects, testimonials: testimonials });
     }
 
     private async serveAboutUs(req: any, res: any) {

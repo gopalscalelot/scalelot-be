@@ -33,7 +33,7 @@ h6 {@apply text-sm md:text-lg lg:text-xl;}
 
 h1,h2,h3,h4,h5,h6 {@apply font-jos font-semibold text-scalelot-primary dark:text-white leading-tight;}
 
-p {@apply text-xs md:text-sm lg:text-base 2xl:text-lg md:leading-6 lg:leading-7 xl:leading-8;}
+p {@apply text-xs md:text-sm lg:text-base 2xl:text-lg md:leading-6 lg:leading-6 2xl:leading-8;}
 
 body  div section:nth-child(2n) {@apply bg-slate-50 dark:bg-scalelot-darkPlus dark:bg-opacity-30 dark:backdrop-blur-lg;}
 .shadow-coust {box-shadow: 0px 0px 40px 0px rgb(0, 0, 0, .20);}
@@ -510,3 +510,5 @@ input[type=number]::-webkit-outer-spin-button {
 #toTop.arrow-up{@apply block opacity-100;}
 
 *:focus,*,*:active,:hover {outline: none !important;}
+
+.showhidden {display: none !important;}

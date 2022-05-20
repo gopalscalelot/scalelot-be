@@ -2,19 +2,23 @@ import {autoInjectable} from "tsyringe";
 import express, {Router} from "express";
 import Logger from "../../../../utils/Logger";
 import AsyncHandler from "../../../../utils/AsyncHandler";
-import TestimonialService from "../../../../service/TestimonialService";
 import PortfolioProjectService from "../../../../service/PortfolioProjectService";
 import PortfolioProject from "../../../../dto/PortfolioProject";
+import { PortfolioTagsEnum } from "../../../../utils/enum/PortfolioTagsEnum";
+import Testimonial from "../../../../dto/Testimonial";
+import TestimonialService from "../../../../service/TestimonialService";
 
 @autoInjectable()
 export default class WorkController {
     private _router: Router;
     private _portfolioProjectService: PortfolioProjectService;
+    private _testimonialService: TestimonialService;
 
-    constructor(portfolioProjectService: PortfolioProjectService) {
+    constructor(portfolioProjectService: PortfolioProjectService, testimonialService: TestimonialService) {
         Logger.debug("Initialising Work FrontEnd Routes");
         this._router = express.Router();
         this._portfolioProjectService = portfolioProjectService;
+        this._testimonialService = testimonialService;
     }
 
     routes() {
@@ -26,7 +30,11 @@ export default class WorkController {
     }
 
     private async serveWork(req: any, res: any) {
-        return res.render('work', { title: 'Express' });
+        let portfolioProjects: PortfolioProject[] = await this._portfolioProjectService.getAllPortfolio();
+        let filteredPortfolioProjects: PortfolioProject[] = portfolioProjects.filter(portfolioProject => {
+            return portfolioProject.tags.indexOf(PortfolioTagsEnum.INDEX) >= 0 ? true : false;
+        });
+        return res.render('work', { title: 'Express', portfolios: filteredPortfolioProjects });
     }
 
     private async servePortfolio(req: any, res: any) {
@@ -35,7 +43,8 @@ export default class WorkController {
     }
 
     private async serveTestimonials(req: any, res: any) {
-        return res.render('work/testimonials', { title: 'Express' });
+        let testimonials: Testimonial[] = await this._testimonialService.getAllTestimonials();
+        return res.render('work/testimonials', { title: 'Express', testimonials: testimonials });
     }
 
 }

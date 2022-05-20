@@ -122,7 +122,8 @@ export default class AppWideConfig {
         this.app.use(robots([
             {
                 UserAgent: '*',
-                Disallow: '/',
+                allow: '/',
+                sitemap: 'https://scalelot.com/sitemap.xml',
             }
         ]));
     }

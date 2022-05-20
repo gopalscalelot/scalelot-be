@@ -85,14 +85,14 @@
               <textarea name="description" rows="5" placeholder="Your Message" class="form-control dInput small rounded-lg mt-0 md:mt-2.5"></textarea>
             </label>
           </div>
-          <div class="w-full lg:w-3/12 p-3">
+          <!-- <div class="w-full lg:w-3/12 p-3">
             <label class="leading-7 text-sm lg:text-lg text-scalelot-primary dark:text-white font-medium">Upload File
               <input type="file" name="uploadFile" class="hidden" />
-              <span class="border border-dashed w-full form-control dInput small rounded-lg mt-0 md:mt-2.5">
+              <span class="block border border-dashed w-full form-control dInput small rounded-lg mt-0 md:mt-2.5">
                 <span class="text-xs w-full text-center cursor-pointer">Click to Upload</span>
               </span>
             </label>
-          </div>
+          </div> -->
           <div class="w-full p-3">
             <button type="submit" value="Submit" class="btn-border group anim rounded-full border ml-auto">
               <span class="bleft anim group-hover:left-0"></span>
@@ -167,55 +167,6 @@
     </div>
   </div>
 </section>
-
-<!--<script>-->
-<!--  function callApi() {-->
-<!--    console.log('vvv');-->
-
-
-
-
-<!--    try {-->
-<!--      const stringData = new FormData()-->
-
-
-<!--      stringData.append('name', 'Demo name ');-->
-<!--      stringData.append('companyName', 'Demo companyName ');-->
-<!--      stringData.append('email', 'wgwg@sdg.sdg');-->
-<!--      stringData.append('phoneNumber', 'Demo phoneNumber ');-->
-<!--      stringData.append('description', 'Demo description ');-->
-
-
-
-
-<!--      fetch(`192.168.29.105:3100/v1/contact-us`, {-->
-<!--        method: 'POST',-->
-<!--        headers: {-->
-<!--          'Accept': '*/*',-->
-<!--          'Content-Type': `multipart/form-data`-->
-<!--        },-->
-<!--        body: stringData-->
-<!--      })-->
-<!--        .then(response => response.json())-->
-<!--        .then(data => {-->
-<!--          if (data.response.errors) console.log(data.response.errors)-->
-<!--          if (data) console.log(data)-->
-<!--        }).catch(err222 => console.log(err222))-->
-
-
-<!--    } catch (err111) {-->
-<!--      console.log("err111 ", err111);-->
-
-
-
-
-
-
-<!--    }-->
-
-
-<!--  }-->
-<!--</script>-->
 
 <!-- We're Global And Growing section -->
 <%- include ("components/global_contact.ejs") %>

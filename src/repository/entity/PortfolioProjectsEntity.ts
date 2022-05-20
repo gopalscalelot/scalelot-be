@@ -31,7 +31,7 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
         required: true
     },
     pageLink:{
-        type: String,
+        type: String
     },
     rating:{
         type: String,
@@ -39,9 +39,7 @@ const portfolioProjectsSchema = new Schema<PortfolioProjectsEntity>({
         required: true
     },
     description:{
-        type: String,
-        minlength: 2,
-        required: true
+        type: String
     },
     webFramework:[{
         type: String,
