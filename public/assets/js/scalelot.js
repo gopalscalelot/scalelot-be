@@ -1,25 +1,22 @@
 
 $('.toggle-mode').toggleClass(localStorage.toggled);
 
-function darkLight() {
-  /*DARK CLASS*/
-  if (localStorage.toggled != 'dark') {
-    $('html').toggleClass('dark', true);
-    localStorage.toggled = "dark";
-     
-  } else {
-    $('html').toggleClass('dark', false);
-    localStorage.toggled = "";
+if(localStorage.theme && localStorage.theme == "dark") {
+  document.querySelector('html').classList.add("dark");
+}
+else {
+  localStorage.theme="light";
+  document.querySelector('html').classList.remove("dark");
+}
+
+function changeTheme() {
+  if (localStorage.theme && localStorage.theme == "dark") {
+    localStorage.theme = "light";
+  }
+  else {
+    localStorage.theme = "dark";
   }
 }
-
-/*Add 'checked' property to input if background == dark*/
-if ($('main').hasClass('dark')) {
-  $('html').toggleClass('dark')
-} else {
-  $('#checkBox').toggleClass('dark')
-}
-
 
 
 // Active Class JS

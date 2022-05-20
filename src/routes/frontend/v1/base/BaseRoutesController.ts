@@ -31,6 +31,7 @@ export default class BaseController {
         this._router.get('/blog', AsyncHandler(async (req:any, res:any) => this.serveBlog(req, res)));
         this._router.get('/faq', AsyncHandler(async (req:any, res:any) => this.serveFaq(req, res)));
         this._router.get('/offshore', AsyncHandler(async (req:any, res:any) => this.serveOffshore(req, res)));
+        this._router.get('/contact', AsyncHandler(async (req:any, res:any) => this.serveContact(req, res)));
         this._router.get('/contact-us', AsyncHandler(async (req:any, res:any) => this.serveContactUs(req, res)));
         this._router.get('/html-sitemap', AsyncHandler(async (req:any, res:any) => this.serveHtmlSiteMap(req, res)));
         this._router.get('/thanks', AsyncHandler(async (req:any, res:any) => this.serveThanksMap(req, res)));
@@ -70,6 +71,10 @@ export default class BaseController {
 
     private async serveOffshore(req: any, res: any) {
         return res.render('offshore', { title: 'Express' });
+    }
+
+    private async serveContact(req: any, res: any) {
+        return res.redirect('/contact-us')
     }
 
     private async serveContactUs(req: any, res: any) {
